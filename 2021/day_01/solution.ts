@@ -15,7 +15,7 @@ const solutionPart1 = R.pipe(
   R.length
 )(values);
 
-assert.equal(solutionPart1, 1759);
+assert.strictEqual(solutionPart1, 1759);
 
 // count the number of times the sum of measurements in this sliding window (3)
 // increases from the previous sum
@@ -29,7 +29,7 @@ const solutionPart2 = R.pipe(
   R.length
 )(values);
 
-assert.equal(solutionPart2, 1805);
+assert.strictEqual(solutionPart2, 1805);
 
 //
 

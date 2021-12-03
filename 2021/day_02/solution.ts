@@ -31,7 +31,7 @@ const solutionPart1 = R.reduce(
 
 const multipliedPart1 = solutionPart1.position * solutionPart1.depth;
 
-assert.equal(multipliedPart1, 1694130);
+assert.strictEqual(multipliedPart1, 1694130);
 
 // Part 2
 
@@ -58,7 +58,7 @@ const solutionPart2 = R.reduce(
 
 const multipliedPart2 = solutionPart2.position * solutionPart2.depth;
 
-assert.equal(multipliedPart2, 1698850445);
+assert.strictEqual(multipliedPart2, 1698850445);
 
 //
 
