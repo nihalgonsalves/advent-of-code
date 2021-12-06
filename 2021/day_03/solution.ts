@@ -50,18 +50,18 @@ const calcSolutionPart2 = (
 
   const { zeroes, ones } = bitCounter(report)[bitIndex];
 
+  const { most, least } = (() => {
+    if (zeroes > ones) {
+      return { most: "0", least: "1" };
+    } else if (zeroes < ones) {
+      return { most: "1", least: "0" };
+    }
+    return { most: undefined, least: undefined };
+  })();
+
   return R.pipe(
     () => report,
     R.filter((row: string[]) => {
-      const { most, least } = (() => {
-        if (zeroes > ones) {
-          return { most: "0", least: "1" };
-        } else if (zeroes < ones) {
-          return { most: "1", least: "0" };
-        }
-        return { most: undefined, least: undefined };
-      })();
-
       if (type === "oxygen") {
         return most ? row[bitIndex] === most : row[bitIndex] === "1";
       } else {
