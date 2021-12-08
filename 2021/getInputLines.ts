@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 export const getInputLines = (day: string): string[] => {
   const input = fs.readFileSync(
@@ -7,5 +7,5 @@ export const getInputLines = (day: string): string[] => {
     "utf8"
   );
 
-  return input.split("\n");
+  return input.split("\n").filter((line) => line !== "");
 };

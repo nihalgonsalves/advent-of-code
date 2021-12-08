@@ -3,7 +3,7 @@ import assert from "assert";
 import R from "ramda";
 import { getInputLines } from "../getInputLines";
 
-const input = getInputLines("04").filter((line) => line != "");
+const input = getInputLines("04");
 
 const [rawCalls, ...rawBoards] = input;
 
