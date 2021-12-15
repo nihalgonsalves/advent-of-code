@@ -1,7 +1,7 @@
 import assert from "assert";
 import R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines, time } from "../getInputLines";
 
 type Position = { x: number; y: number };
 type Node = Position & { risk: number };
@@ -12,7 +12,7 @@ type ScoredNode = Node & {
   parent?: ScoredNode;
 };
 
-const matrix: Node[][] = getInputLines("15").map((line, x) =>
+const initialMatrix: Node[][] = getInputLines("15").map((line, x) =>
   line.split("").map((risk, y) => ({
     x,
     y,
@@ -23,7 +23,11 @@ const matrix: Node[][] = getInputLines("15").map((line, x) =>
 const isNode = (a: Position, b: Position) => a.x === b.x && a.y === b.y;
 
 // A* with g = parent.g + risk, h = Δx + Δy
-const findPaths = (source: Node, destination: Node): ScoredNode => {
+const findPaths = (
+  matrix: Node[][],
+  source: Node,
+  destination: Node
+): ScoredNode => {
   const visited = Array.from({ length: matrix.length }, () =>
     Array.from({ length: matrix[0].length }, () => false)
   );
@@ -72,15 +76,48 @@ const findPaths = (source: Node, destination: Node): ScoredNode => {
 
 // Part 1
 
-const part1SolutionNode = findPaths(
-  matrix.at(0)!.at(0)!,
-  matrix.at(-1)!.at(-1)!
+const part1SolutionNode = time("part1", () =>
+  findPaths(
+    initialMatrix,
+    initialMatrix.at(0)!.at(0)!,
+    initialMatrix.at(-1)!.at(-1)!
+  )
 );
 
 // Part 2
 
+const repeatN = 5;
+const i_m = initialMatrix.length;
+const i_n = initialMatrix[0].length;
+
+const part2SolutionNode = time("part2", () => {
+  const expandedMatrix: Node[][] = time("part2.a", () =>
+    Array.from({ length: initialMatrix.length * repeatN }, (_row, x) =>
+      Array.from({ length: initialMatrix[0].length * repeatN }, (_cell, y) => {
+        const { risk: sourceRisk } = initialMatrix[x % i_m][y % i_n];
+        const additionalRisk = Math.floor(x / i_m) + Math.floor(y / i_n);
+
+        const newRawRisk = sourceRisk + additionalRisk;
+
+        return newRawRisk <= 9
+          ? { x, y, risk: newRawRisk }
+          : { x, y, risk: newRawRisk % 9 !== 0 ? newRawRisk % 9 : 9 };
+      })
+    )
+  );
+
+  return time("part2.b", () =>
+    findPaths(
+      expandedMatrix,
+      expandedMatrix.at(0)!.at(0)!,
+      expandedMatrix.at(-1)!.at(-1)!
+    )
+  );
+});
+
 // Solution
 
 assert.strictEqual(part1SolutionNode.f, 609);
+assert.strictEqual(part2SolutionNode.f, 2925);
 
-console.log({ part1: part1SolutionNode.f });
+console.log({ part1: part1SolutionNode.f, part2: part2SolutionNode.f });
