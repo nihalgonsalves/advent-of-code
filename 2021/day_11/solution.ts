@@ -1,7 +1,7 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 type Octopus = {
   energy: number;
@@ -10,7 +10,7 @@ type Octopus = {
   flashedThisCycle: boolean;
 };
 
-const lines = getInputLines("11").map((line, x) =>
+const lines = (await getInputLines(import.meta.url)).map((line, x) =>
   line.split("").map((energy, y) =>
     //
     ({ energy: parseInt(energy, 10), x, y, flashedThisCycle: false })

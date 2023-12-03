@@ -1,8 +1,8 @@
 import assert from "assert";
 
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 const setMinus = <T>(a: Set<T>, b: Set<T>) => {
   const result = new Set(a);
@@ -16,7 +16,7 @@ const setMinus = <T>(a: Set<T>, b: Set<T>) => {
 
 const setToString = (set: Set<string>) => [...set.values()].sort().join("");
 
-const output = getInputLines("08").map((line) => {
+const output = (await getInputLines(import.meta.url)).map((line) => {
   const [signalPatterns, outputDigitPatterns] = line
     .split(" | ")
     .map((section) =>

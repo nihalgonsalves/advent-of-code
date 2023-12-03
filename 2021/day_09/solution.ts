@@ -1,16 +1,17 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 type Point = { x: number; y: number; value: number };
 
-const data: Point[][] = getInputLines("09").map((line, rowIndex) =>
-  line.split("").map((s, colIndex) => ({
-    x: rowIndex,
-    y: colIndex,
-    value: parseInt(s, 10),
-  }))
+const data: Point[][] = (await getInputLines(import.meta.url)).map(
+  (line, rowIndex) =>
+    line.split("").map((s, colIndex) => ({
+      x: rowIndex,
+      y: colIndex,
+      value: parseInt(s, 10),
+    }))
 );
 
 const getNeighbours = (

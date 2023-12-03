@@ -1,11 +1,11 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 const [rawFolds, rawDots] = R.partition(
   (line) => line.startsWith("fold"),
-  getInputLines("13")
+  await getInputLines(import.meta.url)
 );
 
 type Dot = { x: number; y: number };

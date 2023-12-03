@@ -1,10 +1,10 @@
 import assert from "assert";
-import R from "ramda";
-import { getInputLines } from "../getInputLines";
+import * as R from "ramda";
+import { getInputLines } from "../../getInputLines";
 
 // https://adventofcode.com/2021/day/2
 
-const commands = getInputLines("02").map((line) => {
+const commands = (await getInputLines(import.meta.url)).map((line) => {
   const [direction, magnitude] = line.split(" ");
 
   return { direction, magnitude: parseInt(magnitude, 10) };

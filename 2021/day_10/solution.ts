@@ -1,9 +1,11 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const lines = getInputLines("10").map((line) => line.split(""));
+const lines = (await getInputLines(import.meta.url)).map((line) =>
+  line.split("")
+);
 
 const openingSymbols = ["(", "[", "{", "<"];
 const closingSymbols = [")", "]", "}", ">"];

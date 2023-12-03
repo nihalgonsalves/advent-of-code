@@ -1,9 +1,8 @@
 import fs from "fs";
-import path from "path";
 
-export const getInputLines = (day: string): string[] => {
-  const input = fs.readFileSync(
-    path.join(__dirname, `./day_${day}/input.txt`),
+export const getInputLines = async (base: string): Promise<string[]> => {
+  const input = await fs.promises.readFile(
+    new URL(`./input.txt`, base),
     "utf8"
   );
 

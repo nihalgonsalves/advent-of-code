@@ -1,9 +1,9 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [rawInput] = getInputLines("16");
+const [rawInput] = await getInputLines(import.meta.url);
 
 const initialInput = rawInput
   .split("")

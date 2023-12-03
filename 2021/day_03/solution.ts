@@ -1,9 +1,12 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const diagnosticReport = R.map(R.split(""), getInputLines("03"));
+const diagnosticReport = R.map(
+  R.split(""),
+  await getInputLines(import.meta.url)
+);
 
 type BitCounter = (report: string[][]) => {
   zeroes: number;

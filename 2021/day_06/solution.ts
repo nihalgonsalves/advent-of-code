@@ -1,9 +1,9 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [initialFish] = getInputLines("06");
+const [initialFish] = await getInputLines(import.meta.url);
 
 // <age, count>
 let fishState = R.countBy((age) => age, initialFish.split(","));

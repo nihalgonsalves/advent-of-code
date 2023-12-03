@@ -1,9 +1,9 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [rawTemplate, ...rawRules] = getInputLines("14");
+const [rawTemplate, ...rawRules] = await getInputLines(import.meta.url);
 
 const template = rawTemplate.split("");
 const rules = Object.fromEntries(

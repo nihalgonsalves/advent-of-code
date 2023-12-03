@@ -1,9 +1,9 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [lookup, ...image] = getInputLines("20").map((line) =>
+const [lookup, ...image] = (await getInputLines(import.meta.url)).map((line) =>
   line.split("").map((char) => (char === "#" ? 1 : 0))
 );
 

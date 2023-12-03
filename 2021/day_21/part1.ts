@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import R from "ramda";
+import * as R from "ramda";
 
 import { startingUniverse, getNextParams, wrapAround } from "./common";
 

@@ -1,15 +1,17 @@
 import assert from "assert";
 
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 const inclusiveRange = <T>(a: number, b: number) =>
   a < b ? R.range(a, b + 1) : R.reverse(R.range(b, a + 1));
 
-const overlappingCount = (includeDiagonal = true) =>
-  R.pipe(
-    () => getInputLines("05"),
+const input = await getInputLines(import.meta.url);
+
+const overlappingCount = (includeDiagonal = true) => {
+  return R.pipe(
+    () => input,
     R.map((line) => {
       if (line === "") {
         return [];
@@ -41,6 +43,7 @@ const overlappingCount = (includeDiagonal = true) =>
     R.keys,
     R.length
   )();
+};
 
 const overlappingStraightCount = overlappingCount(false);
 const overlappingAllCount = overlappingCount();

@@ -1,9 +1,9 @@
 import assert from "assert";
 
-import R from "ramda";
-import { getInputLines } from "../getInputLines";
+import * as R from "ramda";
+import { getInputLines } from "../../getInputLines";
 
-const input = getInputLines("04");
+const input = await getInputLines(import.meta.url);
 
 const [rawCalls, ...rawBoards] = input;
 

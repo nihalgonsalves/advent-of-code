@@ -1,6 +1,6 @@
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [pos1, pos2] = getInputLines("21").map((l) =>
+const [pos1, pos2] = (await getInputLines(import.meta.url)).map((l) =>
   parseInt(l.split("").at(-1)!, 10)
 );
 

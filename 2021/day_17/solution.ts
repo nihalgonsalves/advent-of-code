@@ -1,9 +1,9 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
-const [rawInput] = getInputLines("17");
+const [rawInput] = await getInputLines(import.meta.url);
 
 const parseRegEx =
   /^target area: x=(?<x1>-?\d*)\.\.(?<x2>-?\d*), y=(?<y1>-?\d*)\.\.(?<y2>-?\d*)$/;

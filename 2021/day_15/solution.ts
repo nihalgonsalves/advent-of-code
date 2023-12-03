@@ -1,7 +1,7 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines, time } from "../getInputLines";
+import { getInputLines, time } from "../../getInputLines";
 
 type Position = { x: number; y: number };
 type Node = Position & { risk: number };
@@ -12,12 +12,13 @@ type ScoredNode = Node & {
   parent?: ScoredNode;
 };
 
-const initialMatrix: Node[][] = getInputLines("15").map((line, x) =>
-  line.split("").map((risk, y) => ({
-    x,
-    y,
-    risk: parseInt(risk, 10),
-  }))
+const initialMatrix: Node[][] = (await getInputLines(import.meta.url)).map(
+  (line, x) =>
+    line.split("").map((risk, y) => ({
+      x,
+      y,
+      risk: parseInt(risk, 10),
+    }))
 );
 
 const isNode = (a: Position, b: Position) => a.x === b.x && a.y === b.y;

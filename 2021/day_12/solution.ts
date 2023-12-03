@@ -1,7 +1,7 @@
 import assert from "assert";
-import R from "ramda";
+import * as R from "ramda";
 
-import { getInputLines } from "../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 const graph: Record<string, string[]> = {};
 
@@ -12,7 +12,7 @@ const pushIfValid = (from: string, to: string) => {
   }
 };
 
-getInputLines("12").forEach((line) => {
+(await getInputLines(import.meta.url)).forEach((line) => {
   const [a, b] = line.split("-");
 
   pushIfValid(a, b);
