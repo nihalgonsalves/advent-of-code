@@ -1,12 +1,32 @@
 import { describe, it, expect } from "bun:test";
 
-import { run } from "./solution";
+import { run1, run2 } from "./solution";
 import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
 
-describe("day xx", () => {
-  it("should return the correct value for part 1", () => {
-    expect(run(input)).toBe(undefined);
+const sample = [
+  // break
+];
+
+describe("day 00", () => {
+  describe("part 1", () => {
+    it("should return the correct sample value", () => {
+      expect(run1(sample)).toBe(undefined);
+    });
+
+    it("should return the correct value", () => {
+      expect(run1(input)).toBe(undefined);
+    });
+  });
+
+  describe("part 2", () => {
+    it("should return the correct sample value", () => {
+      expect(run2(sample)).toBe(undefined);
+    });
+
+    it("should return the correct value", () => {
+      expect(run2(input)).toBe(undefined);
+    });
   });
 });
