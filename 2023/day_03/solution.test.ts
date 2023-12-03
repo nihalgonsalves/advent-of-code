@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
 
-import { readCharAt, readSymbolsAround, run1 } from "./solution";
+import { readCharAt, readSymbolsAround, run1, run2 } from "./solution";
 import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
@@ -20,14 +20,24 @@ const sample = [
 
 describe("day 03", () => {
   it("readCharAt returns char", () => {
-    expect<string | undefined>(readCharAt(sample, 0, 0)).toBe("4");
-    expect<string | undefined>(readCharAt(sample, 0, -1)).toBe(undefined);
-    expect<string | undefined>(readCharAt(sample, -1, -1)).toBe(undefined);
+    expect(readCharAt(sample, 0, 0)).toEqual({ value: "4", line: 0, index: 0 });
+    expect(readCharAt(sample, 0, -1)).toEqual({
+      value: undefined,
+      line: 0,
+      index: -1,
+    });
+    expect(readCharAt(sample, -1, -1)).toEqual({
+      value: undefined,
+      line: -1,
+      index: -1,
+    });
   });
 
   it("readSymbolsAround returns all symbols", () => {
     expect(readSymbolsAround(sample, 0, 0)).toEqual([]);
-    expect(readSymbolsAround(sample, 2, 6)).toEqual(["#"]);
+    expect(readSymbolsAround(sample, 2, 6)).toEqual([
+      { value: "#", line: 3, index: 6 },
+    ]);
     expect(
       readSymbolsAround(
         [
@@ -39,7 +49,48 @@ describe("day 03", () => {
         1,
         1
       )
-    ).toEqual(["a", "b", "c", "d", "e", "f", "g", "h"]);
+    ).toEqual([
+      {
+        index: 0,
+        line: 0,
+        value: "a",
+      },
+      {
+        index: 1,
+        line: 0,
+        value: "b",
+      },
+      {
+        index: 2,
+        line: 0,
+        value: "c",
+      },
+      {
+        index: 2,
+        line: 1,
+        value: "d",
+      },
+      {
+        index: 2,
+        line: 2,
+        value: "e",
+      },
+      {
+        index: 1,
+        line: 2,
+        value: "f",
+      },
+      {
+        index: 0,
+        line: 2,
+        value: "g",
+      },
+      {
+        index: 0,
+        line: 1,
+        value: "h",
+      },
+    ]);
   });
 
   describe("part 1", () => {
@@ -49,6 +100,16 @@ describe("day 03", () => {
 
     it("should return the correct value", () => {
       expect(run1(input)).toBe(550064);
+    });
+  });
+
+  describe("part 2", () => {
+    it("should return the correct sample value", () => {
+      expect(run2(sample)).toBe(467835);
+    });
+
+    it("should return the correct value", () => {
+      expect(run2(input)).toBe(85010461);
     });
   });
 });
