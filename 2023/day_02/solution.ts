@@ -8,7 +8,7 @@ const possible = {
   blue: 14,
 } as const satisfies Record<Color, number>;
 
-export const run1 = (input: string[]) => {
+export const run1 = (input: string[]): number => {
   return input.reduce((sum, line) => {
     const { gameStr, sets } = line.match(/^Game (?<gameStr>\d+): (?<sets>.*)$/)!
       .groups!;
@@ -28,7 +28,7 @@ export const run1 = (input: string[]) => {
   }, 0);
 };
 
-export const run2 = (input: string[]) => {
+export const run2 = (input: string[]): number => {
   return input.reduce((sum, line) => {
     const { sets } = line.match(/^Game (?<gameStr>\d+): (?<sets>.*)$/)!.groups!;
 

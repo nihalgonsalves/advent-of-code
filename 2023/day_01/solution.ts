@@ -1,6 +1,6 @@
 const findDigit = (line: string[]) => line.find((char) => char.match(/^\d$/));
 
-export const run1 = (input: string[]) => {
+export const run1 = (input: string[]): number => {
   return input
     .map((line) => {
       return parseInt(
@@ -29,7 +29,7 @@ const mapping: Record<string, string> = {
 
 const digits = Object.keys(mapping);
 
-export const run2 = (input: string[]) => {
+export const run2 = (input: string[]): number => {
   const result = input
     .map((line) => {
       let a = "";

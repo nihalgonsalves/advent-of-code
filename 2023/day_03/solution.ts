@@ -29,7 +29,7 @@ export const readSymbolsAround = (
     readCharAt(input, line, index - 1),
   ].filter((val) => val?.value !== undefined && predicate(val.value));
 
-export const run1 = (input: string[]) => {
+export const run1 = (input: string[]): number => {
   return input
     .flatMap((line, lineI) => {
       let buffer = "";
@@ -65,7 +65,7 @@ export const run1 = (input: string[]) => {
     .reduce((a, b) => a + b, 0);
 };
 
-export const run2 = (input: string[]) => {
+export const run2 = (input: string[]): number => {
   // key by gear index `i.j`
   const gearMap: Record<string, number[]> = {};
 
