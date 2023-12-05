@@ -5,28 +5,27 @@ import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
 
-const sample = [
-  // break
+const sample: string[] = [
 ];
 
 describe("day 00", () => {
   describe("part 1", () => {
     it("should return the correct sample value", () => {
-      expect(run1(sample)).toBe(undefined);
+      expect(run1(sample)).toBe(0);
     });
 
     it("should return the correct value", () => {
-      expect(run1(input)).toBe(undefined);
+      expect(run1(input)).toBe(0);
     });
   });
 
   describe("part 2", () => {
     it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(undefined);
+      expect(run2(sample)).toBe(0);
     });
 
     it("should return the correct value", () => {
-      expect(run2(input)).toBe(undefined);
+      expect(run2(input)).toBe(0);
     });
   });
 });
