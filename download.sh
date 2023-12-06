@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
-# shellcheck disable=SC2269
-ADVENT_OF_CODE_SESSION="${ADVENT_OF_CODE_SESSION}"
+if [ ! -f "${HOME}/.adventofcode.session" ]; then
+	# shellcheck disable=SC2269
+	ADVENT_OF_CODE_SESSION="${ADVENT_OF_CODE_SESSION}"
+fi
 
 export DAY="$1"
 export YEAR="${2:-2023}"
