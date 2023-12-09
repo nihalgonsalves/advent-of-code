@@ -13,7 +13,7 @@ const sample: string[] = [
   "QQQJA 483",
 ];
 
-describe("day 00", () => {
+describe("day 07", () => {
   describe("part 1", () => {
     it("should return the correct sample value", () => {
       expect(run1(sample)).toBe(6440);

@@ -5,7 +5,7 @@ import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
 
-describe("day 00", () => {
+describe("day 08", () => {
   describe("part 1", () => {
     const sample1 = [
       "RL",
