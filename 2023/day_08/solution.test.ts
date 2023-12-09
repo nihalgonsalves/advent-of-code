@@ -52,9 +52,8 @@ describe("day 08", () => {
       expect(run2(sample)).toBe(6);
     });
 
-    // does not work currently
-    it.skip("should return the correct value", () => {
-      expect(run2(input)).toBe(0);
+    it("should return the correct value", () => {
+      expect(run2(input)).toBe(11678319315857);
     });
   });
 });

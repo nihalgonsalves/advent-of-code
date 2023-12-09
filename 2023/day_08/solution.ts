@@ -16,10 +16,8 @@ const parseInput = (input: string[]) => {
     }
   }
 
-  const directionIter = cycleDirections();
-
   return {
-    nextDirection: () => directionIter.next().value!,
+    cycleDirections,
     edges: Object.fromEntries(
       edges.map((edge) => {
         const [from, left, right] = [...edge.matchAll(/[A-Z0-9]{3}/g)].map(
@@ -31,30 +29,51 @@ const parseInput = (input: string[]) => {
   };
 };
 
-export const run1 = (input: string[]): number => {
-  const { nextDirection, edges } = parseInput(input);
-
-  let cursor = "AAA";
-
+const minSteps = (
+  directions: Generator<number>,
+  cursor: string,
+  edges: Record<string, readonly [string, string]>,
+  endCondition: (cursor: string) => boolean
+): number => {
   let steps: number;
-  for (steps = 0; cursor !== "ZZZ"; steps++) {
-    cursor = edges[cursor][nextDirection()];
+  for (steps = 0; !endCondition(cursor); steps++) {
+    cursor = edges[cursor][directions.next()!.value!];
   }
 
   return steps;
 };
 
+export const run1 = (input: string[]): number => {
+  const { cycleDirections, edges } = parseInput(input);
+
+  return minSteps(
+    cycleDirections(),
+    "AAA",
+    edges,
+    (cursor) => cursor === "ZZZ"
+  );
+};
+
+const gcd = (a: number, b: number): number => (!b ? a : gcd(b, a % b));
+
+const lcm = (a: number, b: number) => (a * b) / gcd(a, b);
+
+const lcmList = (numbers: number[]) => {
+  const [start, ...rest] = numbers;
+
+  return rest.reduce((acc, n) => lcm(acc, n), start);
+};
+
 export const run2 = (input: string[]): number => {
-  const { nextDirection, edges } = parseInput(input);
+  const { cycleDirections, edges } = parseInput(input);
 
-  let cursors = Object.keys(edges).filter((key) => key.endsWith("A"));
-
-  let steps: number;
-  for (steps = 0; cursors.some((cursor) => !cursor.endsWith("Z")); steps++) {
-    const dir = nextDirection();
-
-    cursors = cursors.map((cursor) => edges[cursor][dir]);
-  }
-
-  return steps;
+  return lcmList(
+    Object.keys(edges)
+      .filter((key) => key.endsWith("A"))
+      .map((cursor) =>
+        minSteps(cycleDirections(), cursor, edges, (cursor) =>
+          cursor.endsWith("Z")
+        )
+      )
+  );
 };
