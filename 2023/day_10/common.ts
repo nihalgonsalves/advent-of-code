@@ -8,7 +8,7 @@ export const ENTRY = "╳" as const;
 export const PADDING = "*" as const;
 
 export type Coordinates = { row: number; col: number };
-export type GridItem = Coordinates & { value: GridValue };
+export type GridItem = Coordinates & { value: GridValue; wasPadding?: boolean };
 
 export type GridValue =
   | Connector
@@ -176,25 +176,27 @@ export const printGrid = (
     "*": "*",
   };
 
-  console.log(
-    grid
-      .map((row, rowIndex) =>
-        row
-          .map((item, colIndex) => {
-            const isHighlighted = highlighted.find(
-              (v) => v.row === rowIndex && v.col === colIndex,
-            );
+  grid.forEach((row, rowIndex) => {
+    const line = row
+      .flatMap((item, colIndex) => {
+        if (item.wasPadding) {
+          return [];
+        }
 
-            const value = seen.find(
-              (v) => v.row === rowIndex && v.col === colIndex,
-            )
-              ? chalk.red(item.value as Connector)
-              : unconnected[item.value];
+        const isHighlighted = highlighted.find(
+          (v) => v.row === rowIndex && v.col === colIndex,
+        );
 
-            return isHighlighted ? chalk.bgGreen(value) : value;
-          })
-          .join(""),
-      )
-      .join("\n"),
-  );
+        const value = seen.find((v) => v.row === rowIndex && v.col === colIndex)
+          ? chalk.red(item.value as Connector)
+          : unconnected[item.value];
+
+        return [isHighlighted ? chalk.bgGreen(value) : value];
+      })
+      .join("");
+
+    if (line) {
+      console.log(line);
+    }
+  });
 };

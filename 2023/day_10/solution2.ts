@@ -14,7 +14,7 @@ import {
 export const mapInput = (
   input: string[],
 ): {
-  grid: ((GridItem | GridConnectorItem) & { wasPadding: boolean })[][];
+  grid: (GridItem | GridConnectorItem)[][];
   startingGridItem: GridConnectorItem;
 } => {
   // index offset between "actual" items (would be index + 1 in a normal grid)
@@ -75,18 +75,14 @@ export const mapInput = (
           offset: 1,
         });
 
-        if (connector) {
-          return {
-            ...item,
-            wasPadding: true,
-            value: connector,
-          };
-        } else {
-          return { ...item, wasPadding: true };
-        }
+        return {
+          ...item,
+          wasPadding: true,
+          value: connector ?? item.value,
+        };
       }
 
-      return { ...item, wasPadding: false };
+      return item;
     }),
   );
 
@@ -117,7 +113,7 @@ export const run2 = (input: string[], print = false): number => {
 
   let adjacent = [{ row: 0, col: 0 }];
   while (adjacent.length > 0) {
-    const adjacentTemp = [...adjacent];
+    const adjacentTemp = adjacent;
     adjacent = [];
 
     adjacentTemp.forEach(({ row, col }) => {

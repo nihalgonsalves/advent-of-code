@@ -82,15 +82,17 @@ describe("day 10 > part 1", () => {
     "LJ...",
   ];
 
+  const print = process.env.PRINT != null;
+
   it("should return the correct sample1 value", () => {
-    expect(run1(sample1)).toBe(4);
+    expect(run1(sample1, print)).toBe(4);
   });
 
   it("should return the correct sample2 value", () => {
-    expect(run1(sample2)).toBe(8);
+    expect(run1(sample2, print)).toBe(8);
   });
 
   it("should return the correct value", () => {
-    expect(run1(input)).toBe(7102);
+    expect(run1(input, print)).toBe(7102);
   });
 });

@@ -82,23 +82,25 @@ describe("day 10 > part 2", () => {
     "L7JLJL-JLJLJL--JLJ.L", // ╚╗╝╚╝┗━┛┗┛┗┛┗━━┛┗┛•╚
   ];
 
+  const print = process.env.PRINT != null;
+
   it("should return the correct sample1 value", () => {
-    expect(run2(sample1)).toBe(4);
+    expect(run2(sample1, print)).toBe(4);
   });
 
   it("should return the correct sample2 value", () => {
-    expect(run2(sample2)).toBe(4);
+    expect(run2(sample2, print)).toBe(4);
   });
 
   it("should return the correct sample3 value", () => {
-    expect(run2(sample3)).toBe(8);
+    expect(run2(sample3, print)).toBe(8);
   });
 
   it("should return the correct sample4 value", () => {
-    expect(run2(sample4)).toBe(10);
+    expect(run2(sample4, print)).toBe(10);
   });
 
   it("should return the correct value", () => {
-    expect(run2(input)).toBe(363);
+    expect(run2(input, print)).toBe(363);
   });
 });

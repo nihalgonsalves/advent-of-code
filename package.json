@@ -5,6 +5,9 @@
   "author": "Nihal Gonsalves <nihal@nihalgonsalves.com>",
   "license": "UNLICENSED",
   "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "ramda": "^0.29.1"
