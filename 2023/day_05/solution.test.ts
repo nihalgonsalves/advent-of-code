@@ -47,7 +47,7 @@ describe("day 05", () => {
   const range = (
     start: number,
     endInclusive: number,
-    destinationOffset = 0
+    destinationOffset = 0,
   ) => ({
     start,
     endInclusive,
@@ -105,7 +105,7 @@ describe("day 05", () => {
 
     it("offsets correctly", () => {
       expect(
-        splitRange(range(0, 10), [range(4, 5, -1), range(8, 9, 1)])
+        splitRange(range(0, 10), [range(4, 5, -1), range(8, 9, 1)]),
       ).toEqual([
         // start gap fill
         range(0, 3),

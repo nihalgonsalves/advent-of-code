@@ -26,7 +26,7 @@ const solutionPart1 = R.reduce(
     }
   },
   { position: 0, depth: 0 },
-  commands
+  commands,
 );
 
 const multipliedPart1 = solutionPart1.position * solutionPart1.depth;
@@ -53,7 +53,7 @@ const solutionPart2 = R.reduce(
     }
   },
   { position: 0, depth: 0, aim: 0 },
-  commands
+  commands,
 );
 
 const multipliedPart2 = solutionPart2.position * solutionPart2.depth;

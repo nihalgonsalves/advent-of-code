@@ -31,7 +31,7 @@ const overlappingCount = (includeDiagonal = true) => {
         return R.zipWith(
           (x, y) => ({ x, y }),
           inclusiveRange(x1, x2),
-          inclusiveRange(y1, y2)
+          inclusiveRange(y1, y2),
         );
       }
 
@@ -41,7 +41,7 @@ const overlappingCount = (includeDiagonal = true) => {
     R.countBy((pos) => `${pos.x},${pos.y}`),
     R.filter((count: number) => count > 1),
     R.keys,
-    R.length
+    R.length,
   )();
 };
 

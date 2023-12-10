@@ -12,7 +12,7 @@ import {
 } from "./common";
 
 export const mapInput = (
-  input: string[]
+  input: string[],
 ): {
   grid: ((GridItem | GridConnectorItem) & { wasPadding: boolean })[][];
   startingGridItem: GridConnectorItem;
@@ -24,7 +24,7 @@ export const mapInput = (
   const gridValues = input.flatMap((line, i) => [
     ...(i === 0
       ? Array.from({ length: paddingItems }, () =>
-          Array.from({ length: line.length * offset + 1 }, () => PADDING)
+          Array.from({ length: line.length * offset + 1 }, () => PADDING),
         )
       : []),
     line
@@ -35,7 +35,7 @@ export const mapInput = (
         ...Array.from({ length: paddingItems }, () => PADDING),
       ]),
     ...Array.from({ length: paddingItems }, () =>
-      Array.from({ length: line.length * offset + 1 }, () => PADDING)
+      Array.from({ length: line.length * offset + 1 }, () => PADDING),
     ),
   ]);
 
@@ -44,7 +44,7 @@ export const mapInput = (
       row: rowIndex,
       col: colIndex,
       value,
-    }))
+    })),
   );
 
   const startingCoords = paddedGrid.flat().find((item) => item.value === ENTRY);
@@ -87,7 +87,7 @@ export const mapInput = (
       }
 
       return { ...item, wasPadding: false };
-    })
+    }),
   );
 
   return {
@@ -98,7 +98,7 @@ export const mapInput = (
 
 const buildValuesCoordSets = (grid: GridItem[][], values: Coordinates[]) => {
   const coordSets = new Map<number, Set<number>>(
-    Array.from({ length: grid.length }, (_, i) => [i, new Set<number>()])
+    Array.from({ length: grid.length }, (_, i) => [i, new Set<number>()]),
   );
 
   for (const { row, col } of values) {
@@ -126,7 +126,7 @@ export const run2 = (input: string[], print = false): number => {
           grid,
           gridItem: { row, col },
           offset: 1,
-        })
+        }),
       ).forEach((item) => {
         if (
           !item ||
@@ -148,7 +148,7 @@ export const run2 = (input: string[], print = false): number => {
       (item) =>
         !item.wasPadding &&
         !loopCoords.get(item.row)?.has(item.col) &&
-        !openCoords.get(item.row)?.has(item.col)
+        !openCoords.get(item.row)?.has(item.col),
     );
 
   if (print) {

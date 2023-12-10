@@ -3,7 +3,7 @@ const parseInput = (line: string) => {
   const [winningValuesStr, cardValuesStr] = values.split(/\s\|\s+/);
 
   const winningValues = new Set(
-    winningValuesStr.split(/\s+/).map((val) => parseInt(val, 10))
+    winningValuesStr.split(/\s+/).map((val) => parseInt(val, 10)),
   );
 
   const cardValues = cardValuesStr.split(/\s+/);
@@ -28,7 +28,7 @@ export const run1 = (input: string[]): number => {
 
 export const run2 = (input: string[]): number => {
   const cardInstances: Record<number, number> = Object.fromEntries(
-    Array.from({ length: input.length }, (_, i) => [i + 1, 1])
+    Array.from({ length: input.length }, (_, i) => [i + 1, 1]),
   );
 
   input.forEach((line, i) => {

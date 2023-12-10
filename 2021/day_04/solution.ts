@@ -18,9 +18,9 @@ const boards = R.pipe(
     boardLine
       .split(" ")
       .filter((s) => s !== "")
-      .map((s) => parseInt(s, 10))
+      .map((s) => parseInt(s, 10)),
   ),
-  R.splitEvery(5)
+  R.splitEvery(5),
 )() as Board[];
 
 const boardHitCount = Array.from({ length: boards.length }, () => ({
@@ -88,7 +88,7 @@ const [firstResult, lastResult] = [firstWin, lastWin].map(
       sum,
       total: sum * call,
     };
-  }
+  },
 );
 
 assert.strictEqual(firstResult.total, 28082);

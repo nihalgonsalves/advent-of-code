@@ -63,12 +63,12 @@ export type GridConnectorItem = GridItem & {
 };
 
 export const isConnector = <T = never>(
-  value: T | Connector
+  value: T | Connector,
 ): value is Connector => CONNECTORS.includes(value as unknown as any);
 
 export const isConnected = (
   value: GridValue | undefined,
-  possiblyConnectedDirection: Direction
+  possiblyConnectedDirection: Direction,
 ) => {
   if (!value || !isConnector(value)) {
     return false;
@@ -108,7 +108,7 @@ export const guessConnectorType = ({
   });
 
   const [north, east, south, west] = DIRECTIONS.map((direction) =>
-    isConnected(adjacentItems[direction]?.value, direction)
+    isConnected(adjacentItems[direction]?.value, direction),
   );
 
   const found = Object.entries(connectorTypes).find(([, directions]) => {
@@ -125,7 +125,7 @@ export const guessConnectorType = ({
 
 export const calcLoop = (
   grid: GridItem[][],
-  startingGridItem: GridConnectorItem
+  startingGridItem: GridConnectorItem,
 ) => {
   // can start in direction
   let enteredFrom = connectorTypes[startingGridItem.value].directions[0];
@@ -136,13 +136,13 @@ export const calcLoop = (
     const cursor = seen.at(-1)!;
 
     enteredFrom = connectorTypes[cursor.value].directions.find(
-      (dir) => dir !== opposingDirection[enteredFrom]
+      (dir) => dir !== opposingDirection[enteredFrom],
     )!;
 
     seen.push(
       getAdjacentItems({ grid, gridItem: cursor })[
         enteredFrom
-      ] as GridConnectorItem
+      ] as GridConnectorItem,
     );
   } while (
     !(
@@ -156,13 +156,13 @@ export const calcLoop = (
 
 export const tupleGridToGrid = (grid: GridValue[][]) =>
   grid.map((row, rowIndex) =>
-    row.map((value, colIndex) => ({ row: rowIndex, col: colIndex, value }))
+    row.map((value, colIndex) => ({ row: rowIndex, col: colIndex, value })),
   );
 
 export const printGrid = (
   grid: GridItem[][],
   seen: Coordinates[],
-  highlighted: Coordinates[]
+  highlighted: Coordinates[],
 ) => {
   const unconnected: Record<GridValue, string> = {
     "┃": "║",
@@ -182,19 +182,19 @@ export const printGrid = (
         row
           .map((item, colIndex) => {
             const isHighlighted = highlighted.find(
-              (v) => v.row === rowIndex && v.col === colIndex
+              (v) => v.row === rowIndex && v.col === colIndex,
             );
 
             const value = seen.find(
-              (v) => v.row === rowIndex && v.col === colIndex
+              (v) => v.row === rowIndex && v.col === colIndex,
             )
               ? chalk.red(item.value as Connector)
               : unconnected[item.value];
 
             return isHighlighted ? chalk.bgGreen(value) : value;
           })
-          .join("")
+          .join(""),
       )
-      .join("\n")
+      .join("\n"),
   );
 };

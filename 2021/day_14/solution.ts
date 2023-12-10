@@ -7,12 +7,12 @@ const [rawTemplate, ...rawRules] = await getInputLines(import.meta.url);
 
 const template = rawTemplate.split("");
 const rules = Object.fromEntries(
-  rawRules.map((rawRule) => rawRule.split(" -> ") as [string, string])
+  rawRules.map((rawRule) => rawRule.split(" -> ") as [string, string]),
 );
 
 let pairCounts = R.countBy(
   R.identity,
-  R.aperture(2, template).map(([a, b]) => `${a}${b}`)
+  R.aperture(2, template).map(([a, b]) => `${a}${b}`),
 );
 
 const pass = () => {
@@ -46,7 +46,7 @@ const getCountResult = () => {
   const counts = R.pipe(
     () => Object.entries(letterCounts),
     R.sortBy<[string, number]>(([_, count]) => count),
-    R.map(([_, count]) => count)
+    R.map(([_, count]) => count),
   )();
 
   return R.last(counts)! - R.head(counts)!;

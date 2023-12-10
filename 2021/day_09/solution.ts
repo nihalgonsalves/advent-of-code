@@ -11,13 +11,13 @@ const data: Point[][] = (await getInputLines(import.meta.url)).map(
       x: rowIndex,
       y: colIndex,
       value: parseInt(s, 10),
-    }))
+    })),
 );
 
 const getNeighbours = (
   x: number,
   y: number,
-  predicate: (value: Point) => boolean = () => true
+  predicate: (value: Point) => boolean = () => true,
 ) =>
   [
     data[x]?.[y - 1],
@@ -30,7 +30,7 @@ const getBasin = (point: Point, visited: boolean[][]): Point[] => {
   const basinNeighbours = getNeighbours(
     point.x,
     point.y,
-    (p) => !visited[p.x][p.y] && p.value < 9
+    (p) => !visited[p.x][p.y] && p.value < 9,
   );
 
   basinNeighbours.forEach(({ x, y }) => {
@@ -51,7 +51,7 @@ data.forEach((row) => {
       riskScore += cell.value + 1;
 
       const visited = Array.from({ length: data.length }, () =>
-        Array.from({ length: row.length }, () => false)
+        Array.from({ length: row.length }, () => false),
       );
 
       visited[cell.x][cell.y] = true;
@@ -65,7 +65,7 @@ const biggestBasinsMultipledSize = R.pipe(
   () => basinSizes,
   R.sort((a, b) => b - a),
   R.take(3),
-  R.reduce<number, number>(R.multiply, 1)
+  R.reduce<number, number>(R.multiply, 1),
 )();
 
 // Solution

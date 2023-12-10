@@ -4,7 +4,7 @@ import * as R from "ramda";
 import { getInputLines } from "../../getInputLines";
 
 const [lookup, ...image] = (await getInputLines(import.meta.url)).map((line) =>
-  line.split("").map((char) => (char === "#" ? 1 : 0))
+  line.split("").map((char) => (char === "#" ? 1 : 0)),
 );
 
 type Image = (0 | 1)[][];
@@ -39,7 +39,7 @@ const enhanceImage = ({ image, outside }: Grid): Grid => {
   const enhanced = Array.from({ length: m }, (_, x) =>
     Array.from({ length: n }, (_, y) => {
       const sourcePixels = R.xprod([x - 1, x, x + 1], [y - 1, y, y + 1]).map(
-        ([x, y]) => padded[x]?.[y]
+        ([x, y]) => padded[x]?.[y],
       );
 
       if (sourcePixels.some((p) => p === undefined)) {
@@ -49,7 +49,7 @@ const enhanceImage = ({ image, outside }: Grid): Grid => {
       const sourceBinary = parseInt(sourcePixels.join(""), 2);
 
       return lookup[sourceBinary];
-    })
+    }),
   );
 
   return { image: enhanced, outside: nextOutside };

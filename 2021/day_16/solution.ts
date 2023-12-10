@@ -24,7 +24,7 @@ const operators: Record<number, (operands: number[]) => number> = {
 
 const readPacket = (
   input = initialInput,
-  packetReadLimit = Infinity
+  packetReadLimit = Infinity,
 ): { literals: number[]; buffer: string } => {
   let buffer = input;
 
@@ -67,7 +67,7 @@ const readPacket = (
         const subPacketsLength = parseInt(readChars(15), 2);
 
         const { literals: newLiterals } = readPacket(
-          readChars(subPacketsLength)
+          readChars(subPacketsLength),
         );
 
         literals.push(operators[typeID](newLiterals));
@@ -76,7 +76,7 @@ const readPacket = (
 
         const { literals: newLiterals, buffer: remainingBuffer } = readPacket(
           buffer,
-          numSubPackets
+          numSubPackets,
         );
 
         literals.push(operators[typeID](newLiterals));

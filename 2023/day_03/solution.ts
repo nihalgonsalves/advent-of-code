@@ -8,7 +8,7 @@ export const readSymbolsAround = (
   input: string[],
   line: number,
   index: number,
-  predicate = (char: string) => char !== "." && !char.match(/^\d$/)
+  predicate = (char: string) => char !== "." && !char.match(/^\d$/),
 ) =>
   [
     // top left
@@ -91,7 +91,7 @@ export const run2 = (input: string[]): number => {
             input,
             lineI,
             charI,
-            (char) => char === "*"
+            (char) => char === "*",
           );
           if (symbols?.[0]) {
             touchesAt = `${symbols[0].line}.${symbols[0].index}`;

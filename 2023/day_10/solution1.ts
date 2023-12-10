@@ -11,7 +11,7 @@ import {
 } from "./common";
 
 export const mapInput = (
-  input: string[]
+  input: string[],
 ): {
   grid: (GridItem | GridConnectorItem)[][];
   startingGridItem: GridConnectorItem;
@@ -31,7 +31,7 @@ export const mapInput = (
       }
 
       return { row, col, value };
-    })
+    }),
   );
 
   if (!startingCoords) {

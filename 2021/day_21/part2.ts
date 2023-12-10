@@ -10,7 +10,7 @@ const permutate3 = R.lift((a, b, c) => a + b + c);
 
 const dieRollsOnEachTurn: [rolledValue: string, count: number][] =
   Object.entries(
-    R.countBy(R.identity, permutate3(dieRolls, dieRolls, dieRolls))
+    R.countBy(R.identity, permutate3(dieRolls, dieRolls, dieRolls)),
   );
 
 const expandUniverse = ({
@@ -24,7 +24,7 @@ const expandUniverse = ({
   dieRollsOnEachTurn.map(([nextRoll, count]) => {
     const nextParams = getNextParams(
       { player, positions },
-      parseInt(nextRoll, 10)
+      parseInt(nextRoll, 10),
     );
 
     const newScore = scores[player] + nextParams.positions[player];
@@ -57,7 +57,7 @@ const parseUni = (str: string) => JSON.parse(str) as Universe;
 const tick = (
   activeCounts: Record<string, number> = {
     [serializeUni(startingUniverse)]: 1,
-  }
+  },
 ) => {
   const newActiveCounts: Record<string, number> = {};
   let hasNext = false;

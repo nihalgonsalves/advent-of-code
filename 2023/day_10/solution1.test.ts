@@ -28,7 +28,7 @@ describe("day 10 > part 1", () => {
         ["┏", "━", "┓"],
         ["┃", ".", "┃"],
         ["┗", "━", "┛"],
-      ])
+      ]),
     );
   });
 
@@ -52,16 +52,16 @@ describe("day 10 > part 1", () => {
     [
       [0, 0, "┏"], [0, 2,"┓"],
       [2, 0, "┗"], [2, 2,"┛"],
-    ] as const
+    ] as const,
   )(
     "guessConnectorType returns the correct connector at row=%d, col=%d for %s",
     (row, col, connector) => {
       const { grid } = mapInput(smallInput);
 
       expect(guessConnectorType({ grid, startingCoords: { row, col } })).toBe(
-        connector
+        connector,
       );
-    }
+    },
   );
 
   const sample1: string[] = [

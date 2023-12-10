@@ -5,7 +5,7 @@ import { getInputLines } from "../../getInputLines";
 
 const diagnosticReport = R.map(
   R.split(""),
-  await getInputLines(import.meta.url)
+  await getInputLines(import.meta.url),
 );
 
 type BitCounter = (report: string[][]) => {
@@ -16,7 +16,7 @@ type BitCounter = (report: string[][]) => {
 const bitCounter: BitCounter = R.pipe(
   R.transpose,
   R.map(R.partition((el) => el === "0")),
-  R.map(([zeroes, ones]) => ({ zeroes: zeroes.length, ones: ones.length }))
+  R.map(([zeroes, ones]) => ({ zeroes: zeroes.length, ones: ones.length })),
 );
 
 // https://adventofcode.com/2021/day/3#part1
@@ -30,7 +30,7 @@ const { gamma, epsilon } = R.pipe(
   ([gamma, epsilon]) => ({
     gamma: parseInt(gamma, 2),
     epsilon: parseInt(epsilon, 2),
-  })
+  }),
 )();
 
 const powerConsumption = gamma * epsilon;
@@ -40,14 +40,14 @@ const powerConsumption = gamma * epsilon;
 const calcSolutionPart2 = (
   report: string[][],
   type: "oxygen" | "scrubber",
-  bitIndex = 0
+  bitIndex = 0,
 ): number => {
   if (R.length(report) === 1) {
     return R.pipe(
       () => report,
       R.head,
       R.join(""),
-      (str) => parseInt(str, 2)
+      (str) => parseInt(str, 2),
     )();
   }
 
@@ -71,7 +71,7 @@ const calcSolutionPart2 = (
         return least ? row[bitIndex] === least : row[bitIndex] === "0";
       }
     }),
-    (filtered) => calcSolutionPart2(filtered, type, bitIndex + 1)
+    (filtered) => calcSolutionPart2(filtered, type, bitIndex + 1),
   )();
 };
 

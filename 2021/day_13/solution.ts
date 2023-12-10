@@ -5,7 +5,7 @@ import { getInputLines } from "../../getInputLines";
 
 const [rawFolds, rawDots] = R.partition(
   (line) => line.startsWith("fold"),
-  await getInputLines(import.meta.url)
+  await getInputLines(import.meta.url),
 );
 
 type Dot = { x: number; y: number };
@@ -56,7 +56,7 @@ const dotCountAfterFirstFold = R.uniq(foldedOnce).length;
 const transposedMatrix: boolean[][] = [];
 
 R.uniq(
-  otherFolds.reduce((dots, currentFold) => fold(dots, currentFold), foldedOnce)
+  otherFolds.reduce((dots, currentFold) => fold(dots, currentFold), foldedOnce),
 ).forEach(({ x, y }) => {
   transposedMatrix[y] ??= [];
   transposedMatrix[y][x] = true;
@@ -64,7 +64,7 @@ R.uniq(
 
 // Spread to fill in sparse arrays
 [...transposedMatrix].forEach((line) =>
-  console.log([...line].map((v) => (v ? "#" : ".")).join(" "))
+  console.log([...line].map((v) => (v ? "#" : ".")).join(" ")),
 );
 
 // Solution

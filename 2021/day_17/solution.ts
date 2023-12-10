@@ -67,7 +67,7 @@ const simulate = (vx: number, vy: number): number | undefined => {
 };
 
 const permutations = R.range(1, maxX + 1).flatMap((vx) =>
-  R.range(minY, Math.abs(minY) + 1).map((vy) => ({ vx, vy }))
+  R.range(minY, Math.abs(minY) + 1).map((vy) => ({ vx, vy })),
 );
 
 const simulations = permutations.map(({ vx, vy }) => ({
@@ -78,7 +78,7 @@ const simulations = permutations.map(({ vx, vy }) => ({
 
 const possibleSimulations = R.filter(
   (s): s is typeof s & { maxY: number } => s.maxY !== undefined,
-  simulations
+  simulations,
 );
 
 // Part 1

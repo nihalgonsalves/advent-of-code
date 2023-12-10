@@ -47,8 +47,8 @@ describe("day 03", () => {
           "gfe",
         ],
         1,
-        1
-      )
+        1,
+      ),
     ).toEqual([
       {
         index: 0,

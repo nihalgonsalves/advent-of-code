@@ -1,7 +1,7 @@
 import { getInputLines } from "../../getInputLines";
 
 const [pos1, pos2] = (await getInputLines(import.meta.url)).map((l) =>
-  parseInt(l.split("").at(-1)!, 10)
+  parseInt(l.split("").at(-1)!, 10),
 );
 
 export type Universe = {
@@ -24,7 +24,7 @@ export const startingUniverse: Universe = {
 
 export const getNextParams = (
   { positions, player }: Pick<Universe, "positions" | "player">,
-  roll: number
+  roll: number,
 ): Pick<Universe, "positions" | "player"> => {
   const newPositions = { ...positions };
 

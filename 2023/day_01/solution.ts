@@ -9,7 +9,7 @@ export const run1 = (input: string[]): number => {
           findDigit([...line]),
           findDigit([...line].reverse()),
         ].join(""),
-        10
+        10,
       );
     })
     .reduce((sum, num) => sum + num, 0);

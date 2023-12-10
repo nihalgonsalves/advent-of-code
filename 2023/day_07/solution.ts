@@ -29,7 +29,7 @@ export type Card = "A" | "K" | "Q" | "J" | "T" | "9" | "8" | "7" | "6" | "5" | "
 const rankEqualTypeHand = (
   a: Card[],
   b: Card[],
-  rank: Record<Card, number>
+  rank: Record<Card, number>,
 ): number => {
   const aRanks = a.map((c) => rank[c]);
   const bRanks = b.map((c) => rank[c]);
@@ -220,17 +220,17 @@ const createScorer =
 export const run1 = createScorer(
   Object.fromEntries(
     ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"].map(
-      (c, i) => [c, i]
-    )
+      (c, i) => [c, i],
+    ),
   ) as Record<Card, number>,
-  calcType1
+  calcType1,
 );
 
 export const run2 = createScorer(
   Object.fromEntries(
     ["A", "K", "Q", "T", "9", "8", "7", "6", "5", "4", "3", "2", "J"].map(
-      (c, i) => [c, i]
-    )
+      (c, i) => [c, i],
+    ),
   ) as Record<Card, number>,
-  calcType2
+  calcType2,
 );

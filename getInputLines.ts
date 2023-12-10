@@ -3,7 +3,7 @@ import fs from "fs";
 export const getInputLines = async (base: string): Promise<string[]> => {
   const input = await fs.promises.readFile(
     new URL(`./input.txt`, base),
-    "utf8"
+    "utf8",
   );
 
   return input.split("\n").filter((line) => line !== "");

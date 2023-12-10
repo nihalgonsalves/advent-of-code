@@ -20,7 +20,7 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
   const [signalPatterns, outputDigitPatterns] = line
     .split(" | ")
     .map((section) =>
-      section.split(" ").map((s: string) => new Set(s.split("")))
+      section.split(" ").map((s: string) => new Set(s.split(""))),
     );
 
   const patterns: Set<string>[] = [];
@@ -59,7 +59,7 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
   const segmentCandF = patterns[1];
   const segmentEandG = setMinus(
     patterns[8],
-    new Set([...patterns[4], ...patterns[7]])
+    new Set([...patterns[4], ...patterns[7]]),
   );
 
   remainingSignalPatterns = remainingSignalPatterns.filter((pattern) => {
@@ -118,18 +118,18 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
   });
 
   const patternLookup = Object.fromEntries(
-    patterns.map((pattern, i) => [setToString(pattern), i])
+    patterns.map((pattern, i) => [setToString(pattern), i]),
   );
 
   return outputDigitPatterns.map(
-    (digitPattern) => patternLookup[setToString(digitPattern)]
+    (digitPattern) => patternLookup[setToString(digitPattern)],
   );
 });
 
 // Part 1
 
 const simpleDigitCount = output.flatMap((digits) =>
-  digits.filter((digit) => [1, 4, 7, 8].includes(digit))
+  digits.filter((digit) => [1, 4, 7, 8].includes(digit)),
 ).length;
 
 // Part 2

@@ -4,7 +4,7 @@ import * as R from "ramda";
 import { getInputLines } from "../../getInputLines";
 
 const lines = (await getInputLines(import.meta.url)).map((line) =>
-  line.split("")
+  line.split(""),
 );
 
 const openingSymbols = ["(", "[", "{", "<"];
@@ -39,7 +39,7 @@ const resolvedLines: ResolvedLine[] = lines.map((line) => {
   const completionString = R.reverse(stack).map((s) => openingToClosing[s]);
   const completionScore = completionString.reduce(
     (score, s) => score * 5 + syntaxScores[s].completion,
-    0
+    0,
   );
 
   return { type: "completed", score: completionScore };
@@ -47,7 +47,7 @@ const resolvedLines: ResolvedLine[] = lines.map((line) => {
 
 const [completedScores, corruptedScores] = R.pipe(
   R.partition<ResolvedLine>(({ type }) => type === "completed"),
-  R.map(R.map(({ score }) => score))
+  R.map(R.map(({ score }) => score)),
 )(resolvedLines);
 
 // Part 1

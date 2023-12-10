@@ -26,7 +26,7 @@ const tick = () => {
 
   const { player: newPlayer, positions: newPositions } = getNextParams(
     { positions, player },
-    R.sum(R.times(() => die.roll(), 3))
+    R.sum(R.times(() => die.roll(), 3)),
   );
 
   const newScores = { ...scores };

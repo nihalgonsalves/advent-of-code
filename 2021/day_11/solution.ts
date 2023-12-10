@@ -13,8 +13,8 @@ type Octopus = {
 const lines = (await getInputLines(import.meta.url)).map((line, x) =>
   line.split("").map((energy, y) =>
     //
-    ({ energy: parseInt(energy, 10), x, y, flashedThisCycle: false })
-  )
+    ({ energy: parseInt(energy, 10), x, y, flashedThisCycle: false }),
+  ),
 );
 
 const getAdjacent = (x: number, y: number) =>

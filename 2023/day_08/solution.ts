@@ -21,10 +21,10 @@ const parseInput = (input: string[]) => {
     edges: Object.fromEntries(
       edges.map((edge) => {
         const [from, left, right] = [...edge.matchAll(/[A-Z0-9]{3}/g)].map(
-          ([match]) => match
+          ([match]) => match,
         );
         return [from, [left, right] as const] as const;
-      })
+      }),
     ),
   };
 };
@@ -33,7 +33,7 @@ const minSteps = (
   directions: Generator<number>,
   cursor: string,
   edges: Record<string, readonly [string, string]>,
-  endCondition: (cursor: string) => boolean
+  endCondition: (cursor: string) => boolean,
 ): number => {
   let steps: number;
   for (steps = 0; !endCondition(cursor); steps++) {
@@ -50,7 +50,7 @@ export const run1 = (input: string[]): number => {
     cycleDirections(),
     "AAA",
     edges,
-    (cursor) => cursor === "ZZZ"
+    (cursor) => cursor === "ZZZ",
   );
 };
 
@@ -72,8 +72,8 @@ export const run2 = (input: string[]): number => {
       .filter((key) => key.endsWith("A"))
       .map((cursor) =>
         minSteps(cycleDirections(), cursor, edges, (cursor) =>
-          cursor.endsWith("Z")
-        )
-      )
+          cursor.endsWith("Z"),
+        ),
+      ),
   );
 };

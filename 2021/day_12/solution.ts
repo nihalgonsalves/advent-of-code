@@ -22,7 +22,7 @@ const pushIfValid = (from: string, to: string) => {
 const traverse = (
   bailCondition: (path: string[]) => boolean = R.always(true),
   nodes: string[] = ["start"],
-  path: string[] = []
+  path: string[] = [],
 ): string[][] =>
   nodes.flatMap((node) => {
     if (node === "end") {

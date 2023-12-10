@@ -30,7 +30,7 @@ const results = [Math.floor, Math.ceil].map((fn) => {
 
 const [{ value: usedMeanValue, cost: increasingCost }] = R.sortBy(
   (r) => r.cost,
-  results
+  results,
 );
 
 // Solution

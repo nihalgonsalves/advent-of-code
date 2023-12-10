@@ -18,7 +18,7 @@ const initialMatrix: Node[][] = (await getInputLines(import.meta.url)).map(
       x,
       y,
       risk: parseInt(risk, 10),
-    }))
+    })),
 );
 
 const isNode = (a: Position, b: Position) => a.x === b.x && a.y === b.y;
@@ -27,10 +27,10 @@ const isNode = (a: Position, b: Position) => a.x === b.x && a.y === b.y;
 const findPaths = (
   matrix: Node[][],
   source: Node,
-  destination: Node
+  destination: Node,
 ): ScoredNode => {
   const visited = Array.from({ length: matrix.length }, () =>
-    Array.from({ length: matrix[0].length }, () => false)
+    Array.from({ length: matrix[0].length }, () => false),
   );
 
   const getNeighbours = ({ x, y }: Node): Node[] =>
@@ -63,7 +63,7 @@ const findPaths = (
       const scoredNode = { ...node, risk, g, h, f: g + h, parent: currentNode };
 
       const existingOpenNode = openNodes.find((openNode) =>
-        isNode(openNode, node)
+        isNode(openNode, node),
       );
 
       if (!existingOpenNode || scoredNode.g < existingOpenNode.g) {
@@ -81,8 +81,8 @@ const part1SolutionNode = time("part1", () =>
   findPaths(
     initialMatrix,
     initialMatrix.at(0)!.at(0)!,
-    initialMatrix.at(-1)!.at(-1)!
-  )
+    initialMatrix.at(-1)!.at(-1)!,
+  ),
 );
 
 // Part 2
@@ -103,16 +103,16 @@ const part2SolutionNode = time("part2", () => {
         return newRawRisk <= 9
           ? { x, y, risk: newRawRisk }
           : { x, y, risk: newRawRisk % 9 !== 0 ? newRawRisk % 9 : 9 };
-      })
-    )
+      }),
+    ),
   );
 
   return time("part2.b", () =>
     findPaths(
       expandedMatrix,
       expandedMatrix.at(0)!.at(0)!,
-      expandedMatrix.at(-1)!.at(-1)!
-    )
+      expandedMatrix.at(-1)!.at(-1)!,
+    ),
   );
 });
 

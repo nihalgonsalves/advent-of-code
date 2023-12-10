@@ -11,7 +11,7 @@ const waysToWin = (timeMs: number, distanceRecordMm: number) =>
       }
       return sum;
     },
-    0
+    0,
   );
 
 export const run1 = (input: string[]): number => {

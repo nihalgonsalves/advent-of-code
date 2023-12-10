@@ -15,7 +15,7 @@ const input = (await getInputLines(import.meta.url)).map((line) => {
   return {
     action: action as "on" | "off",
     coords: parseIntObj(
-      rawCoords as Record<"x1" | "x2" | "y1" | "y2" | "z1" | "z2", string>
+      rawCoords as Record<"x1" | "x2" | "y1" | "y2" | "z1" | "z2", string>,
     ),
   };
 });

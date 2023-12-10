@@ -32,7 +32,7 @@ const parseInput = (input: string[]) => {
     .map((seed) => parseInt(seed, 10));
 
   const map = new Map<MapItem, Array<TranslatingRange>>(
-    maps.map((map) => [map, []])
+    maps.map((map) => [map, []]),
   );
 
   let mapCursor: MapItem | null = null;
@@ -71,7 +71,7 @@ const parseInput = (input: string[]) => {
 
 export const rangeIntersection = <T extends Range, U extends Range>(
   a: T,
-  b: U
+  b: U,
 ): (T & U) | undefined => {
   const maxStart = Math.max(a.start, b.start);
   const minEndInclusive = Math.min(a.endInclusive, b.endInclusive);
@@ -92,7 +92,7 @@ export const run1 = (input: string[]): number => {
         .get(mapItem)!
         .find(
           ({ start, endInclusive }) =>
-            start <= position && position <= endInclusive
+            start <= position && position <= endInclusive,
         )?.destinationOffset;
 
       if (destinationOffset) {
@@ -100,7 +100,7 @@ export const run1 = (input: string[]): number => {
       }
 
       return position;
-    }, seed)
+    }, seed),
   );
 
   return Math.min(...locations);
@@ -188,7 +188,7 @@ export const splitRange = (inputRange: Range, mappings: TranslatingRange[]) => {
       }
 
       return offsetRange;
-    }
+    },
   );
 
   return [...leftRange, ...intersectingWithGapFill, ...rightRange];
@@ -212,10 +212,10 @@ export const run2 = (input: string[]): number => {
         ranges.flatMap((range) =>
           splitRange(
             range,
-            map.get(mapItem)!.sort((a, b) => a.start - b.start)
-          )
+            map.get(mapItem)!.sort((a, b) => a.start - b.start),
+          ),
         ),
-      [pair]
+      [pair],
     );
 
     const min = Math.min(...finalRanges.map(({ start }) => start));
