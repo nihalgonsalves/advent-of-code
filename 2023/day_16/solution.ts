@@ -1,6 +1,8 @@
+import * as R from "ramda";
+
 const EMPTY = "." as const;
 
-type Cell = { i: number; j: number; value: string; energized: boolean };
+type Cell = { i: number; j: number; value: string; energizedCount: number };
 
 const parseInput = (input: string[]): Cell[][] =>
   input.map((line, i) =>
@@ -8,7 +10,7 @@ const parseInput = (input: string[]): Cell[][] =>
       i,
       j,
       value: char,
-      energized: false,
+      energizedCount: 0,
     })),
   );
 
@@ -46,10 +48,8 @@ const directionMap = {
   },
 } as const satisfies Record<string, Record<Direction, Direction>>;
 
-const traverse = (matrix: Cell[][]): void => {
-  matrix[0][0].energized = true;
-
-  const cursors: Cursor[] = [{ i: 0, j: -1, direction: "east" }];
+const traverse = (matrix: Cell[][], startingCursor: Cursor): void => {
+  const cursors: Cursor[] = [startingCursor];
   const seen = new Set<string>();
 
   while (cursors.length) {
@@ -69,7 +69,7 @@ const traverse = (matrix: Cell[][]): void => {
       continue;
     }
 
-    matrix[i][j].energized = true;
+    matrix[i][j].energizedCount++;
     const { value } = matrix[i][j];
 
     if (value === EMPTY) {
@@ -102,13 +102,60 @@ const traverse = (matrix: Cell[][]): void => {
 export const run1 = (input: string[]): number => {
   const matrix = parseInput(input);
 
-  traverse(matrix);
+  traverse(matrix, { i: 0, j: -1, direction: "east" });
 
   return matrix
     .flat()
-    .reduce((acc, cell) => (cell.energized ? acc + 1 : acc), 0);
+    .reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0);
 };
 
 export const run2 = (input: string[]): number => {
-  return 0;
+  const inputMatrix = parseInput(input);
+
+  const cursors: Cursor[] = [
+    // top
+    ...Array.from({ length: inputMatrix[0].length }, (_, j) => ({
+      i: -1,
+      j,
+      direction: "south" as const,
+    })),
+    // bottom
+    ...Array.from({ length: inputMatrix[0].length }, (_, j) => ({
+      i: inputMatrix.length,
+      j,
+      direction: "north" as const,
+    })),
+    // left
+    ...Array.from({ length: inputMatrix.length }, (_, i) => ({
+      i,
+      j: -1,
+      direction: "east" as const,
+    })),
+    // right
+    ...Array.from({ length: inputMatrix.length }, (_, i) => ({
+      i,
+      j: inputMatrix[0].length,
+      direction: "west" as const,
+    })),
+  ];
+
+  const results = cursors.map((cursor, i) => {
+    const matrix = R.clone(inputMatrix);
+
+    traverse(matrix, cursor);
+
+    return {
+      matrix,
+      cursor,
+      energizedCells: matrix
+        .flat()
+        .reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0),
+    };
+  });
+
+  const largest = results.sort(
+    (a, b) => b.energizedCells - a.energizedCells,
+  )[0];
+
+  return largest.energizedCells;
 };
