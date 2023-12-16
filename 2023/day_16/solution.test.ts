@@ -20,23 +20,22 @@ const sample: string[] = [
 
 describe("day 16", () => {
   describe("part 1", () => {
-    it("should return the correct sample value", () => {
-      expect(run1(sample)).toBe(46);
+    it("should return the correct sample value", async () => {
+      expect(await run1(sample)).toBe(46);
     });
 
-    it("should return the correct value", () => {
-      expect(run1(input)).toBe(8551);
+    it("should return the correct value", async () => {
+      expect(await run1(input)).toBe(8551);
     });
   });
 
   describe("part 2", () => {
-    it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(51);
+    it("should return the correct sample value", async () => {
+      expect(await run2(sample)).toBe(51);
     });
 
-    // slow brute force currently: ~90 seconds
-    it.todo("should return the correct value", () => {
-      expect(run2(input)).toBe(8754);
+    it("should return the correct value", async () => {
+      expect(await run2(input)).toBe(8754);
     });
   });
 });

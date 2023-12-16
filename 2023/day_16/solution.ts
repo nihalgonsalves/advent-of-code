@@ -1,8 +1,4 @@
-import * as R from "ramda";
-
-const EMPTY = "." as const;
-
-type Cell = { i: number; j: number; value: string; energizedCount: number };
+const workerURL = new URL("worker.ts", import.meta.url).href;
 
 const parseInput = (input: string[]): Cell[][] =>
   input.map((line, i) =>
@@ -14,102 +10,30 @@ const parseInput = (input: string[]): Cell[][] =>
     })),
   );
 
-type Direction = "north" | "east" | "south" | "west";
+const asyncTraverse = async (input: Input): Promise<Output> => {
+  const { promise, resolve } = Promise.withResolvers<Output>();
 
-type Position = { i: number; j: number };
+  const worker = new Worker(workerURL);
+  worker.onmessage = (event) => {
+    resolve(event.data);
+  };
+  worker.postMessage(input);
 
-type Cursor = Position & { direction: Direction };
-
-const nextPosition = ({ i, j, direction }: Cursor): Position => {
-  switch (direction) {
-    case "north":
-      return { i: i - 1, j };
-    case "east":
-      return { i, j: j + 1 };
-    case "south":
-      return { i: i + 1, j };
-    case "west":
-      return { i, j: j - 1 };
-  }
+  return promise;
 };
 
-const directionMap = {
-  "\\": {
-    north: "west",
-    east: "south",
-    south: "east",
-    west: "north",
-  },
-  "/": {
-    north: "east",
-    east: "north",
-    south: "west",
-    west: "south",
-  },
-} as const satisfies Record<string, Record<Direction, Direction>>;
+export const run1 = async (input: string[]): Promise<number> => {
+  const outputMatrix = await asyncTraverse({
+    matrix: parseInput(input),
+    startingCursor: { i: 0, j: -1, direction: "east" },
+  });
 
-const traverse = (matrix: Cell[][], startingCursor: Cursor): void => {
-  const cursors: Cursor[] = [startingCursor];
-  const seen = new Set<string>();
-
-  while (cursors.length) {
-    const cursor = cursors.pop()!;
-
-    const key = JSON.stringify(cursor);
-    if (seen.has(key)) {
-      continue;
-    } else {
-      seen.add(key);
-    }
-
-    const { direction } = cursor;
-    const { i, j } = nextPosition(cursor);
-
-    if (matrix[i]?.[j] === undefined) {
-      continue;
-    }
-
-    matrix[i][j].energizedCount++;
-    const { value } = matrix[i][j];
-
-    if (value === EMPTY) {
-      cursors.push({ direction, i, j });
-    } else if (value === "\\" || value === "/") {
-      cursors.push({ direction: directionMap[value][direction], i, j });
-    } else if (value === "-") {
-      if (direction === "east" || direction === "west") {
-        cursors.push({ direction, i, j });
-      } else {
-        cursors.push(
-          // break
-          { direction: "east", i, j },
-          { direction: "west", i, j },
-        );
-      }
-    } else if (value === "|") {
-      if (direction === "north" || direction === "south") {
-        cursors.push({ direction, i, j });
-      } else {
-        cursors.push(
-          { direction: "north", i, j },
-          { direction: "south", i, j },
-        );
-      }
-    }
-  }
-};
-
-export const run1 = (input: string[]): number => {
-  const matrix = parseInput(input);
-
-  traverse(matrix, { i: 0, j: -1, direction: "east" });
-
-  return matrix
+  return outputMatrix
     .flat()
     .reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0);
 };
 
-export const run2 = (input: string[]): number => {
+export const run2 = async (input: string[]): Promise<number> => {
   const inputMatrix = parseInput(input);
 
   const cursors: Cursor[] = [
@@ -139,23 +63,18 @@ export const run2 = (input: string[]): number => {
     })),
   ];
 
-  const results = cursors.map((cursor, i) => {
-    const matrix = R.clone(inputMatrix);
+  const results = await Promise.all(
+    cursors.map(async (startingCursor) => {
+      const outputMatrix = await asyncTraverse({
+        matrix: inputMatrix,
+        startingCursor,
+      });
 
-    traverse(matrix, cursor);
-
-    return {
-      matrix,
-      cursor,
-      energizedCells: matrix
+      return outputMatrix
         .flat()
-        .reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0),
-    };
-  });
+        .reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0);
+    }),
+  );
 
-  const largest = results.sort(
-    (a, b) => b.energizedCells - a.energizedCells,
-  )[0];
-
-  return largest.energizedCells;
+  return Math.max(...results);
 };
