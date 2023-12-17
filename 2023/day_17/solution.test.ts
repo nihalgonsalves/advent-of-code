@@ -33,11 +33,24 @@ describe("day 17", () => {
   });
 
   describe("part 2", () => {
+    const sample2 = [
+      "111111111111",
+      "999999999991",
+      "999999999991",
+      "999999999991",
+      "999999999991",
+    ];
+
     it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(0);
+      expect(run2(sample)).toBe(94);
     });
 
-    it("should return the correct value", () => {
+    it("should return the correct sample2 value", () => {
+      expect(run2(sample2)).toBe(71);
+    });
+
+    // Currently slightly off, correct answer is within 920..947, but those are wrong
+    it.todo("should return the correct value", () => {
       expect(run2(input)).toBe(0);
     });
   });

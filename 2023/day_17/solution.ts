@@ -1,6 +1,7 @@
 import FastPriorityQueue from "fastpriorityqueue";
 
-type Cell = { i: number; j: number; cost: number };
+type Coords = { i: number; j: number };
+type Cell = Coords & { cost: number };
 
 const parseInput = (input: string[]): Cell[][] =>
   input.map((line, i) =>
@@ -11,73 +12,79 @@ type Direction = "north" | "east" | "south" | "west";
 
 type Cursor = Cell & {
   direction: Direction;
+  path: Coords[];
   forwardMovementCount: number;
 };
 
 const makeCursor = (
-  currentCost: number,
+  prev: Cursor,
   cell: Cell | undefined,
   direction: Direction,
-  forwardMovementCount = 0,
+  forwardMovementCount = 1,
 ): Cursor | undefined =>
   cell
     ? {
         ...cell,
-        cost: currentCost + cell.cost,
+        path: [...prev.path, { i: cell.i, j: cell.j }],
+        cost: prev.cost + cell.cost,
         direction,
         forwardMovementCount,
       }
     : undefined;
 
 const getLeftRightNeighbours = (
-  { direction, i, j, cost }: Cursor,
+  cursor: Cursor,
   matrix: Cell[][],
 ): (Cursor | undefined)[] => {
+  const { direction, i, j } = cursor;
+
   switch (direction) {
     case "north":
     case "south":
       return [
-        makeCursor(cost, matrix[i]?.[j - 1], "west"),
-        makeCursor(cost, matrix[i]?.[j + 1], "east"),
+        makeCursor(cursor, matrix[i]?.[j - 1], "west"),
+        makeCursor(cursor, matrix[i]?.[j + 1], "east"),
       ];
     case "east":
     case "west":
       return [
-        makeCursor(cost, matrix[i - 1]?.[j], "north"),
-        makeCursor(cost, matrix[i + 1]?.[j], "south"),
+        makeCursor(cursor, matrix[i - 1]?.[j], "north"),
+        makeCursor(cursor, matrix[i + 1]?.[j], "south"),
       ];
   }
 };
 
 const getForwardCursor = (
-  { direction, i, j, forwardMovementCount, cost }: Cursor,
+  cursor: Cursor,
   matrix: Cell[][],
 ): Cursor | undefined => {
+  const { direction, i, j, forwardMovementCount } = cursor;
+
   switch (direction) {
     case "north":
       return makeCursor(
-        cost,
+        cursor,
         matrix[i - 1]?.[j],
         direction,
         forwardMovementCount + 1,
       );
     case "east":
       return makeCursor(
-        cost,
+        cursor,
         matrix[i]?.[j + 1],
         direction,
         forwardMovementCount + 1,
       );
     case "south":
       return makeCursor(
-        cost,
+        cursor,
         matrix[i + 1]?.[j],
         direction,
         forwardMovementCount + 1,
       );
     case "west":
       return makeCursor(
-        cost,
+        cursor,
         matrix[i]?.[j - 1],
         direction,
         forwardMovementCount + 1,
@@ -85,26 +92,32 @@ const getForwardCursor = (
   }
 };
 
-const neighbours = (cursor: Cursor, matrix: Cell[][]): Cursor[] => {
-  const leftRightNeighbours = getLeftRightNeighbours(cursor, matrix);
+const filterUndefined = <T>(val: T): val is NonNullable<typeof val> =>
+  val !== undefined;
 
-  const forwardNeighbour =
-    cursor.forwardMovementCount < 2
-      ? getForwardCursor(cursor, matrix)
-      : undefined;
+const neighbours = (
+  cursor: Cursor,
+  matrix: Cell[][],
+  minForward: number,
+  maxForward: number,
+): Cursor[] => {
+  const forwardCursor = getForwardCursor(cursor, matrix);
 
-  return [forwardNeighbour, ...leftRightNeighbours].filter(
-    (c): c is NonNullable<typeof c> => c !== undefined,
-  );
+  if (cursor.forwardMovementCount < minForward) {
+    return forwardCursor ? [forwardCursor] : [];
+  }
+
+  return [forwardCursor, ...getLeftRightNeighbours(cursor, matrix)]
+    .filter(filterUndefined)
+    .filter(({ forwardMovementCount }) => forwardMovementCount <= maxForward);
 };
 
-export const run1 = (input: string[]): number => {
-  const matrix = parseInput(input);
-
+const run = (matrix: Cell[][], minForward: number, maxForward: number) => {
   const start: Cursor = {
     ...matrix[0][0],
+    path: [],
     direction: "east",
-    forwardMovementCount: 0,
+    forwardMovementCount: 1,
     cost: 0,
   };
 
@@ -123,13 +136,17 @@ export const run1 = (input: string[]): number => {
   while (!openSet.isEmpty()) {
     const current = openSet.poll()!;
 
-    if (current.i === goalI && current.j === goalJ) {
+    if (
+      current.i === goalI &&
+      current.j === goalJ &&
+      minForward <= current.forwardMovementCount &&
+      current.forwardMovementCount <= maxForward
+    ) {
       return current.cost;
     }
 
-    for (const next of neighbours(current, matrix)) {
-      const tentativeGScore =
-        (gScore.get(cursorKey(current)) ?? Infinity) + next.cost;
+    for (const next of neighbours(current, matrix, minForward, maxForward)) {
+      const tentativeGScore = next.cost;
       if (tentativeGScore < (gScore.get(cursorKey(next)) ?? Infinity)) {
         gScore.set(cursorKey(next), tentativeGScore);
         openSet.add(next);
@@ -140,6 +157,14 @@ export const run1 = (input: string[]): number => {
   throw new Error("No path found");
 };
 
+export const run1 = (input: string[]): number => {
+  const matrix = parseInput(input);
+
+  return run(matrix, 1, 3);
+};
+
 export const run2 = (input: string[]): number => {
-  return 0;
+  const matrix = parseInput(input);
+
+  return run(matrix, 4, 10);
 };
