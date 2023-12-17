@@ -1,11 +1,11 @@
 declare var self: Worker;
 
-type Input = {
+export type Input = {
   matrix: Cell[][];
   startingCursor: Cursor;
 };
 
-type Output = Cell[][];
+export type Output = Cell[][];
 
 self.onmessage = (event: MessageEvent<Input>) => {
   const { matrix, startingCursor } = event.data;
@@ -15,13 +15,18 @@ self.onmessage = (event: MessageEvent<Input>) => {
 
 const EMPTY = "." as const;
 
-type Cell = { i: number; j: number; value: string; energizedCount: number };
+export type Cell = {
+  i: number;
+  j: number;
+  value: string;
+  energizedCount: number;
+};
 
-type Direction = "north" | "east" | "south" | "west";
+export type Direction = "north" | "east" | "south" | "west";
 
-type Coord = { i: number; j: number };
+export type Coord = { i: number; j: number };
 
-type Cursor = Coord & { direction: Direction };
+export type Cursor = Coord & { direction: Direction };
 
 const nextPosition = ({ i, j, direction }: Cursor): Coord => {
   switch (direction) {

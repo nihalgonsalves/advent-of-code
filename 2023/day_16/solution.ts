@@ -1,3 +1,5 @@
+import type { Cell, Input, Output, Cursor } from "./worker";
+
 const workerURL = new URL("worker.ts", import.meta.url).href;
 
 const parseInput = (input: string[]): Cell[][] =>

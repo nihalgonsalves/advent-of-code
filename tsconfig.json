@@ -4,6 +4,7 @@
     "moduleResolution": "Bundler",
     "target": "es2022",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleDetection": "force"
   }
 }
