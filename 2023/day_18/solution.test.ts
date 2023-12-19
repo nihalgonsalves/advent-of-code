@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
 
-import { run1, run2 } from "./solution";
+import { run1, run2, shoelace } from "./solution";
 import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
@@ -23,6 +23,20 @@ const sample: string[] = [
 ];
 
 describe("day 18", () => {
+  describe("shoelace", () => {
+    it("should return the correct value", () => {
+      expect(
+        shoelace([
+          [2, 7],
+          [10, 1],
+          [8, 6],
+          [11, 7],
+          [7, 10],
+        ]),
+      ).toBe(32);
+    });
+  });
+
   describe("part 1", () => {
     it("should return the correct sample value", () => {
       expect(run1(sample)).toBe(62);
@@ -35,11 +49,11 @@ describe("day 18", () => {
 
   describe("part 2", () => {
     it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(0);
+      expect(run2(sample)).toBe(952408144115);
     });
 
     it("should return the correct value", () => {
-      expect(run2(input)).toBe(0);
+      expect(run2(input)).toBe(54662804037719);
     });
   });
 });
