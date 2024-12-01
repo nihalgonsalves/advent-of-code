@@ -56,7 +56,7 @@ const findPaths = (
 			return currentNode;
 		}
 
-		getNeighbours(currentNode).forEach(({ risk, ...node }) => {
+		for (const { risk, ...node } of getNeighbours(currentNode)) {
 			const g = currentNode.g + risk;
 			const h = calcH(node);
 
@@ -69,7 +69,7 @@ const findPaths = (
 			if (!existingOpenNode || scoredNode.g < existingOpenNode.g) {
 				openNodes.push(scoredNode);
 			}
-		});
+		}
 	}
 
 	throw new Error("No path found");

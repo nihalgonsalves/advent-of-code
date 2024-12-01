@@ -7,9 +7,9 @@ import { getInputLines } from "../../getInputLines";
 const setMinus = <T>(a: Set<T>, b: Set<T>) => {
 	const result = new Set(a);
 
-	b.forEach((value) => {
+	for (const value of b) {
 		result.delete(value);
-	});
+	}
 
 	return result;
 };
@@ -97,7 +97,7 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
 		return true;
 	});
 
-	remainingSignalPatterns.forEach((pattern) => {
+	for (const pattern of remainingSignalPatterns) {
 		//      count  unique  a  b  c  d  f
 		// 0 =>   4     yes    *  *  *  -  *
 		// 2 =>   3     yes    *  -  *  *  -
@@ -115,7 +115,7 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
 			default:
 				break;
 		}
-	});
+	}
 
 	const patternLookup = Object.fromEntries(
 		patterns.map((pattern, i) => [setToString(pattern), i]),

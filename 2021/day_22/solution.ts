@@ -58,20 +58,23 @@ const rangeWithinInitArea = (a: number, b: number) => {
 const onValues = new Set<string>();
 
 time("runtime", () => {
-	shiftedInput.forEach(({ action, coords: { x1, x2, y1, y2, z1, z2 } }, i) => {
-		rangeWithinInitArea(x1, x2).forEach((x) => {
-			rangeWithinInitArea(y1, y2).forEach((y) => {
-				rangeWithinInitArea(z1, z2).forEach((z) => {
+	for (const {
+		action,
+		coords: { x1, x2, y1, y2, z1, z2 },
+	} of shiftedInput) {
+		for (const x of rangeWithinInitArea(x1, x2)) {
+			for (const y of rangeWithinInitArea(y1, y2)) {
+				for (const z of rangeWithinInitArea(z1, z2)) {
 					const coordID = `${x}_${y}_${z}`;
 					if (action === "on") {
 						onValues.add(coordID);
 					} else {
 						onValues.delete(coordID);
 					}
-				});
-			});
-		});
-	});
+				}
+			}
+		}
+	}
 });
 
 assert.strictEqual(onValues.size, 596989);

@@ -12,12 +12,12 @@ const pushIfValid = (from: string, to: string) => {
 	}
 };
 
-(await getInputLines(import.meta.url)).forEach((line) => {
+for (const line of await getInputLines(import.meta.url)) {
 	const [a, b] = line.split("-");
 
 	pushIfValid(a, b);
 	pushIfValid(b, a);
-});
+}
 
 const traverse = (
 	bailCondition: (path: string[]) => boolean = R.always(true),

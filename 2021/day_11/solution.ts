@@ -42,11 +42,11 @@ for (let i = 1; firstSync === undefined; i += 1) {
 
 	const flashedOctos = octos.filter((oct) => oct.flashedThisCycle);
 
-	flashedOctos.forEach((oct) => {
+	for (const oct of flashedOctos) {
 		flashes += 1;
 		oct.energy = 0;
 		oct.flashedThisCycle = false;
-	});
+	}
 
 	if (i === 100) {
 		flashesAfter100Steps = flashes;

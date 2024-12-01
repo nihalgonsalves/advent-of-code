@@ -18,7 +18,7 @@ let pairCounts = R.countBy(
 const pass = () => {
 	const newCounts: Record<string, number> = {};
 
-	Object.entries(pairCounts).forEach(([pair, count]) => {
+	for (const [pair, count] of Object.entries(pairCounts)) {
 		const insertion = rules[pair];
 		const [a, b] = pair.split("");
 
@@ -26,7 +26,7 @@ const pass = () => {
 		newCounts[`${a}${insertion}`] += count;
 		newCounts[`${insertion}${b}`] ??= 0;
 		newCounts[`${insertion}${b}`] += count;
-	});
+	}
 
 	pairCounts = newCounts;
 };
@@ -38,10 +38,10 @@ const getCountResult = () => {
 		[template.at(-1)!]: 1,
 	};
 
-	Object.entries(pairCounts).forEach(([pair, count]) => {
+	for (const [pair, count] of Object.entries(pairCounts)) {
 		letterCounts[pair[0]] ??= 0;
 		letterCounts[pair[0]] += count;
-	});
+	}
 
 	const counts = R.pipe(
 		() => Object.entries(letterCounts),

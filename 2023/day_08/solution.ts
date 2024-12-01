@@ -37,6 +37,7 @@ const minSteps = (
 ): number => {
 	let steps: number;
 	for (steps = 0; !endCondition(cursor); steps++) {
+		// biome-ignore lint/style/noParameterAssign:
 		cursor = edges[cursor][directions.next()!.value!];
 	}
 

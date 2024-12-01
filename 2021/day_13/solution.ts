@@ -55,17 +55,17 @@ const dotCountAfterFirstFold = R.uniq(foldedOnce).length;
 // Transposed since the letter output appears that way
 const transposedMatrix: boolean[][] = [];
 
-R.uniq(
+for (const { x, y } of R.uniq(
 	otherFolds.reduce((dots, currentFold) => fold(dots, currentFold), foldedOnce),
-).forEach(({ x, y }) => {
+)) {
 	transposedMatrix[y] ??= [];
 	transposedMatrix[y][x] = true;
-});
+}
 
 // Spread to fill in sparse arrays
-[...transposedMatrix].forEach((line) =>
-	console.log([...line].map((v) => (v ? "#" : ".")).join(" ")),
-);
+for (const line of [...transposedMatrix]) {
+	console.log([...line].map((v) => (v ? "#" : ".")).join(" "));
+}
 
 // Solution
 

@@ -51,7 +51,9 @@ export const run2 = (input: string[]): number => {
 		const diffs = calcDiffs(history);
 
 		// invert, reverse
-		diffs.forEach((diff) => diff.reverse());
+		for (const diff of diffs) {
+			diff.reverse();
+		}
 		diffs.reverse();
 
 		// 0   0   0   0  [0]

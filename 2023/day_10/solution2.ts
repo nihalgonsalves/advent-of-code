@@ -116,26 +116,26 @@ export const run2 = (input: string[], print = false): number => {
 		const adjacentTemp = adjacent;
 		adjacent = [];
 
-		adjacentTemp.forEach(({ row, col }) => {
-			Object.values(
+		for (const { row, col } of adjacentTemp) {
+			for (const item of Object.values(
 				getAdjacentItems({
 					grid,
 					gridItem: { row, col },
 					offset: 1,
 				}),
-			).forEach((item) => {
+			)) {
 				if (
 					!item ||
 					loopCoords.get(item.row)?.has(item.col) ||
 					openCoords.get(item.row)?.has(item.col)
 				) {
-					return;
+					continue;
 				}
 
 				openCoords.get(item.row)!.add(item.col);
 				adjacent.push(item);
-			});
-		});
+			}
+		}
 	}
 
 	const enclosedCoordList = grid

@@ -33,9 +33,9 @@ const getBasin = (point: Point, visited: boolean[][]): Point[] => {
 		(p) => !visited[p.x][p.y] && p.value < 9,
 	);
 
-	basinNeighbours.forEach(({ x, y }) => {
+	for (const { x, y } of basinNeighbours) {
 		visited[x][y] = true;
-	});
+	}
 
 	return [point, ...basinNeighbours.flatMap((p) => getBasin(p, visited))];
 };
@@ -43,8 +43,8 @@ const getBasin = (point: Point, visited: boolean[][]): Point[] => {
 let riskScore = 0;
 const basinSizes: number[] = [];
 
-data.forEach((row) => {
-	row.forEach((cell) => {
+for (const row of data) {
+	for (const cell of row) {
 		const neighbours = getNeighbours(cell.x, cell.y);
 
 		if (neighbours.every(({ value }) => value > cell.value)) {
@@ -58,10 +58,10 @@ data.forEach((row) => {
 
 			basinSizes.push(getBasin(cell, visited).length);
 		}
-	});
-});
+	}
+}
 
-const biggestBasinsMultipledSize = R.pipe(
+const biggestBasinsMultipliedSize = R.pipe(
 	() => basinSizes,
 	R.sort((a, b) => b - a),
 	R.take(3),
@@ -71,6 +71,6 @@ const biggestBasinsMultipledSize = R.pipe(
 // Solution
 
 assert.strictEqual(riskScore, 591);
-assert.strictEqual(biggestBasinsMultipledSize, 1113424);
+assert.strictEqual(biggestBasinsMultipliedSize, 1113424);
 
-console.log({ riskScore, biggestBasinsMultipledSize });
+console.log({ riskScore, biggestBasinsMultipliedSize });

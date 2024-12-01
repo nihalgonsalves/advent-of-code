@@ -64,6 +64,7 @@ export type GridConnectorItem = GridItem & {
 
 export const isConnector = <T = never>(
 	value: T | Connector,
+	// biome-ignore lint/suspicious/noExplicitAny:
 ): value is Connector => CONNECTORS.includes(value as unknown as any);
 
 export const isConnected = (

@@ -62,10 +62,10 @@ const tick = (
 	const newActiveCounts: Record<string, number> = {};
 	let hasNext = false;
 
-	Object.entries(activeCounts).forEach(([key, universeCount]) => {
+	for (const [key, universeCount] of Object.entries(activeCounts)) {
 		const universe = parseUni(key);
 
-		expandUniverse(universe).forEach((result) => {
+		for (const result of expandUniverse(universe)) {
 			const increment = (obj: Record<string, number>, key: string | number) => {
 				// This roll happens result.count times on universeCount universes
 				obj[key] = (obj[key] ?? 0) + universeCount * result.count;
@@ -77,8 +77,8 @@ const tick = (
 			} else {
 				increment(winCount, universe.player);
 			}
-		});
-	});
+		}
+	}
 
 	if (hasNext) {
 		tick(newActiveCounts);
