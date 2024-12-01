@@ -29,7 +29,7 @@ const parseInput = (input: string[]) => {
 	const seeds = seedsStr
 		.split(/:?\s+/)
 		.slice(1)
-		.map((seed) => parseInt(seed, 10));
+		.map((seed) => Number.parseInt(seed, 10));
 
 	const map = new Map<MapItem, Array<TranslatingRange>>(
 		maps.map((map) => [map, []]),
@@ -55,9 +55,9 @@ const parseInput = (input: string[]) => {
 
 		const [destinationStr, sourceStr, rangeStr] = line.split(/\s+/);
 
-		const source = parseInt(sourceStr, 10);
-		const destination = parseInt(destinationStr, 10);
-		const length = parseInt(rangeStr, 10);
+		const source = Number.parseInt(sourceStr, 10);
+		const destination = Number.parseInt(destinationStr, 10);
+		const length = Number.parseInt(rangeStr, 10);
 
 		assertNonNullOrUndefined(map.get(mapCursor)).push({
 			start: source,
@@ -204,7 +204,7 @@ export const run2 = (input: string[]): number => {
 		endInclusive: start + length - 1,
 	}));
 
-	let minLocation = Infinity;
+	let minLocation = Number.POSITIVE_INFINITY;
 
 	for (const pair of pairs) {
 		const finalRanges = maps.reduce(

@@ -1,5 +1,5 @@
 const parseInput = (input: string[]): number[][] =>
-	input.map((line) => line.split(" ").map((n) => parseInt(n, 10)));
+	input.map((line) => line.split(" ").map((n) => Number.parseInt(n, 10)));
 
 const calcDiffs = (history: number[]): number[][] => {
 	let currentDiff = history;

@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -10,7 +10,7 @@ const data: Point[][] = (await getInputLines(import.meta.url)).map(
 		line.split("").map((s, colIndex) => ({
 			x: rowIndex,
 			y: colIndex,
-			value: parseInt(s, 10),
+			value: Number.parseInt(s, 10),
 		})),
 );
 

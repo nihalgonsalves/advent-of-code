@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines, time } from "../../getInputLines";
@@ -17,7 +17,7 @@ const initialMatrix: Node[][] = (await getInputLines(import.meta.url)).map(
 		line.split("").map((risk, y) => ({
 			x,
 			y,
-			risk: parseInt(risk, 10),
+			risk: Number.parseInt(risk, 10),
 		})),
 );
 

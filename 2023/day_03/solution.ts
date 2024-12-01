@@ -39,7 +39,7 @@ export const run1 = (input: string[]): number => {
 
 			const evalBuffer = () => {
 				if (buffer && touches) {
-					numbers.push(parseInt(buffer, 10));
+					numbers.push(Number.parseInt(buffer, 10));
 				}
 
 				buffer = "";
@@ -71,12 +71,12 @@ export const run2 = (input: string[]): number => {
 
 	input.forEach((line, lineI) => {
 		let buffer = "";
-		let touchesAt: string = "";
+		let touchesAt = "";
 
 		const evalBuffer = () => {
 			if (buffer && touchesAt) {
 				gearMap[touchesAt] ??= [];
-				gearMap[touchesAt].push(parseInt(buffer, 10));
+				gearMap[touchesAt].push(Number.parseInt(buffer, 10));
 			}
 
 			buffer = "";
@@ -107,7 +107,7 @@ export const run2 = (input: string[]): number => {
 	});
 
 	return Object.values(gearMap)
-		.filter((gears) => gears.length == 2)
+		.filter((gears) => gears.length === 2)
 		.map(([a, b]) => a * b)
 		.reduce((a, b) => a + b, 0);
 };

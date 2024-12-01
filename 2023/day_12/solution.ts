@@ -9,7 +9,7 @@ const parseInput = (input: string[]) => {
 
 		return {
 			springs: springsStr.split("") as Value[],
-			config: configStr.split(",").map((c) => parseInt(c, 10)),
+			config: configStr.split(",").map((c) => Number.parseInt(c, 10)),
 		};
 	});
 };

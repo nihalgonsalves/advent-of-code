@@ -3,7 +3,7 @@ const findDigit = (line: string[]) => line.find((char) => char.match(/^\d$/));
 export const run1 = (input: string[]): number => {
 	return input
 		.map((line) => {
-			return parseInt(
+			return Number.parseInt(
 				[
 					// break
 					findDigit([...line]),
@@ -60,7 +60,7 @@ export const run2 = (input: string[]): number => {
 				}
 			}
 
-			return parseInt([a, b].join(""), 10);
+			return Number.parseInt([a, b].join(""), 10);
 		})
 		.reduce((sum, num) => sum + num, 0);
 

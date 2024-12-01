@@ -1,14 +1,14 @@
 import {
 	type Coordinates,
+	ENTRY,
 	type GridConnectorItem,
 	type GridItem,
-	mapping,
-	ENTRY,
 	PADDING,
-	printGrid,
-	getAdjacentItems,
 	calcLoop,
+	getAdjacentItems,
 	guessConnectorType,
+	mapping,
+	printGrid,
 } from "./common";
 
 export const mapInput = (

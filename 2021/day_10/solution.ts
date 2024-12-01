@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";

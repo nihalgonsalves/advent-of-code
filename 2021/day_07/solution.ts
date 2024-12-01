@@ -1,11 +1,11 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
 
 const [rawPositions] = await getInputLines(import.meta.url);
 
-const positions = rawPositions.split(",").map((s) => parseInt(s, 10));
+const positions = rawPositions.split(",").map((s) => Number.parseInt(s, 10));
 
 const costToMove = (dest: number, transform = (n: number) => n) =>
 	R.sum(positions.map((pos) => transform(Math.abs(pos - dest))));

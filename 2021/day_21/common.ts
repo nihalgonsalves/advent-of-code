@@ -1,7 +1,7 @@
 import { getInputLines } from "../../getInputLines";
 
 const [pos1, pos2] = (await getInputLines(import.meta.url)).map((l) =>
-	parseInt(l.split("").at(-1)!, 10),
+	Number.parseInt(l.split("").at(-1)!, 10),
 );
 
 export type Universe = {
@@ -39,7 +39,6 @@ export const getNextParams = (
 export const wrapAround = (i: number, n: number): number => {
 	if (i <= n) {
 		return i;
-	} else {
-		return i % n !== 0 ? i % n : n;
 	}
+	return i % n !== 0 ? i % n : n;
 };

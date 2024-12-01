@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 import { getInputLines } from "../../getInputLines";
 
@@ -7,7 +7,7 @@ import { getInputLines } from "../../getInputLines";
 const commands = (await getInputLines(import.meta.url)).map((line) => {
 	const [direction, magnitude] = line.split(" ");
 
-	return { direction, magnitude: parseInt(magnitude, 10) };
+	return { direction, magnitude: Number.parseInt(magnitude, 10) };
 });
 
 // Part 1

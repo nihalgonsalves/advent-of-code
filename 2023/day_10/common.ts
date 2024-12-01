@@ -146,8 +146,8 @@ export const calcLoop = (
 		);
 	} while (
 		!(
-			seen.at(-1)!.row == startingGridItem.row &&
-			seen.at(-1)!.col == startingGridItem.col
+			seen.at(-1)!.row === startingGridItem.row &&
+			seen.at(-1)!.col === startingGridItem.col
 		)
 	);
 

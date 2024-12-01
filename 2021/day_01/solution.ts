@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -6,7 +6,7 @@ import { getInputLines } from "../../getInputLines";
 // https://adventofcode.com/2021/day/1
 
 const values = (await getInputLines(import.meta.url)).map((line) =>
-	parseInt(line, 10),
+	Number.parseInt(line, 10),
 );
 
 // count the number of times a depth measurement increases from the previous measurement

@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -46,7 +46,7 @@ const enhanceImage = ({ image, outside }: Grid): Grid => {
 				return nextOutside;
 			}
 
-			const sourceBinary = parseInt(sourcePixels.join(""), 2);
+			const sourceBinary = Number.parseInt(sourcePixels.join(""), 2);
 
 			return lookup[sourceBinary];
 		}),

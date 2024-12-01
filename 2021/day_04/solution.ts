@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 
 import * as R from "ramda";
 import { getInputLines } from "../../getInputLines";
@@ -7,7 +7,7 @@ const input = await getInputLines(import.meta.url);
 
 const [rawCalls, ...rawBoards] = input;
 
-const calls = rawCalls.split(",").map((s) => parseInt(s, 10));
+const calls = rawCalls.split(",").map((s) => Number.parseInt(s, 10));
 
 type BoardRow = [number, number, number, number, number];
 type Board = [BoardRow, BoardRow, BoardRow, BoardRow, BoardRow];
@@ -18,7 +18,7 @@ const boards = R.pipe(
 		boardLine
 			.split(" ")
 			.filter((s) => s !== "")
-			.map((s) => parseInt(s, 10)),
+			.map((s) => Number.parseInt(s, 10)),
 	),
 	R.splitEvery(5),
 )() as Board[];

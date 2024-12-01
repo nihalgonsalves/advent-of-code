@@ -12,13 +12,13 @@ export const run1 = (input: string[]): number => {
 	return input.reduce((sum, line) => {
 		const { gameStr, sets } = line.match(/^Game (?<gameStr>\d+): (?<sets>.*)$/)!
 			.groups!;
-		const game = parseInt(gameStr, 10);
+		const game = Number.parseInt(gameStr, 10);
 
 		for (const set of sets.split("; ")) {
 			for (const colorPair of set.split(", ")) {
 				const [count, color] = colorPair.split(" ");
 
-				if (possible[color as Color] < parseInt(count, 10)) {
+				if (possible[color as Color] < Number.parseInt(count, 10)) {
 					return sum;
 				}
 			}
@@ -38,8 +38,8 @@ export const run2 = (input: string[]): number => {
 			for (const colorPair of set.split(", ")) {
 				const [count, color] = colorPair.split(" ");
 
-				if (min[color as Color] < parseInt(count, 10)) {
-					min[color as Color] = parseInt(count, 10);
+				if (min[color as Color] < Number.parseInt(count, 10)) {
+					min[color as Color] = Number.parseInt(count, 10);
 				}
 			}
 		}

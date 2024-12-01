@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -28,8 +28,8 @@ const { gamma, epsilon } = R.pipe(
 	R.transpose,
 	R.map(R.join("")),
 	([gamma, epsilon]) => ({
-		gamma: parseInt(gamma, 2),
-		epsilon: parseInt(epsilon, 2),
+		gamma: Number.parseInt(gamma, 2),
+		epsilon: Number.parseInt(epsilon, 2),
 	}),
 )();
 
@@ -47,7 +47,7 @@ const calcSolutionPart2 = (
 			() => report,
 			R.head,
 			R.join(""),
-			(str) => parseInt(str, 2),
+			(str) => Number.parseInt(str, 2),
 		)();
 	}
 
@@ -56,7 +56,8 @@ const calcSolutionPart2 = (
 	const { most, least } = (() => {
 		if (zeroes > ones) {
 			return { most: "0", least: "1" };
-		} else if (zeroes < ones) {
+		}
+		if (zeroes < ones) {
 			return { most: "1", least: "0" };
 		}
 		return { most: undefined, least: undefined };
@@ -67,9 +68,8 @@ const calcSolutionPart2 = (
 		R.filter((row: string[]) => {
 			if (type === "oxygen") {
 				return most ? row[bitIndex] === most : row[bitIndex] === "1";
-			} else {
-				return least ? row[bitIndex] === least : row[bitIndex] === "0";
 			}
+			return least ? row[bitIndex] === least : row[bitIndex] === "0";
 		}),
 		(filtered) => calcSolutionPart2(filtered, type, bitIndex + 1),
 	)();

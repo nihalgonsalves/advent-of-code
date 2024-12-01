@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 
 import * as R from "ramda";
 
@@ -134,7 +134,9 @@ const simpleDigitCount = output.flatMap((digits) =>
 
 // Part 2
 
-const total = R.sum(output.map((digits) => parseInt(digits.join(""), 10)));
+const total = R.sum(
+	output.map((digits) => Number.parseInt(digits.join(""), 10)),
+);
 
 // Solution
 

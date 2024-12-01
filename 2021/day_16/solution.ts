@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -7,7 +7,7 @@ const [rawInput] = await getInputLines(import.meta.url);
 
 const initialInput = rawInput
 	.split("")
-	.map((char) => parseInt(char, 16).toString(2).padStart(4, "0"))
+	.map((char) => Number.parseInt(char, 16).toString(2).padStart(4, "0"))
 	.join("");
 
 const versions: number[] = [];
@@ -19,12 +19,12 @@ const operators: Record<number, (operands: number[]) => number> = {
 	3: (values) => Math.max(...values),
 	5: ([a, b]) => (a > b ? 1 : 0),
 	6: ([a, b]) => (a < b ? 1 : 0),
-	7: ([a, b]) => (a == b ? 1 : 0),
+	7: ([a, b]) => (a === b ? 1 : 0),
 };
 
 const readPacket = (
 	input = initialInput,
-	packetReadLimit = Infinity,
+	packetReadLimit = Number.POSITIVE_INFINITY,
 ): { literals: number[]; buffer: string } => {
 	let buffer = input;
 
@@ -41,8 +41,8 @@ const readPacket = (
 	while (buffer.length > 6 && readPackets < packetReadLimit) {
 		readPackets += 1;
 
-		const version = parseInt(readChars(3), 2);
-		const typeID = parseInt(readChars(3), 2);
+		const version = Number.parseInt(readChars(3), 2);
+		const typeID = Number.parseInt(readChars(3), 2);
 
 		versions.push(version);
 
@@ -59,12 +59,12 @@ const readPacket = (
 				}
 			}
 
-			literals.push(parseInt(literalBuffer, 2));
+			literals.push(Number.parseInt(literalBuffer, 2));
 		} else {
 			const lengthTypeID = readChars(1);
 
 			if (lengthTypeID === "0") {
-				const subPacketsLength = parseInt(readChars(15), 2);
+				const subPacketsLength = Number.parseInt(readChars(15), 2);
 
 				const { literals: newLiterals } = readPacket(
 					readChars(subPacketsLength),
@@ -72,7 +72,7 @@ const readPacket = (
 
 				literals.push(operators[typeID](newLiterals));
 			} else {
-				const numSubPackets = parseInt(readChars(11), 2);
+				const numSubPackets = Number.parseInt(readChars(11), 2);
 
 				const { literals: newLiterals, buffer: remainingBuffer } = readPacket(
 					buffer,

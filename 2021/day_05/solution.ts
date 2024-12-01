@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 
 import * as R from "ramda";
 
@@ -19,15 +19,17 @@ const overlappingCount = (includeDiagonal = true) => {
 
 			const parsedLine = line
 				.split(" -> ")
-				.map((pos) => pos.split(",").map((s) => parseInt(s, 10)));
+				.map((pos) => pos.split(",").map((s) => Number.parseInt(s, 10)));
 
 			const [[x1, y1], [x2, y2]] = parsedLine;
 
 			if (x1 === x2) {
 				return inclusiveRange(y1, y2).map((y) => ({ x: x1, y }));
-			} else if (y1 === y2) {
+			}
+			if (y1 === y2) {
 				return inclusiveRange(x1, x2).map((x) => ({ x, y: y1 }));
-			} else if (includeDiagonal) {
+			}
+			if (includeDiagonal) {
 				return R.zipWith(
 					(x, y) => ({ x, y }),
 					inclusiveRange(x1, x2),

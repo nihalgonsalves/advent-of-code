@@ -16,7 +16,7 @@ const parseInput1 = (input: string[]): DigInstruction[] =>
 		const [direction, count, color] = line.split(" ");
 
 		return {
-			count: parseInt(count, 10),
+			count: Number.parseInt(count, 10),
 			direction: direction as DirectionStr,
 		};
 	});
@@ -29,8 +29,8 @@ const parseInput2 = (input: string[]): DigInstruction[] =>
 		// index: 012345678
 
 		return {
-			count: parseInt(hex.slice(2, 7), 16),
-			direction: parseInt(hex.slice(7, 8), 10) as Direction,
+			count: Number.parseInt(hex.slice(2, 7), 16),
+			direction: Number.parseInt(hex.slice(7, 8), 10) as Direction,
 		};
 	});
 

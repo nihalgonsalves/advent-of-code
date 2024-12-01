@@ -20,11 +20,11 @@ export const run1 = (input: string[]): number => {
 	const times = time
 		.split(/\s+/)
 		.slice(1)
-		.map((x) => parseInt(x, 10));
+		.map((x) => Number.parseInt(x, 10));
 	const distances = distance
 		.split(/\s+/)
 		.slice(1)
-		.map((x) => parseInt(x, 10));
+		.map((x) => Number.parseInt(x, 10));
 
 	const races = R.zip(times, distances);
 
@@ -36,8 +36,8 @@ export const run1 = (input: string[]): number => {
 export const run2 = (input: string[]): number => {
 	const [times, distances] = input;
 
-	const time = parseInt([...times.matchAll(/\d/g)].join(""), 10);
-	const distance = parseInt([...distances.matchAll(/\d/g)].join(""), 10);
+	const time = Number.parseInt([...times.matchAll(/\d/g)].join(""), 10);
+	const distance = Number.parseInt([...distances.matchAll(/\d/g)].join(""), 10);
 
 	return waysToWin(time, distance);
 };

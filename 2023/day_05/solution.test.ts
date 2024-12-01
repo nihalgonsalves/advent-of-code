@@ -1,7 +1,7 @@
-import { describe, it, expect } from "bun:test";
+import { describe, expect, it } from "bun:test";
 
-import { rangeIntersection, run1, run2, splitRange } from "./solution";
 import { getInputLines } from "../../getInputLines";
+import { rangeIntersection, run1, run2, splitRange } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 

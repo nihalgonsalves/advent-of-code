@@ -1,8 +1,8 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 import { time } from "../../getInputLines";
 
-import { getNextParams, startingUniverse, Universe } from "./common";
+import { type Universe, getNextParams, startingUniverse } from "./common";
 
 const dieRolls = [1, 2, 3];
 
@@ -24,7 +24,7 @@ const expandUniverse = ({
 	dieRollsOnEachTurn.map(([nextRoll, count]) => {
 		const nextParams = getNextParams(
 			{ player, positions },
-			parseInt(nextRoll, 10),
+			Number.parseInt(nextRoll, 10),
 		);
 
 		const newScore = scores[player] + nextParams.positions[player];

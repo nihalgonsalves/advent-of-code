@@ -1,4 +1,4 @@
-declare var self: Worker;
+declare let self: Worker;
 
 export type Input = {
 	matrix: Cell[][];
@@ -66,9 +66,8 @@ const traverse = (matrix: Cell[][], startingCursor: Cursor): Cell[][] => {
 		const key = JSON.stringify(cursor);
 		if (seen.has(key)) {
 			continue;
-		} else {
-			seen.add(key);
 		}
+		seen.add(key);
 
 		const { direction } = cursor;
 		const { i, j } = nextPosition(cursor);

@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -49,9 +49,8 @@ const part2 = traverse((path) => {
 		if (/^[a-z]*$/.test(node)) {
 			if (visited.has(node)) {
 				return true;
-			} else {
-				visited.add(node);
 			}
+			visited.add(node);
 		}
 	}
 

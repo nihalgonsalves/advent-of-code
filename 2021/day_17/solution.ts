@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -11,8 +11,8 @@ const parseRegEx =
 const groups = rawInput.match(parseRegEx)!.groups!;
 
 const range: Record<"x" | "y", [number, number]> = {
-	x: [parseInt(groups.x1, 10), parseInt(groups.x2, 10)],
-	y: [parseInt(groups.y1, 10), parseInt(groups.y2, 10)],
+	x: [Number.parseInt(groups.x1, 10), Number.parseInt(groups.x2, 10)],
+	y: [Number.parseInt(groups.y1, 10), Number.parseInt(groups.y2, 10)],
 };
 
 const maxX = Math.max(...range.x);

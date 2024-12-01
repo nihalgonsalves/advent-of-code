@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -11,7 +11,7 @@ const [rawFolds, rawDots] = R.partition(
 type Dot = { x: number; y: number };
 
 const dots: Dot[] = rawDots.map((dot) => {
-	const [x, y] = dot.split(",").map((s) => parseInt(s, 10));
+	const [x, y] = dot.split(",").map((s) => Number.parseInt(s, 10));
 	return { x, y };
 });
 
@@ -19,7 +19,7 @@ type Fold = { axis: "x" | "y"; value: number };
 
 const folds: Fold[] = rawFolds.map((fold) => {
 	const [axis, rawValue] = fold.replace("fold along ", "").split("=");
-	return { axis: axis as "x" | "y", value: parseInt(rawValue, 10) };
+	return { axis: axis as "x" | "y", value: Number.parseInt(rawValue, 10) };
 });
 
 const getTransformer =

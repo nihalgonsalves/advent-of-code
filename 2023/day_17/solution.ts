@@ -5,7 +5,9 @@ type Cell = Coords & { cost: number };
 
 const parseInput = (input: string[]): Cell[][] =>
 	input.map((line, i) =>
-		line.split("").map((char, j) => ({ i, j, cost: parseInt(char, 10) })),
+		line
+			.split("")
+			.map((char, j) => ({ i, j, cost: Number.parseInt(char, 10) })),
 	);
 
 type Direction = "north" | "east" | "south" | "west";
@@ -147,7 +149,10 @@ const run = (matrix: Cell[][], minForward: number, maxForward: number) => {
 
 		for (const next of neighbours(current, matrix, minForward, maxForward)) {
 			const tentativeGScore = next.cost;
-			if (tentativeGScore < (gScore.get(cursorKey(next)) ?? Infinity)) {
+			if (
+				tentativeGScore <
+				(gScore.get(cursorKey(next)) ?? Number.POSITIVE_INFINITY)
+			) {
 				gScore.set(cursorKey(next), tentativeGScore);
 				openSet.add(next);
 			}

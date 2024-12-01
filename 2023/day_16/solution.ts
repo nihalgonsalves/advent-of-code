@@ -1,4 +1,4 @@
-import type { Cell, Input, Output, Cursor } from "./worker";
+import type { Cell, Cursor, Input, Output } from "./worker";
 
 const workerURL = new URL("worker.ts", import.meta.url).href;
 

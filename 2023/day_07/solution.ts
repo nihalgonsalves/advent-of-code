@@ -8,19 +8,19 @@ const parseInput = (input: string[], calcType: (cards: Card[]) => Type) =>
 
 		return {
 			cards,
-			bid: parseInt(bidStr, 10),
+			bid: Number.parseInt(bidStr, 10),
 			type: calcType(cards),
 		};
 	});
 
 export enum Type {
-	FIVE_OF_A_KIND,
-	FOUR_OF_A_KIND,
-	FULL_HOUSE,
-	THREE_OF_A_KIND,
-	TWO_PAIR,
-	ONE_PAIR,
-	HIGH_CARD,
+	FIVE_OF_A_KIND = 0,
+	FOUR_OF_A_KIND = 1,
+	FULL_HOUSE = 2,
+	THREE_OF_A_KIND = 3,
+	TWO_PAIR = 4,
+	ONE_PAIR = 5,
+	HIGH_CARD = 6,
 }
 
 // prettier-ignore

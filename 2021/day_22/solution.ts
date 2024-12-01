@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines, time } from "../../getInputLines";
@@ -7,7 +7,7 @@ const matcher =
 	/^(?<action>on|off) x=(?<x1>-?\d*)\.\.(?<x2>-?\d*),y=(?<y1>-?\d*)\.\.(?<y2>-?\d*),z=(?<z1>-?\d*)\.\.(?<z2>-?\d*)$/;
 
 const parseIntObj = <T extends string>(obj: Record<T, string>) =>
-	R.mapObjIndexed((val) => parseInt(val, 10), obj);
+	R.mapObjIndexed((val) => Number.parseInt(val, 10), obj);
 
 const input = (await getInputLines(import.meta.url)).map((line) => {
 	const { action, ...rawCoords } = line.match(matcher)!.groups!;
@@ -22,7 +22,7 @@ const input = (await getInputLines(import.meta.url)).map((line) => {
 
 const minVal = input
 	.flatMap(({ coords }) => Object.values(coords))
-	.reduce((val, min) => Math.min(val, min), Infinity);
+	.reduce((val, min) => Math.min(val, min), Number.POSITIVE_INFINITY);
 
 const shift = R.add(Math.abs(minVal));
 

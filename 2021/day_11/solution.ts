@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -13,7 +13,7 @@ type Octopus = {
 const lines = (await getInputLines(import.meta.url)).map((line, x) =>
 	line.split("").map((energy, y) =>
 		//
-		({ energy: parseInt(energy, 10), x, y, flashedThisCycle: false }),
+		({ energy: Number.parseInt(energy, 10), x, y, flashedThisCycle: false }),
 	),
 );
 

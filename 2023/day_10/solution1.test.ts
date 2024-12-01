@@ -1,12 +1,12 @@
-import { describe, it, expect, test } from "bun:test";
+import { describe, expect, it, test } from "bun:test";
 
-import { mapInput, run1 } from "./solution1";
+import { getInputLines } from "../../getInputLines";
 import {
-	guessConnectorType,
 	getAdjacentItems,
+	guessConnectorType,
 	tupleGridToGrid,
 } from "./common";
-import { getInputLines } from "../../getInputLines";
+import { mapInput, run1 } from "./solution1";
 
 const input = await getInputLines(import.meta.url);
 

@@ -1,8 +1,8 @@
-import assert from "assert";
+import assert from "node:assert";
 
 import * as R from "ramda";
 
-import { startingUniverse, getNextParams, wrapAround } from "./common";
+import { getNextParams, startingUniverse, wrapAround } from "./common";
 
 let universe = startingUniverse;
 
