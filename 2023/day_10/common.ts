@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import { styleText } from "node:util";
 
 const CONNECTORS = ["┃", "━", "┗", "┛", "┓", "┏"] as const;
 export type Connector = (typeof CONNECTORS)[number];
@@ -189,10 +189,10 @@ export const printGrid = (
 				);
 
 				const value = seen.find((v) => v.row === rowIndex && v.col === colIndex)
-					? chalk.red(item.value as Connector)
+					? styleText("red", item.value as Connector)
 					: unconnected[item.value];
 
-				return [isHighlighted ? chalk.bgGreen(value) : value];
+				return [isHighlighted ? styleText("bgGreen", value) : value];
 			})
 			.join("");
 

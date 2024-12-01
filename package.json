@@ -11,7 +11,6 @@
 	},
 	"trustedDependencies": ["lefthook"],
 	"dependencies": {
-		"chalk": "^5.3.0",
 		"fastpriorityqueue": "^0.7.5",
 		"ramda": "^0.30.1"
 	},
