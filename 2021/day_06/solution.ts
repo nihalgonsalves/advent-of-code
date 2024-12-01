@@ -9,19 +9,19 @@ const [initialFish] = await getInputLines(import.meta.url);
 let fishState = R.countBy((age) => age, initialFish.split(","));
 
 const tick = () => {
-  fishState = {
-    "0": fishState["1"] ?? 0,
-    "1": fishState["2"] ?? 0,
-    "2": fishState["3"] ?? 0,
-    "3": fishState["4"] ?? 0,
-    "4": fishState["5"] ?? 0,
-    "5": fishState["6"] ?? 0,
-    // new fish
-    "6": (fishState["7"] ?? 0) + (fishState["0"] ?? 0),
-    "7": fishState["8"] ?? 0,
-    // reset fish
-    "8": fishState["0"] ?? 0,
-  };
+	fishState = {
+		"0": fishState["1"] ?? 0,
+		"1": fishState["2"] ?? 0,
+		"2": fishState["3"] ?? 0,
+		"3": fishState["4"] ?? 0,
+		"4": fishState["5"] ?? 0,
+		"5": fishState["6"] ?? 0,
+		// new fish
+		"6": (fishState["7"] ?? 0) + (fishState["0"] ?? 0),
+		"7": fishState["8"] ?? 0,
+		// reset fish
+		"8": fishState["0"] ?? 0,
+	};
 };
 
 R.times(tick, 80);

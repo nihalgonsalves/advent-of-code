@@ -6,36 +6,36 @@ import { getInputLines } from "../../getInputLines";
 const input = await getInputLines(import.meta.url);
 
 const sample: string[] = [
-  "O....#....",
-  "O.OO#....#",
-  ".....##...",
-  "OO.#O....O",
-  ".O.....O#.",
-  "O.#..O.#.#",
-  "..O..#O..O",
-  ".......O..",
-  "#....###..",
-  "#OO..#....",
+	"O....#....",
+	"O.OO#....#",
+	".....##...",
+	"OO.#O....O",
+	".O.....O#.",
+	"O.#..O.#.#",
+	"..O..#O..O",
+	".......O..",
+	"#....###..",
+	"#OO..#....",
 ];
 
 describe("day 14", () => {
-  describe("part 1", () => {
-    it("should return the correct sample value", () => {
-      expect(run1(sample)).toBe(136);
-    });
+	describe("part 1", () => {
+		it("should return the correct sample value", () => {
+			expect(run1(sample)).toBe(136);
+		});
 
-    it("should return the correct value", () => {
-      expect(run1(input)).toBe(112048);
-    });
-  });
+		it("should return the correct value", () => {
+			expect(run1(input)).toBe(112048);
+		});
+	});
 
-  describe("part 2", () => {
-    it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(64);
-    });
+	describe("part 2", () => {
+		it("should return the correct sample value", () => {
+			expect(run2(sample)).toBe(64);
+		});
 
-    it("should return the correct value", () => {
-      expect(run2(input)).toBe(105606);
-    });
-  });
+		it("should return the correct value", () => {
+			expect(run2(input)).toBe(105606);
+		});
+	});
 });

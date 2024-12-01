@@ -6,8 +6,7 @@ import { getInput } from "../../getInputLines";
 const input = await getInput(import.meta.url);
 
 // prettier-ignore
-const sample =
-`#.##..##.
+const sample = `#.##..##.
 ..#.##.#.
 ##......#
 ##......#
@@ -24,23 +23,23 @@ const sample =
 #....#..#`;
 
 describe("day 13", () => {
-  describe("part 1", () => {
-    it("should return the correct sample value", () => {
-      expect(run1(sample)).toBe(405);
-    });
+	describe("part 1", () => {
+		it("should return the correct sample value", () => {
+			expect(run1(sample)).toBe(405);
+		});
 
-    it("should return the correct value", () => {
-      expect(run1(input)).toBe(33975);
-    });
-  });
+		it("should return the correct value", () => {
+			expect(run1(input)).toBe(33975);
+		});
+	});
 
-  describe("part 2", () => {
-    it("should return the correct sample value", () => {
-      expect(run2(sample)).toBe(400);
-    });
+	describe("part 2", () => {
+		it("should return the correct sample value", () => {
+			expect(run2(sample)).toBe(400);
+		});
 
-    it("should return the correct value", () => {
-      expect(run2(input)).toBe(29083);
-    });
-  });
+		it("should return the correct value", () => {
+			expect(run2(input)).toBe(29083);
+		});
+	});
 });
