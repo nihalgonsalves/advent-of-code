@@ -1,7 +1,7 @@
 pre-commit:
   parallel: true
   commands:
-    prettier:
-      glob: "*.{js,ts,jsx,tsx,mjs,mts,cjs,cts,html,css,json,md,yml,yaml,sql}"
-      run: bun prettier --write {staged_files}
+    biome:
+      glob: "*.{ts,json}"
+      run: bun biome check --write {staged_files}
       stage_fixed: true
