@@ -1,0 +1,8 @@
+# chore: update/use bun
+8a41ec5605943ab6601f9488dc17a0cb69c54b08
+# style: reformat with biome
+03578db63cb46578a2e1aaf39dad6224e4d45585
+# style: fix biome autofixes
+66cc492225de8bc118afe27f17308ebaab6f971b
+# chore: fix/ignore the rest of the biome suggestions
+6011bd4281819881de07b43236f8fa5736ee699c
