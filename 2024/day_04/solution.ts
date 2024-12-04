@@ -1,3 +1,5 @@
+import * as R from "ramda";
+
 type Coordinate = { x: number; y: number };
 type Cell = Coordinate & { value: "X" | "M" | "A" | "S" };
 
@@ -12,16 +14,8 @@ enum Direction {
 	NW = "NW",
 }
 
-const DIRECTIONS = [
-	Direction.N,
-	Direction.NE,
-	Direction.E,
-	Direction.SE,
-	Direction.S,
-	Direction.SW,
-	Direction.W,
-	Direction.NW,
-];
+const cardinals = [Direction.N, Direction.E, Direction.S, Direction.W];
+const diagonals = [Direction.NE, Direction.SE, Direction.SW, Direction.NW];
 
 const NEXT_VALUE = {
 	X: "M",
@@ -30,40 +24,56 @@ const NEXT_VALUE = {
 	S: undefined,
 } as const;
 
+const coordKey = ({ x, y }: Coordinate) => `${x},${y}`;
 class WordGrid {
 	data: Cell[][];
-	private letterXCells: Cell[] = [];
 
 	constructor(input: string[]) {
 		this.data = input.map((line, rowIndex) =>
-			line.split("").map((value, colIndex) => {
-				const cell = {
-					x: rowIndex,
-					y: colIndex,
-					value: value as "X" | "M" | "A" | "S",
-				};
-
-				if (value === "X") {
-					this.letterXCells.push(cell);
-				}
-
-				return cell;
-			}),
+			line.split("").map((value, colIndex) => ({
+				x: rowIndex,
+				y: colIndex,
+				value: value as "X" | "M" | "A" | "S",
+			})),
 		);
 	}
 
-	solve(): Cell[][] {
-		const paths = this.letterXCells.flatMap((cell) =>
-			this.getNeighbours(cell)
-				.filter(
-					({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value],
-				)
-				.flatMap(({ cell, direction }) => {
-					return this.getPath([cell], direction);
-				}),
+	solveXMAS(): Cell[][] {
+		return this.data
+			.flat()
+			.filter((cell) => cell.value === "X")
+			.flatMap((cell) =>
+				this.getNeighbours([...cardinals, ...diagonals], cell)
+					.filter(
+						({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value],
+					)
+					.flatMap(({ cell: neighbour, direction }) =>
+						this.getPath([cell, neighbour], direction),
+					),
+			);
+	}
+
+	solveX_MAS(): number {
+		const allMASPaths = this.data
+			.flat()
+			.filter((cell) => cell.value === "M")
+			.flatMap((cell) =>
+				this.getNeighbours(diagonals, cell)
+					.filter(
+						({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value],
+					)
+					.flatMap(({ cell: neighbour, direction }) =>
+						this.getPath([cell, neighbour], direction),
+					),
+			);
+
+		const letterACounts = R.countBy(
+			coordKey,
+			allMASPaths.flat().filter((cell) => cell.value === "A"),
 		);
 
-		return paths;
+		return Object.entries(letterACounts).filter(([_, count]) => count === 2)
+			.length;
 	}
 
 	private getPath(path: Cell[], direction: Direction): Cell[][] {
@@ -84,12 +94,15 @@ class WordGrid {
 	}
 
 	private getNeighbours(
+		directions: Direction[],
 		coordinate: Coordinate,
 	): { direction: Direction; cell: Cell }[] {
-		return DIRECTIONS.map((direction) => {
-			const cell = this.getNeighbour(coordinate, direction);
-			return cell ? { cell, direction } : undefined;
-		}).filter((neighbour) => neighbour !== undefined);
+		return directions
+			.map((direction) => {
+				const cell = this.getNeighbour(coordinate, direction);
+				return cell ? { cell, direction } : undefined;
+			})
+			.filter((neighbour) => neighbour !== undefined);
 	}
 
 	private getNeighbour(
@@ -119,10 +132,11 @@ class WordGrid {
 
 export const run1 = (input: string[]): number => {
 	const grid = new WordGrid(input);
-	const paths = grid.solve();
+	const paths = grid.solveXMAS();
 	return paths.length;
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	const grid = new WordGrid(input);
+	return grid.solveX_MAS();
 };
