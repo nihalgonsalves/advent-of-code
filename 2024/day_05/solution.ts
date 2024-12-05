@@ -13,10 +13,11 @@ const parseInput = (input: string) => {
 		.split("\n")
 		.map((line) => line.split(",").map((str) => Number.parseInt(str, 10)));
 
-	const pageOrdering: Record<number, number[]> = {};
+	const pageOrdering: Record<number, Set<number>> = {};
+
 	for (const [left, right] of pageOrderingRules) {
-		pageOrdering[left] ??= [];
-		pageOrdering[left].push(right);
+		pageOrdering[left] ??= new Set();
+		pageOrdering[left].add(right);
 	}
 
 	return { pageOrdering, pages };
@@ -32,7 +33,7 @@ export const run1 = (input: string): number => {
 			);
 
 			return page.every((update, index) =>
-				(pageOrdering[update] ?? []).every(
+				[...(pageOrdering[update]?.values() ?? [])].every(
 					(right) => pageIndex[right] == null || index < pageIndex[right],
 				),
 			);
@@ -41,5 +42,33 @@ export const run1 = (input: string): number => {
 };
 
 export const run2 = (input: string): number => {
-	return 0;
+	const { pageOrdering, pages } = parseInput(input);
+
+	const unorderedPages = pages.filter((page) => {
+		const pageIndex = Object.fromEntries(
+			page.map((page, index) => [page, index]),
+		);
+
+		return page.some((update, index) =>
+			[...(pageOrdering[update]?.values() ?? [])].some(
+				(right) => pageIndex[right] !== null && index > pageIndex[right],
+			),
+		);
+	});
+
+	return unorderedPages
+		.map((page) =>
+			page.sort((a, b) => {
+				if (pageOrdering[a]?.has(b)) {
+					return -1;
+				}
+
+				if (pageOrdering[b]?.has(a)) {
+					return 1;
+				}
+
+				return 0;
+			}),
+		)
+		.reduce((acc, page) => acc + page[(page.length - 1) / 2], 0);
 };
