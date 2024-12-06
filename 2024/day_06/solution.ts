@@ -24,8 +24,12 @@ class GuardGrid {
 	guardPosition!: Coordinate;
 	guardDirection!: Direction;
 	visited = new Set<string>();
+	moveCount = 0;
 
-	constructor(input: string[]) {
+	constructor(
+		input: string[],
+		private maxMoves = Number.POSITIVE_INFINITY,
+	) {
 		this.grid = input.map((line, x) =>
 			line.split("").map((value, y) => {
 				if (value === "^") {
@@ -46,6 +50,10 @@ class GuardGrid {
 	}
 
 	move() {
+		if (this.moveCount > this.maxMoves) {
+			throw new Error("Loop detected");
+		}
+
 		const next = this.coordInFrontOfGuard();
 		if (!next) {
 			return;
@@ -55,6 +63,7 @@ class GuardGrid {
 			this.guardDirection = nextPositionRight[this.guardDirection];
 		} else {
 			this.guardPosition = next;
+			this.moveCount++;
 			this.visited.add(coordKey(next));
 		}
 
@@ -102,5 +111,29 @@ export const run1 = (input: string[]): number => {
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	const guardGrid = new GuardGrid(input);
+	guardGrid.move();
+
+	return guardGrid.grid
+		.flatMap((row) =>
+			row
+				.map((cell) => {
+					if (guardGrid.visited.has(coordKey(cell))) {
+						const newGrid = new GuardGrid(input, 10000);
+						newGrid.grid[cell.x][cell.y].value = "#";
+						return newGrid;
+					}
+
+					return undefined;
+				})
+				.filter((grid) => grid !== undefined),
+		)
+		.filter((grid) => {
+			try {
+				grid.move();
+				return false;
+			} catch {
+				return true;
+			}
+		}).length;
 };
