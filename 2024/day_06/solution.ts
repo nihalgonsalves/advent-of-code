@@ -19,34 +19,47 @@ const nextPositionRight = {
 
 const coordKey = ({ x, y }: Coordinate) => `${x},${y}`;
 
-class GuardGrid {
+const initGrid = (
+	input: string[],
+): {
 	grid: Cell[][];
-	guardPosition!: Coordinate;
-	guardDirection!: Direction;
+	guardPosition: Coordinate;
+	guardDirection: Direction;
+} => {
+	let guardPosition: Coordinate | undefined = undefined;
+	let guardDirection: Direction | undefined = undefined;
+
+	const grid = input.map((line, x) =>
+		line.split("").map((value, y) => {
+			if (value === "^") {
+				guardPosition = { x, y };
+				guardDirection = Direction.Up;
+
+				return { x, y, value: "." as const };
+			}
+
+			return { x, y, value: value as Cell["value"] };
+		}),
+	);
+
+	if (!guardPosition || !guardDirection) {
+		throw new Error("No guard found");
+	}
+
+	return { grid, guardPosition, guardDirection };
+};
+
+class GuardGrid {
 	visited = new Set<string>();
 	moveCount = 0;
 
 	constructor(
-		input: string[],
+		public grid: Cell[][],
+		private guardPosition: Coordinate,
+		private guardDirection: Direction,
 		private maxMoves = Number.POSITIVE_INFINITY,
 	) {
-		this.grid = input.map((line, x) =>
-			line.split("").map((value, y) => {
-				if (value === "^") {
-					this.guardPosition = { x, y };
-					this.visited.add(coordKey(this.guardPosition));
-					this.guardDirection = Direction.Up;
-
-					return { x, y, value: "." as const };
-				}
-
-				return { x, y, value: value as Cell["value"] };
-			}),
-		);
-
-		if (!this.guardPosition) {
-			throw new Error("No startCoord found");
-		}
+		this.visited.add(coordKey(this.guardPosition));
 	}
 
 	move() {
@@ -100,7 +113,8 @@ class GuardGrid {
 }
 
 export const run1 = (input: string[]): number => {
-	const guardGrid = new GuardGrid(input);
+	const { grid, guardPosition, guardDirection } = initGrid(input);
+	const guardGrid = new GuardGrid(grid, guardPosition, guardDirection);
 	guardGrid.move();
 
 	if (process.env.PRINT) {
@@ -111,7 +125,8 @@ export const run1 = (input: string[]): number => {
 };
 
 export const run2 = (input: string[]): number => {
-	const guardGrid = new GuardGrid(input);
+	const { grid, guardPosition, guardDirection } = initGrid(input);
+	const guardGrid = new GuardGrid(grid, guardPosition, guardDirection);
 	guardGrid.move();
 
 	return guardGrid.grid
@@ -119,9 +134,18 @@ export const run2 = (input: string[]): number => {
 			row
 				.map((cell) => {
 					if (guardGrid.visited.has(coordKey(cell))) {
-						const newGrid = new GuardGrid(input, 10000);
-						newGrid.grid[cell.x][cell.y].value = "#";
-						return newGrid;
+						return new GuardGrid(
+							grid.map((row) =>
+								row.map((newCell) =>
+									cell.x === newCell.x && cell.y === newCell.y
+										? { ...newCell, value: "#" as const }
+										: newCell,
+								),
+							),
+							guardPosition,
+							guardDirection,
+							10000,
+						);
 					}
 
 					return undefined;
