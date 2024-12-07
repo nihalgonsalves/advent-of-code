@@ -30,11 +30,11 @@ describe("day 07", () => {
 
 	describe("part 2", () => {
 		it("should return the correct sample value", () => {
-			expect(run2(sample)).toBe(0);
+			expect(run2(sample)).toBe(11387);
 		});
 
 		it("should return the correct value", () => {
-			expect(run2(input)).toBe(0);
+			expect(run2(input)).toBe(271691107779347);
 		});
 	});
 });

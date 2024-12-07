@@ -1,5 +1,5 @@
 type IncompleteEquation = { result: number; operands: number[] };
-type Operator = "+" | "*";
+type Operator = "+" | "*" | "||";
 
 const parseInput = (input: string[]): IncompleteEquation[] =>
 	input.map((line) => {
@@ -12,21 +12,21 @@ const parseInput = (input: string[]): IncompleteEquation[] =>
 		};
 	});
 
-const binaryPermutations = (n: number): Operator[][] => {
+const getPermutations = (n: number, operators: Operator[]): Operator[][] => {
 	if (n === 1) {
-		return [["+"], ["*"]];
+		return operators.map((operator) => [operator]);
 	}
 
-	return binaryPermutations(n - 1).flatMap((permutation) =>
-		(["+", "*"] as const).map((operator: Operator) => [
-			...permutation,
-			operator,
-		]),
+	return getPermutations(n - 1, operators).flatMap((permutation) =>
+		operators.map((operator: Operator) => [...permutation, operator]),
 	);
 };
 
-const isValid = (operation: IncompleteEquation): boolean => {
-	const permutations = binaryPermutations(operation.operands.length - 1);
+const isValid = (operation: IncompleteEquation, operators: Operator[]) => {
+	const permutations = getPermutations(
+		operation.operands.length - 1,
+		operators,
+	);
 
 	return permutations.some((permutation) => {
 		const [startingSum, ...operands] = operation.operands;
@@ -35,20 +35,28 @@ const isValid = (operation: IncompleteEquation): boolean => {
 			operation.result ===
 			operands.reduce((acc, operand, i) => {
 				const operator = permutation[i];
-				return operator === "+" ? acc + operand : acc * operand;
+
+				switch (operator) {
+					case "+":
+						return acc + operand;
+					case "*":
+						return acc * operand;
+					case "||":
+						return Number.parseInt(`${acc}${operand}`, 10);
+				}
 			}, startingSum)
 		);
 	});
 };
 
 export const run1 = (input: string[]): number => {
-	const operations = parseInput(input);
-
-	return operations
-		.filter((operation) => isValid(operation))
+	return parseInput(input)
+		.filter((operation) => isValid(operation, ["+", "*"]))
 		.reduce((acc, operation) => acc + operation.result, 0);
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	return parseInput(input)
+		.filter((operation) => isValid(operation, ["+", "*", "||"]))
+		.reduce((acc, operation) => acc + operation.result, 0);
 };
