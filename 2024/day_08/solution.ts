@@ -1,6 +1,4 @@
-import { isDeepStrictEqual } from "node:util";
 import * as R from "ramda";
-import { Coord } from "../../2023/day_16/worker";
 
 type Coordinate = { x: number; y: number };
 type Cell = Coordinate & { value: string };
