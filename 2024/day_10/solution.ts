@@ -20,11 +20,17 @@ class Trail {
 		);
 	}
 
-	solve() {
+	solveDistinctEnds() {
 		return R.sum(
 			this.trailheads.map(
 				(trailhead) => R.uniqBy(coordKey, this.traverse(trailhead)).length,
 			),
+		);
+	}
+
+	solveDistinctTrails() {
+		return R.sum(
+			this.trailheads.map((trailhead) => this.traverse(trailhead).length),
 		);
 	}
 
@@ -51,9 +57,11 @@ class Trail {
 export const run1 = (input: string[]): number => {
 	const trail = new Trail(input);
 
-	return trail.solve();
+	return trail.solveDistinctEnds();
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	const trail = new Trail(input);
+
+	return trail.solveDistinctTrails();
 };
