@@ -20,7 +20,7 @@ describe("day 11", () => {
 
 	describe("part 2", () => {
 		it("should return the correct value", () => {
-			expect(run2(input)).toBe(0);
+			expect(run2(input)).toBe(277444936413293);
 		});
 	});
 });

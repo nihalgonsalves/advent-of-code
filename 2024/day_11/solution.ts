@@ -21,18 +21,38 @@ const iterateStone = (stone: number): number[] => {
 	return [stone * 2024];
 };
 
-const blink = (stones: number[]): number[] =>
-	stones.flatMap((stone) => iterateStone(stone));
+const countStones = (stones: number[]): Map<number, number> => {
+	const stoneCount = new Map<number, number>();
+	for (const stone of stones) {
+		stoneCount.set(stone, (stoneCount.get(stone) ?? 0) + 1);
+	}
 
-export const run1 = ([input]: string[]): number => {
-	const stones = parseInput(input);
-	const result = Array.from({ length: 25 }).reduce<number[]>(
-		(acc) => blink(acc),
-		stones,
-	);
-	return result.length;
+	return stoneCount;
 };
 
-export const run2 = ([input]: string[]): number => {
-	return 0;
+const countNextStones = (
+	stoneCount: Map<number, number>,
+): Map<number, number> => {
+	const newStoneCount = new Map<number, number>();
+
+	for (const [stone, count] of stoneCount) {
+		for (const newStone of iterateStone(stone)) {
+			newStoneCount.set(newStone, (newStoneCount.get(newStone) ?? 0) + count);
+		}
+	}
+
+	return newStoneCount;
 };
+
+const blink = (stones: number[], n: number): number =>
+	Array.from({ length: n })
+		.reduce<Map<number, number>>(
+			(stoneCount) => countNextStones(stoneCount),
+			countStones(stones),
+		)
+		.entries()
+		.reduce((acc, [_, count]) => acc + count, 0);
+
+export const run1 = ([input]: string[]): number => blink(parseInput(input), 25);
+
+export const run2 = ([input]: string[]): number => blink(parseInput(input), 75);
