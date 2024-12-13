@@ -14,45 +14,49 @@ const getXY = (matches: RegExpMatchArray): { x: number; y: number } => ({
 	y: Number.parseInt(matches.groups!.y, 10),
 });
 
-const parseInput = (input: string[]): Machine[] =>
-	R.splitEvery(3, input).map(([buttonA, buttonB, prize]) => {
+const parseInput = (input: string[], prizeOffset = 0): Machine[] =>
+	R.splitEvery(3, input).map(([buttonAStr, buttonBStr, prizeStr]) => {
+		const prize = getXY(prizeRegex.exec(prizeStr)!);
+
 		return {
-			A: getXY(buttonRegex.exec(buttonA)!),
-			B: getXY(buttonRegex.exec(buttonB)!),
-			prize: getXY(prizeRegex.exec(prize)!),
+			A: getXY(buttonRegex.exec(buttonAStr)!),
+			B: getXY(buttonRegex.exec(buttonBStr)!),
+			prize: { x: prize.x + prizeOffset, y: prize.y + prizeOffset },
 		};
 	});
 
-const counts = R.range(0, 101);
-const possibilities = R.xprod(counts, counts);
+const evaluateMachine = (machine: Machine) => {
+	// Equations:
+	// machine.A.x * A_MOVES + machine.B.x * B_MOVES = machine.prize.x
+	// machine.A.y * A_MOVES + machine.B.y * B_MOVES = machine.prize.y
 
-const evaluateMachine = (machine: Machine) =>
-	possibilities
-		.map(([a, b]) => {
-			const tokens = a * 3 + b * 1;
-			const position = {
-				x: machine.A.x * a + machine.B.x * b,
-				y: machine.A.y * a + machine.B.y * b,
-			};
+	// Cramer's Rule:
+	// ┌                         ┐ ┌         ┐     ┌                 ┐
+	// │ machine.A.x machine.B.x │ │ A_MOVES │     │ machine.prize.x │
+	// │                         │ │         │  =  │                 │
+	// │ machine.A.y machine.B.y │ │ B_MOVES │     │ machine.prize.y │
+	// └                         ┘ └         ┘     └                 ┘
 
-			if (position.x === machine.prize.x && position.y === machine.prize.y) {
-				return tokens;
-			}
+	const D = machine.A.x * machine.B.y - machine.A.y * machine.B.x;
+	const Dx = machine.prize.x * machine.B.y - machine.prize.y * machine.B.x;
+	const Dy = machine.A.x * machine.prize.y - machine.A.y * machine.prize.x;
 
-			return undefined;
-		})
-		.filter((p) => p != null)
-		.sort((a, b) => a - b)
-		.at(0) ?? 0;
+	const A_MOVES = Dx / D;
+	const B_MOVES = Dy / D;
 
-export const run1 = (input: string[]): number => {
-	const machines = parseInput(input);
+	if (!Number.isInteger(A_MOVES) || !Number.isInteger(B_MOVES)) {
+		return 0;
+	}
 
-	const cost = R.sum(machines.map((machine) => evaluateMachine(machine)));
-
-	return cost;
+	return A_MOVES * 3 + B_MOVES * 1;
 };
 
-export const run2 = (input: string[]): number => {
-	return 0;
-};
+export const run1 = (input: string[]): number =>
+	R.sum(parseInput(input).map((machine) => evaluateMachine(machine)));
+
+export const run2 = (input: string[]): number =>
+	R.sum(
+		parseInput(input, 10000000000000).map((machine) =>
+			evaluateMachine(machine),
+		),
+	);
