@@ -103,6 +103,19 @@ export const run1 = (
 		.reduce((acc, count) => acc * count, 1);
 };
 
-export const run2 = (input: string[]): number => {
-	return 0;
+export const run2 = (
+	input: string[],
+	width: number,
+	height: number,
+): number => {
+	const robots = parseInput(input);
+	let seconds = 0;
+
+	while (true) {
+		seconds++;
+		moveRobotsOnce(robots, width, height);
+		if (Math.max(...getCountMap(robots).values()) === 1) {
+			return seconds;
+		}
+	}
 };
