@@ -92,8 +92,8 @@ export const run1 = (
 		.map((quadrant) => {
 			let count = 0;
 
-			for (let iX = quadrant.x[0]; iX <= quadrant.x[1]; iX++) {
-				for (let iY = quadrant.y[0]; iY <= quadrant.y[1]; iY++) {
+			for (let iY = quadrant.y[0]; iY <= quadrant.y[1]; iY++) {
+				for (let iX = quadrant.x[0]; iX <= quadrant.x[1]; iX++) {
 					count += countMap.get(`${iX},${iY}`) ?? 0;
 				}
 			}
@@ -102,6 +102,8 @@ export const run1 = (
 		})
 		.reduce((acc, count) => acc * count, 1);
 };
+
+const range0toN = (n: number) => Array.from({ length: n }, (_, i) => i);
 
 export const run2 = (
 	input: string[],
@@ -114,7 +116,18 @@ export const run2 = (
 	while (true) {
 		seconds++;
 		moveRobotsOnce(robots, width, height);
-		if (Math.max(...getCountMap(robots).values()) === 1) {
+		const countMap = getCountMap(robots);
+
+		if (Math.max(...countMap.values()) === 1) {
+			if (process.env.PRINT) {
+				for (const y of range0toN(height)) {
+					for (const x of range0toN(width)) {
+						process.stdout.write(`${countMap.get(`${x},${y}`) ?? "."}`);
+					}
+					process.stdout.write("\n");
+				}
+			}
+
 			return seconds;
 		}
 	}
