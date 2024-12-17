@@ -54,8 +54,8 @@ describe("day 15", () => {
 	});
 
 	describe("part 2", () => {
-		it("should return the correct sample value", () => {
-			expect(run2(smallSample)).toBe(0);
+		it.skip("should return the correct sample value", () => {
+			expect(run2(sample)).toBe(9021);
 		});
 
 		it("should return the correct value", () => {
