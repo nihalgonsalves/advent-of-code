@@ -32,5 +32,32 @@ export const run1 = (input: string[]): number => {
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	const { patterns, designs } = parseInput(input);
+
+	const cache = new Map<string, number>();
+
+	const countPossible = (design: string): number => {
+		if (design === "") {
+			return 1;
+		}
+
+		if (cache.has(design)) {
+			return cache.get(design)!;
+		}
+
+		cache.set(
+			design,
+			patterns.reduce((acc, pattern) => {
+				if (design.startsWith(pattern)) {
+					return acc + countPossible(design.slice(pattern.length));
+				}
+
+				return acc;
+			}, 0),
+		);
+
+		return cache.get(design)!;
+	};
+
+	return designs.reduce((acc, design) => acc + countPossible(design), 0);
 };
