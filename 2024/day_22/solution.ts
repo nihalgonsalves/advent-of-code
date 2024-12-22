@@ -45,9 +45,7 @@ export const run2 = (input: string[]): number => {
 			[n],
 		);
 
-		const prices = secrets.map((value) =>
-			Number.parseInt(value.toString().at(-1)!, 10),
-		);
+		const prices = secrets.map((value) => Number(value % 10n));
 
 		const changes = prices.map((value, i, arr) =>
 			i === 0 ? undefined : value - arr[i - 1],
