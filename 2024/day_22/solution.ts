@@ -32,5 +32,47 @@ export const run1 = (input: string[]): bigint => {
 };
 
 export const run2 = (input: string[]): number => {
-	return 0;
+	const numbers = input.map((str) => BigInt(str));
+
+	const allSequences = new Set<string>();
+
+	const result = numbers.map((n) => {
+		const secrets = Array.from({ length: 2000 - 1 }).reduce<bigint[]>(
+			(acc, _) => {
+				acc.push(nextSecret(acc.at(-1)!));
+				return acc;
+			},
+			[n],
+		);
+
+		const prices = secrets.map((value) =>
+			Number.parseInt(value.toString().at(-1)!, 10),
+		);
+
+		const changes = prices.map((value, i, arr) =>
+			i === 0 ? undefined : value - arr[i - 1],
+		);
+
+		const bananasBySequence: Record<string, number> = {};
+
+		for (let i = 5; i <= changes.length; i++) {
+			const sequence = JSON.stringify(changes.slice(i - 4, i));
+
+			allSequences.add(sequence);
+			bananasBySequence[sequence] ??= prices[i - 1];
+		}
+
+		return bananasBySequence;
+	});
+
+	const totalBananasBySequence = allSequences
+		.values()
+		.map((sequence) =>
+			result.reduce(
+				(acc, bananasBySequence) => acc + (bananasBySequence[sequence] ?? 0),
+				0,
+			),
+		);
+
+	return Math.max(...totalBananasBySequence);
 };
