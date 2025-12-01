@@ -61,6 +61,6 @@ export const run1 = (input: string): number => {
 	return Number.parseInt(binaryNumber, 2);
 };
 
-export const run2 = (input: string): number => {
+export const run2 = (_input: string): number => {
 	return 0;
 };

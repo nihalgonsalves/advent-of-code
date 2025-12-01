@@ -13,7 +13,7 @@ type DigInstruction = { direction: Direction | DirectionStr; count: number };
 
 const parseInput1 = (input: string[]): DigInstruction[] =>
 	input.map((line) => {
-		const [direction, count, color] = line.split(" ");
+		const [direction, count, _color] = line.split(" ");
 
 		return {
 			count: Number.parseInt(count, 10),

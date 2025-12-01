@@ -4,7 +4,7 @@ import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
 
-const inclusiveRange = <T>(a: number, b: number) =>
+const inclusiveRange = <_T>(a: number, b: number) =>
 	a < b ? R.range(a, b + 1) : R.reverse(R.range(b, a + 1));
 
 const input = await getInputLines(import.meta.url);

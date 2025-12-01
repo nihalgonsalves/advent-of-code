@@ -1,9 +1,9 @@
 import {
 	type Coordinates,
+	calcLoop,
 	ENTRY,
 	type GridConnectorItem,
 	type GridItem,
-	calcLoop,
 	guessConnectorType,
 	isConnector,
 	mapping,

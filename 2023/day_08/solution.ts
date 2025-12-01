@@ -31,13 +31,14 @@ const parseInput = (input: string[]) => {
 
 const minSteps = (
 	directions: Generator<number>,
-	cursor: string,
+	startCursor: string,
 	edges: Record<string, readonly [string, string]>,
 	endCondition: (cursor: string) => boolean,
 ): number => {
+	let cursor = startCursor;
 	let steps: number;
+
 	for (steps = 0; !endCondition(cursor); steps++) {
-		// biome-ignore lint/style/noParameterAssign:
 		cursor = edges[cursor][directions.next()!.value!];
 	}
 

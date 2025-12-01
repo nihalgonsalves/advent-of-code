@@ -1,5 +1,5 @@
 const getRegister = (line: string) =>
-	Number.parseInt(/Register \w: (\d+)/.exec(line)![1]);
+	Number.parseInt(/Register \w: (\d+)/.exec(line)![1], 10);
 
 class HaltError extends Error {}
 
@@ -19,7 +19,7 @@ class Computer {
 		this.registerC = getRegister(registerC);
 		this.program = program
 			.matchAll(/(\d+),?/g)
-			.map((p) => Number.parseInt(p[0]))
+			.map((p) => Number.parseInt(p[0], 10))
 			.toArray();
 
 		this.log(`Program: ${this.program.join(",")}`);
@@ -90,13 +90,13 @@ class Computer {
 
 	combo(operand: number) {
 		return {
-			[0]: 0,
-			[1]: 1,
-			[2]: 2,
-			[3]: 3,
-			[4]: this.registerA,
-			[5]: this.registerB,
-			[6]: this.registerC,
+			0: 0,
+			1: 1,
+			2: 2,
+			3: 3,
+			4: this.registerA,
+			5: this.registerB,
+			6: this.registerC,
 		}[operand]!;
 	}
 
@@ -169,6 +169,6 @@ export const run1 = (input: string[]): string => {
 	return computer.output.join(",");
 };
 
-export const run2 = (input: string[]): number => {
+export const run2 = (_input: string[]): number => {
 	return 0;
 };

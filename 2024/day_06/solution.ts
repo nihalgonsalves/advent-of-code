@@ -26,8 +26,8 @@ const initGrid = (
 	guardPosition: Coordinate;
 	guardDirection: Direction;
 } => {
-	let guardPosition: Coordinate | undefined = undefined;
-	let guardDirection: Direction | undefined = undefined;
+	let guardPosition: Coordinate | undefined;
+	let guardDirection: Direction | undefined;
 
 	const grid = input.map((line, x) =>
 		line.split("").map((value, y) => {

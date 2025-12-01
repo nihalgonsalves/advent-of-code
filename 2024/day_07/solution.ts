@@ -43,6 +43,8 @@ const isValid = (operation: IncompleteEquation, operators: Operator[]) => {
 						return acc * operand;
 					case "||":
 						return Number.parseInt(`${acc}${operand}`, 10);
+					default:
+						throw new Error(`Unknown operator: ${operator}`);
 				}
 			}, startingSum)
 		);

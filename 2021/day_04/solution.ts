@@ -31,8 +31,8 @@ const boardHitCount = Array.from({ length: boards.length }, () => ({
 
 type Win = { call: number; board: Board };
 
-let firstWin: Win | undefined = undefined;
-let lastWin: Win | undefined = undefined;
+let firstWin: Win | undefined;
+let lastWin: Win | undefined;
 
 for (const call of calls) {
 	boardLoop: for (

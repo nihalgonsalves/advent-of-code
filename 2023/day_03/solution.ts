@@ -46,7 +46,7 @@ export const run1 = (input: string[]): number => {
 				touches = false;
 			};
 
-			line.split("").map((char, charI) => {
+			line.split("").forEach((char, charI) => {
 				if (char.match(/^\d$/)) {
 					buffer += char;
 					if (!touches) {
@@ -83,7 +83,7 @@ export const run2 = (input: string[]): number => {
 			touchesAt = "";
 		};
 
-		line.split("").map((char, charI) => {
+		line.split("").forEach((char, charI) => {
 			if (char.match(/^\d$/)) {
 				buffer += char;
 				if (!touchesAt) {

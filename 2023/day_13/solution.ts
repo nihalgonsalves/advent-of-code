@@ -67,9 +67,9 @@ export const run1 = (input: string): number => {
 };
 
 export const run2 = (input: string): number => {
-	const pattterns = parseInput(input);
+	const patterns = parseInput(input);
 
-	const sums = pattterns.map((pattern, i) => {
+	const sums = patterns.map((pattern) => {
 		const originalReflection = findReflectionValue(pattern);
 
 		for (let i = 0; i < pattern.length; i++) {

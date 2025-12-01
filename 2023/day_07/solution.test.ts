@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
 
 import { getInputLines } from "../../getInputLines";
-import { type Card, Type, calcType2, run1, run2 } from "./solution";
+import { type Card, calcType2, run1, run2, Type } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 

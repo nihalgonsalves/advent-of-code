@@ -143,6 +143,6 @@ export const run1 = (inputStr: string): number => {
 	return R.sum(scores);
 };
 
-export const run2 = (input: string): number => {
+export const run2 = (_input: string): number => {
 	return 0;
 };

@@ -23,7 +23,6 @@ export enum Type {
 	HIGH_CARD = 6,
 }
 
-// prettier-ignore
 export type Card =
 	| "A"
 	| "K"

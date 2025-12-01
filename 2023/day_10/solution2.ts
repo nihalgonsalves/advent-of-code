@@ -1,13 +1,13 @@
 import {
 	type Coordinates,
+	calcLoop,
 	ENTRY,
 	type GridConnectorItem,
 	type GridItem,
-	PADDING,
-	calcLoop,
 	getAdjacentItems,
 	guessConnectorType,
 	mapping,
+	PADDING,
 	printGrid,
 } from "./common";
 

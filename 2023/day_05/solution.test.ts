@@ -55,7 +55,6 @@ describe("day 05", () => {
 	});
 
 	describe("rangeIntersection", () => {
-		// prettier-ignore
 		(
 			[
 				[
@@ -70,7 +69,7 @@ describe("day 05", () => {
 				],
 				[[0, 10], [15, 20], undefined],
 			] as const
-		).map(([a, b, intersection]) => {
+		).forEach(([a, b, intersection]) => {
 			it(`should return ${intersection ? `[${intersection}]` : "undefined"} for [${a}] and [${b}]`, () => {
 				expect<unknown>(
 					rangeIntersection(range(a[0], a[1]), range(b[0], b[1])),

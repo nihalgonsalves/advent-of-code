@@ -5,7 +5,6 @@ import { run1, run2 } from "./solution";
 
 const input = await getInput(import.meta.url);
 
-// prettier-ignore
 const sample = `#.##..##.
 ..#.##.#.
 ##......#

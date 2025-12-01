@@ -2,7 +2,7 @@ import assert from "node:assert";
 import * as R from "ramda";
 import { time } from "../../getInputLines";
 
-import { type Universe, getNextParams, startingUniverse } from "./common";
+import { getNextParams, startingUniverse, type Universe } from "./common";
 
 const dieRolls = [1, 2, 3];
 

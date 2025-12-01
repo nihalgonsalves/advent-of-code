@@ -191,6 +191,6 @@ export const run1 = (input: string[]): number => {
 	return score;
 };
 
-export const run2 = (input: string[]): number => {
+export const run2 = (_input: string[]): number => {
 	return 0;
 };
