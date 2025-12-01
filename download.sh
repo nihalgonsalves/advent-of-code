@@ -8,11 +8,11 @@ if [ ! -f "${HOME}/.adventofcode.session" ]; then
 fi
 
 export DAY="$1"
-export YEAR="${2:-2024}"
+export YEAR="${2:-2025}"
 
 export PUZZLE_DIR="./${YEAR}/day_${DAY}"
 mkdir -p "${PUZZLE_DIR}"
 
-aoc download --day "${DAY}" --year "${YEAR}" --overwrite --input-file "${PUZZLE_DIR}/input.txt" --puzzle "${PUZZLE_DIR}/puzzle.md"
+aoc download --day "${DAY}" --year "${YEAR}" --overwrite --input-file "${PUZZLE_DIR}/input.txt" --puzzle-file "${PUZZLE_DIR}/puzzle.md"
 
 echo "${PUZZLE_DIR}"
