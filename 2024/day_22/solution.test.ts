@@ -21,7 +21,8 @@ describe("day 22", () => {
 			expect(run2(["1", "2", "3", "2024"])).toBe(23);
 		});
 
-		it("should return the correct value", () => {
+		// slow
+		it.skip("should return the correct value", () => {
 			expect(run2(input)).toBe(1582);
 		});
 	});

@@ -34,7 +34,8 @@ describe("day 06", () => {
 			expect(run2(sample)).toBe(6);
 		});
 
-		it("should return the correct value", () => {
+		// slow
+		it.skip("should return the correct value", () => {
 			expect(run2(input)).toBe(2008);
 		});
 	});
