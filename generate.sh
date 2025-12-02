@@ -3,7 +3,7 @@
 set -euo pipefail
 
 export DAY="$1"
-export YEAR="${2:-2024}"
+export YEAR="${2:-2025}"
 
 export PUZZLE_DIR="./${YEAR}/day_${DAY}"
 mkdir -p "${PUZZLE_DIR}"
