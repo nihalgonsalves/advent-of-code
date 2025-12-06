@@ -93,5 +93,3 @@ const possibleSimulationsCount = possibleSimulations.length;
 
 assert.strictEqual(maxY, 10585);
 assert.strictEqual(possibleSimulationsCount, 5247);
-
-console.log({ maxY, possibleSimulationsCount });

@@ -32,5 +32,3 @@ const secondCount = R.sum(R.values(fishState));
 
 assert.strictEqual(firstCount, 388739);
 assert.strictEqual(secondCount, 1741362314973);
-
-console.log({ firstCount, secondCount });

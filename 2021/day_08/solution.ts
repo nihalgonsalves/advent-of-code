@@ -142,5 +142,3 @@ const total = R.sum(
 
 assert.strictEqual(simpleDigitCount, 261);
 assert.strictEqual(total, 987553);
-
-console.log({ simpleDigitCount, total });

@@ -59,7 +59,3 @@ const solutionPart2 = R.reduce(
 const multipliedPart2 = solutionPart2.position * solutionPart2.depth;
 
 assert.strictEqual(multipliedPart2, 1698850445);
-
-//
-
-console.log({ solutionPart1, multipliedPart1, solutionPart2, multipliedPart2 });

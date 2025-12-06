@@ -6,10 +6,3 @@ export const getInput = (base: string) =>
 export const getInputLines = async (base: string): Promise<string[]> => {
 	return (await getInput(base)).split("\n").filter((line) => line !== "");
 };
-
-export const time = <T>(name: string, fn: () => T): T => {
-	console.time(name);
-	const result = fn();
-	console.timeEnd(name);
-	return result;
-};

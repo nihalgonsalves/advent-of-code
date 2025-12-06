@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import * as R from "ramda";
 
-import { getInputLines, time } from "../../getInputLines";
+import { getInputLines } from "../../getInputLines";
 
 const matcher =
 	/^(?<action>on|off) x=(?<x1>-?\d*)\.\.(?<x2>-?\d*),y=(?<y1>-?\d*)\.\.(?<y2>-?\d*),z=(?<z1>-?\d*)\.\.(?<z2>-?\d*)$/;
@@ -57,26 +57,22 @@ const rangeWithinInitArea = (a: number, b: number) => {
 
 const onValues = new Set<string>();
 
-time("runtime", () => {
-	for (const {
-		action,
-		coords: { x1, x2, y1, y2, z1, z2 },
-	} of shiftedInput) {
-		for (const x of rangeWithinInitArea(x1, x2)) {
-			for (const y of rangeWithinInitArea(y1, y2)) {
-				for (const z of rangeWithinInitArea(z1, z2)) {
-					const coordID = `${x}_${y}_${z}`;
-					if (action === "on") {
-						onValues.add(coordID);
-					} else {
-						onValues.delete(coordID);
-					}
+for (const {
+	action,
+	coords: { x1, x2, y1, y2, z1, z2 },
+} of shiftedInput) {
+	for (const x of rangeWithinInitArea(x1, x2)) {
+		for (const y of rangeWithinInitArea(y1, y2)) {
+			for (const z of rangeWithinInitArea(z1, z2)) {
+				const coordID = `${x}_${y}_${z}`;
+				if (action === "on") {
+					onValues.add(coordID);
+				} else {
+					onValues.delete(coordID);
 				}
 			}
 		}
 	}
-});
+}
 
 assert.strictEqual(onValues.size, 596989);
-
-console.log({ onCubes: onValues.size });

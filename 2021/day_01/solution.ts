@@ -32,7 +32,3 @@ const solutionPart2 = R.pipe(
 )(values);
 
 assert.strictEqual(solutionPart2, 1805);
-
-//
-
-console.log({ solutionPart1, solutionPart2 });

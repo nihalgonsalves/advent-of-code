@@ -1,6 +1,5 @@
 import assert from "node:assert";
 import * as R from "ramda";
-import { time } from "../../getInputLines";
 
 import { getNextParams, startingUniverse, type Universe } from "./common";
 
@@ -85,12 +84,8 @@ const tick = (
 	}
 };
 
-time("runtime", () => {
-	tick();
-});
+tick();
 
 const winningScore = R.max(winCount[1], winCount[2]);
 
 assert.strictEqual(winningScore, 433315766324816);
-
-console.log({ winningScore, winCount });

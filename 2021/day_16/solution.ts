@@ -102,5 +102,3 @@ const [finalValue] = literals;
 
 assert.strictEqual(versionSum, 934);
 assert.strictEqual(finalValue, 912901337844);
-
-console.log({ versionSum, finalValue });

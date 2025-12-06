@@ -93,5 +93,3 @@ const [firstResult, lastResult] = [firstWin, lastWin].map(
 
 assert.strictEqual(firstResult.total, 28082);
 assert.strictEqual(lastResult.total, 8224);
-
-console.log({ firstResult, lastResult });

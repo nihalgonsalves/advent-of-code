@@ -72,5 +72,3 @@ const biggestBasinsMultipliedSize = R.pipe(
 
 assert.strictEqual(riskScore, 591);
 assert.strictEqual(biggestBasinsMultipliedSize, 1113424);
-
-console.log({ riskScore, biggestBasinsMultipliedSize });

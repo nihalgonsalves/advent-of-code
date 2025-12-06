@@ -86,12 +86,3 @@ assert.strictEqual(powerConsumption, 693486);
 assert.strictEqual(oxygen, 933);
 assert.strictEqual(scrubber, 3622);
 assert.strictEqual(lifeSupport, 3379326);
-
-console.log({
-	gamma,
-	epsilon,
-	powerConsumption,
-	oxygen,
-	scrubber,
-	lifeSupport,
-});

@@ -66,5 +66,3 @@ const part2 = getCountResult();
 
 assert.strictEqual(part1, 2740);
 assert.strictEqual(part2, 2959788056211);
-
-console.log({ part1, part2 });

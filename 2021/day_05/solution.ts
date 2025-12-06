@@ -50,7 +50,5 @@ const overlappingCount = (includeDiagonal = true) => {
 const overlappingStraightCount = overlappingCount(false);
 const overlappingAllCount = overlappingCount();
 
-console.log({ overlappingStraightCount, overlappingAllCount });
-
 assert.strictEqual(overlappingStraightCount, 4826);
 assert.strictEqual(overlappingAllCount, 16793);

@@ -61,8 +61,3 @@ const part2 = traverse((path) => {
 
 assert.strictEqual(part1.length, 3708);
 assert.strictEqual(part2.length, 93858);
-
-console.log({
-	part1: part1.length,
-	part2: part2.length,
-});

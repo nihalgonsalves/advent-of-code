@@ -62,13 +62,6 @@ for (const { x, y } of R.uniq(
 	transposedMatrix[y][x] = true;
 }
 
-// Spread to fill in sparse arrays
-for (const line of [...transposedMatrix]) {
-	console.log([...line].map((v) => (v ? "#" : ".")).join(" "));
-}
-
 // Solution
 
 assert.strictEqual(dotCountAfterFirstFold, 710);
-
-console.log({ dotCountAfterFirstFold });

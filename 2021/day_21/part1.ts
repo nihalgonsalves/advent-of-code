@@ -48,5 +48,3 @@ const losingPlayerScore =
 const part1 = die.n * losingPlayerScore;
 
 assert.strictEqual(part1, 679329);
-
-console.log({ part1 });

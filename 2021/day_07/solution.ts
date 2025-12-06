@@ -37,11 +37,3 @@ const [{ value: usedMeanValue, cost: increasingCost }] = R.sortBy(
 
 assert.strictEqual(simpleCost, 345035);
 assert.strictEqual(increasingCost, 97038163);
-
-console.log({
-	median,
-	simpleCost,
-	mean,
-	usedMeanValue,
-	increasingCost,
-});

@@ -65,5 +65,3 @@ const completionScore =
 
 assert.strictEqual(errorScore, 341823);
 assert.strictEqual(completionScore, 2801302861);
-
-console.log({ errorScore, completionScore });

@@ -61,5 +61,3 @@ for (let i = 1; firstSync === undefined; i += 1) {
 
 assert.strictEqual(flashesAfter100Steps, 1721);
 assert.strictEqual(firstSync, 298);
-
-console.log({ flashesAfter100Steps, firstSync });

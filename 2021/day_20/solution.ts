@@ -75,5 +75,3 @@ const litPixelsAfter50Runs = R.sum(grid.image.flat());
 
 assert.strictEqual(litPixelsAfter2Runs, 5306);
 assert.strictEqual(litPixelsAfter50Runs, 17497);
-
-console.log({ litPixelsAfter2Runs, litPixelsAfter50Runs });
