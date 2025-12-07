@@ -149,8 +149,6 @@ Analyze your manifold diagram. *How many times will the beam be split?*
 
 Your puzzle answer was `1555`.
 
-The first half of this puzzle is complete! It provides one gold star: \*
-
 \--- Part Two ---
 ----------
 
@@ -232,8 +230,12 @@ In this example, in total, the particle ends up on *`40`* different timelines.
 
 Apply the many-worlds interpretation of quantum tachyon splitting to your manifold diagram. *In total, how many different timelines would a single tachyon particle end up on?*
 
-Answer:
+Your puzzle answer was `12895232295789`.
 
-Although it hasn't changed, you can still [get your puzzle input](7/input).
+Both parts of this puzzle are complete! They provide two gold stars: \*\*
 
-You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Laboratories%22+%2D+Day+7+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F7) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Laboratories%22+%2D+Day+7+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F7&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+At this point, you should [return to your Advent calendar](/2025) and try another puzzle.
+
+If you still want to see it, you can [get your puzzle input](7/input).
+
+You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+%22Laboratories%22+%2D+Day+7+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F7) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Laboratories%22+%2D+Day+7+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F7&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.

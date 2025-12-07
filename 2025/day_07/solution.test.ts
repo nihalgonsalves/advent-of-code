@@ -34,13 +34,13 @@ describe("day 07", () => {
 		});
 	});
 
-	describe.skip("part 2", () => {
+	describe("part 2", () => {
 		it("should return the correct sample value", () => {
 			expect(run2(sample)).toBe(40);
 		});
 
 		it("should return the correct value", () => {
-			expect(run2(input)).toBe(0);
+			expect(run2(input)).toBe(12895232295789);
 		});
 	});
 });

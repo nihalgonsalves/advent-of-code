@@ -13,6 +13,7 @@
 		"lefthook"
 	],
 	"dependencies": {
+		"@dagrejs/graphlib": "^2.2.4",
 		"fastpriorityqueue": "^0.7.5",
 		"ramda": "^0.32.0"
 	},

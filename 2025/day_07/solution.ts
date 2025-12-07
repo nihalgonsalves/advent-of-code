@@ -1,3 +1,5 @@
+import { Graph } from "@dagrejs/graphlib";
+
 type Coord = {
 	x: number;
 	y: number;
@@ -26,6 +28,7 @@ const parseInput = (input: string[]) => {
 
 			if (char === "S") {
 				start = coord;
+				return { x, y, type: CellType.START };
 			}
 
 			return { x, y, type: CellType.EMPTY };
@@ -42,35 +45,119 @@ const parseInput = (input: string[]) => {
 const coordKey = ({ x, y }: Coord): CoordKey => `${x},${y}`;
 type CoordKey = `${number},${number}`;
 
-export const run1 = (input: string[]): number => {
-	const { start, manifold } = parseInput(input);
+type Node = Coord & { type: "start" | "end" | "splitter" };
 
-	const beam = new Set<CoordKey>();
-	const splitPoints = new Map<CoordKey, Coord>();
+const buildGraph = (manifold: Cell[][], start: Coord) => {
+	const graph = new Graph({
+		directed: true,
+	});
 
-	const emit = (tachyon: Coord) => {
-		if (beam.has(coordKey(tachyon))) {
+	const beam = new Set<`${CoordKey}:${CoordKey}`>();
+
+	const emit = (prevNode: Coord, tachyon: Coord) => {
+		const pair = `${coordKey(prevNode)}:${coordKey(tachyon)}` as const;
+
+		if (beam.has(pair)) {
+			return;
+		}
+		beam.add(pair);
+
+		const nextCell = manifold.at(tachyon.y + 1)?.at(tachyon.x);
+		if (!nextCell) {
+			graph.setNode(coordKey(tachyon), {
+				x: tachyon.x,
+				y: tachyon.y,
+				type: "end",
+			} satisfies Node);
+			graph.setEdge(coordKey(prevNode), coordKey(tachyon));
 			return;
 		}
 
-		beam.add(coordKey(tachyon));
+		if (nextCell.type === CellType.EMPTY) {
+			emit(prevNode, nextCell);
+		}
 
-		const nextCell = manifold.at(tachyon.y + 1)?.at(tachyon.x);
+		if (nextCell.type === CellType.SPLITTER) {
+			graph.setNode(coordKey(nextCell), {
+				x: nextCell.x,
+				y: nextCell.y,
+				type: "splitter",
+			} satisfies Node);
+			graph.setEdge(coordKey(prevNode), coordKey(nextCell));
 
-		if (nextCell?.type === CellType.SPLITTER) {
-			splitPoints.set(coordKey(nextCell), nextCell);
-			emit({ y: nextCell.y, x: nextCell.x - 1 });
-			emit({ y: nextCell.y, x: nextCell.x + 1 });
-		} else if (nextCell?.type === CellType.EMPTY) {
-			emit(nextCell);
+			emit(nextCell, { y: nextCell.y, x: nextCell.x - 1 });
+			emit(nextCell, { y: nextCell.y, x: nextCell.x + 1 });
 		}
 	};
 
-	emit(start);
+	graph.setNode(coordKey(start), {
+		x: start.x,
+		y: start.y,
+		type: "start",
+	} satisfies Node);
+	emit(start, start);
 
-	return splitPoints.size;
+	return graph;
 };
 
-export const run2 = (_input: string[]): number => {
-	return 0;
+export const run1 = (input: string[]): number => {
+	const { start, manifold } = parseInput(input);
+	const graph = buildGraph(manifold, start);
+
+	return graph
+		.nodes()
+		.values()
+		.map((nodeId) => graph.node(nodeId))
+		.filter((node: Node) => node.type === "splitter")
+		.toArray().length;
+};
+
+export const run2 = (input: string[]): number => {
+	const { start, manifold } = parseInput(input);
+	const graph = buildGraph(manifold, start);
+
+	// the end nodes are terminal and represent a single timeline only
+	const timelinesBelow = new Map<CoordKey, number>(
+		graph
+			.nodes()
+			.values()
+			.map((nodeId) => graph.node(nodeId))
+			.filter((node: Node) => node.type === "end")
+			.map((node: Node) => [coordKey(node), 1]),
+	);
+
+	const nonTerminalNodes = graph
+		.nodes()
+		.values()
+		.map((nodeId) => graph.node(nodeId))
+		.filter((node: Node) => node.type === "splitter" || node.type === "start")
+		.toArray()
+		// starting from the bottom row of splitters ...
+		.sort((a, b) => b.y - a.y);
+
+	// ... build a count by summing the count of the successors
+	for (const node of nonTerminalNodes) {
+		const successors = graph.successors(coordKey(node));
+		if (!successors?.length) {
+			// all non-terminal nodes have at least one successor (start = 1, splitter = 2)
+			throw new Error(`No successors found for ${coordKey(node)}`);
+		}
+
+		const successorTimelines = successors.map((successor) => {
+			const successorCount = timelinesBelow.get(successor as CoordKey);
+			if (successorCount == null) {
+				// we always have set lower values, so this should never happen
+				throw new Error(`Successor count not found for ${successor}`);
+			}
+
+			return successorCount;
+		});
+
+		timelinesBelow.set(
+			coordKey(node),
+			successorTimelines.reduce((acc, curr) => acc + curr, 0),
+		);
+	}
+
+	return timelinesBelow.get(coordKey(start))!;
 };
