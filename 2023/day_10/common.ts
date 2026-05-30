@@ -3,7 +3,7 @@ import { styleText } from "node:util";
 const CONNECTORS = ["┃", "━", "┗", "┛", "┓", "┏"] as const;
 export type Connector = (typeof CONNECTORS)[number];
 
-export const EMPTY = "." as const;
+const EMPTY = "." as const;
 export const ENTRY = "╳" as const;
 export const PADDING = "*" as const;
 
@@ -12,10 +12,10 @@ export type GridItem = Coordinates & { value: GridValue; wasPadding?: boolean };
 
 export type GridValue = Connector | typeof EMPTY | typeof ENTRY | typeof PADDING;
 
-export const DIRECTIONS = ["north", "east", "south", "west"] as const;
+const DIRECTIONS = ["north", "east", "south", "west"] as const;
 export type Direction = (typeof DIRECTIONS)[number];
 
-export const opposingDirection: Record<Direction, Direction> = {
+const opposingDirection: Record<Direction, Direction> = {
 	north: "south",
 	east: "west",
 	south: "north",
@@ -61,10 +61,7 @@ export const isConnector = <T = never>(
 	// biome-ignore lint/suspicious/noExplicitAny: includes check
 ): value is Connector => CONNECTORS.includes(value as unknown as any);
 
-export const isConnected = (
-	value: GridValue | undefined,
-	possiblyConnectedDirection: Direction,
-) => {
+const isConnected = (value: GridValue | undefined, possiblyConnectedDirection: Direction) => {
 	if (!value || !isConnector(value)) {
 		return false;
 	}

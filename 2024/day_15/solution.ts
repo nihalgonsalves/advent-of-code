@@ -96,7 +96,7 @@ const push = (coord: Coord, grid: Grid, direction: Direction): boolean => {
 	return push(nextCoord, grid, direction);
 };
 
-export const move = (coord: Coord, grid: Grid, direction: Direction): Coord => {
+const move = (coord: Coord, grid: Grid, direction: Direction): Coord => {
 	const nextCoord = next(coord, direction);
 	const nextValue = grid.at(nextCoord);
 
