@@ -5,9 +5,7 @@ type Cell = Coords & { cost: number };
 
 const parseInput = (input: string[]): Cell[][] =>
 	input.map((line, i) =>
-		line
-			.split("")
-			.map((char, j) => ({ i, j, cost: Number.parseInt(char, 10) })),
+		line.split("").map((char, j) => ({ i, j, cost: Number.parseInt(char, 10) })),
 	);
 
 type Direction = "north" | "east" | "south" | "west";
@@ -34,10 +32,7 @@ const makeCursor = (
 			}
 		: undefined;
 
-const getLeftRightNeighbours = (
-	cursor: Cursor,
-	matrix: Cell[][],
-): (Cursor | undefined)[] => {
+const getLeftRightNeighbours = (cursor: Cursor, matrix: Cell[][]): (Cursor | undefined)[] => {
 	const { direction, i, j } = cursor;
 
 	switch (direction) {
@@ -56,46 +51,22 @@ const getLeftRightNeighbours = (
 	}
 };
 
-const getForwardCursor = (
-	cursor: Cursor,
-	matrix: Cell[][],
-): Cursor | undefined => {
+const getForwardCursor = (cursor: Cursor, matrix: Cell[][]): Cursor | undefined => {
 	const { direction, i, j, forwardMovementCount } = cursor;
 
 	switch (direction) {
 		case "north":
-			return makeCursor(
-				cursor,
-				matrix[i - 1]?.[j],
-				direction,
-				forwardMovementCount + 1,
-			);
+			return makeCursor(cursor, matrix[i - 1]?.[j], direction, forwardMovementCount + 1);
 		case "east":
-			return makeCursor(
-				cursor,
-				matrix[i]?.[j + 1],
-				direction,
-				forwardMovementCount + 1,
-			);
+			return makeCursor(cursor, matrix[i]?.[j + 1], direction, forwardMovementCount + 1);
 		case "south":
-			return makeCursor(
-				cursor,
-				matrix[i + 1]?.[j],
-				direction,
-				forwardMovementCount + 1,
-			);
+			return makeCursor(cursor, matrix[i + 1]?.[j], direction, forwardMovementCount + 1);
 		case "west":
-			return makeCursor(
-				cursor,
-				matrix[i]?.[j - 1],
-				direction,
-				forwardMovementCount + 1,
-			);
+			return makeCursor(cursor, matrix[i]?.[j - 1], direction, forwardMovementCount + 1);
 	}
 };
 
-const filterUndefined = <T>(val: T): val is NonNullable<typeof val> =>
-	val !== undefined;
+const filterUndefined = <T>(val: T): val is NonNullable<typeof val> => val !== undefined;
 
 const neighbours = (
 	cursor: Cursor,
@@ -149,10 +120,7 @@ const run = (matrix: Cell[][], minForward: number, maxForward: number) => {
 
 		for (const next of neighbours(current, matrix, minForward, maxForward)) {
 			const tentativeGScore = next.cost;
-			if (
-				tentativeGScore <
-				(gScore.get(cursorKey(next)) ?? Number.POSITIVE_INFINITY)
-			) {
+			if (tentativeGScore < (gScore.get(cursorKey(next)) ?? Number.POSITIVE_INFINITY)) {
 				gScore.set(cursorKey(next), tentativeGScore);
 				openSet.add(next);
 			}

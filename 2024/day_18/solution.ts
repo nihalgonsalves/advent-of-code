@@ -1,4 +1,5 @@
 import { styleText } from "node:util";
+
 import * as R from "ramda";
 
 type Coord = { y: number; x: number };
@@ -21,23 +22,15 @@ const parseInput = (input: string[]): Coord[] =>
 		return { x, y };
 	});
 
-const findPaths = (
-	grid: Cell[][],
-	source: Coord,
-	destination: Coord,
-): ScoredCell => {
+const findPaths = (grid: Cell[][], source: Coord, destination: Coord): ScoredCell => {
 	const visited = new Set<CoordKey>();
 
 	const getNeighbours = ({ x, y }: Coord): Cell[] =>
-		[
-			grid[y - 1]?.[x],
-			grid[y]?.[x + 1],
-			grid[y + 1]?.[x],
-			grid[y]?.[x - 1],
-		].filter((v) => v?.safe && !visited.has(coordKey(v)));
+		[grid[y - 1]?.[x], grid[y]?.[x + 1], grid[y + 1]?.[x], grid[y]?.[x - 1]].filter(
+			(v) => v?.safe && !visited.has(coordKey(v)),
+		);
 
-	const calcH = ({ x, y }: Coord) =>
-		Math.abs(x - destination.x) + Math.abs(y - destination.y);
+	const calcH = ({ x, y }: Coord) => Math.abs(x - destination.x) + Math.abs(y - destination.y);
 
 	let openNodes: ScoredCell[] = [{ ...source, f: 0, g: 0, h: calcH(source) }];
 
@@ -63,9 +56,7 @@ const findPaths = (
 				parent: currentNode,
 			};
 
-			const existingOpenNode = openNodes.find(
-				(openNode) => coordKey(openNode) === coordKey(node),
-			);
+			const existingOpenNode = openNodes.find((openNode) => coordKey(openNode) === coordKey(node));
 
 			if (!existingOpenNode || scoredNode.g < existingOpenNode.g) {
 				openNodes.push(scoredNode);
@@ -115,16 +106,9 @@ const printGrid = (grid: Cell[][], path: Set<CoordKey>) => {
 	}
 };
 
-const getSolutionAfterBytes = (
-	incoming: Coord[],
-	maxY: number,
-	maxX: number,
-	bytes: number,
-) => {
+const getSolutionAfterBytes = (incoming: Coord[], maxY: number, maxX: number, bytes: number) => {
 	const grid = Array.from({ length: maxY + 1 }).map((_, y) =>
-		Array.from({ length: maxX + 1 }).map(
-			(_, x): Cell => ({ y, x, safe: true }),
-		),
+		Array.from({ length: maxX + 1 }).map((_, x): Cell => ({ y, x, safe: true })),
 	);
 
 	for (const { x, y } of incoming.slice(0, bytes)) {
@@ -137,19 +121,9 @@ const getSolutionAfterBytes = (
 	};
 };
 
-export const run1 = (
-	input: string[],
-	maxY: number,
-	maxX: number,
-	bytes: number,
-): number => {
+export const run1 = (input: string[], maxY: number, maxX: number, bytes: number): number => {
 	const incoming = parseInput(input);
-	const { grid, solutionCell } = getSolutionAfterBytes(
-		incoming,
-		maxY,
-		maxX,
-		bytes,
-	);
+	const { grid, solutionCell } = getSolutionAfterBytes(incoming, maxY, maxX, bytes);
 
 	const paths = getSolution(solutionCell);
 	printGrid(grid, new Set(paths.map((path) => coordKey(path))));
@@ -157,12 +131,7 @@ export const run1 = (
 	return paths.length - 1;
 };
 
-export const run2 = (
-	input: string[],
-	maxY: number,
-	maxX: number,
-	minBytes = 1,
-): Coord => {
+export const run2 = (input: string[], maxY: number, maxX: number, minBytes = 1): Coord => {
 	const incoming = parseInput(input);
 
 	for (let i = minBytes; ; i++) {

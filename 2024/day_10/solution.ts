@@ -22,16 +22,12 @@ class Trail {
 
 	solveDistinctEnds() {
 		return R.sum(
-			this.trailheads.map(
-				(trailhead) => R.uniqBy(coordKey, this.traverse(trailhead)).length,
-			),
+			this.trailheads.map((trailhead) => R.uniqBy(coordKey, this.traverse(trailhead)).length),
 		);
 	}
 
 	solveDistinctTrails() {
-		return R.sum(
-			this.trailheads.map((trailhead) => this.traverse(trailhead).length),
-		);
+		return R.sum(this.trailheads.map((trailhead) => this.traverse(trailhead).length));
 	}
 
 	traverse(cell: Cell): Cell[] {

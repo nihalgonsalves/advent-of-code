@@ -1,18 +1,15 @@
 import * as R from "ramda";
 
 const waysToWin = (timeMs: number, distanceRecordMm: number) =>
-	Array.from({ length: timeMs - 1 }, (_, i) => i + 1).reduce(
-		(sum, timeHeldMs) => {
-			// 1 m/s for each ms held
-			const speedMs = timeHeldMs * 1;
-			const distanceMm = speedMs * (timeMs - timeHeldMs);
-			if (distanceMm > distanceRecordMm) {
-				return sum + 1;
-			}
-			return sum;
-		},
-		0,
-	);
+	Array.from({ length: timeMs - 1 }, (_, i) => i + 1).reduce((sum, timeHeldMs) => {
+		// 1 m/s for each ms held
+		const speedMs = timeHeldMs * 1;
+		const distanceMm = speedMs * (timeMs - timeHeldMs);
+		if (distanceMm > distanceRecordMm) {
+			return sum + 1;
+		}
+		return sum;
+	}, 0);
 
 export const run1 = (input: string[]): number => {
 	const [time, distance] = input;

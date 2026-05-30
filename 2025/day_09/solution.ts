@@ -15,9 +15,7 @@ const max = (values: number[]) =>
 export const run1 = (input: string[]): number => {
 	const positions = parseInput(input);
 	const pairs = allPairs(positions);
-	const sizes = pairs.map(
-		([a, b]) => (Math.abs(a.x - b.x) + 1) * (Math.abs(a.y - b.y) + 1),
-	);
+	const sizes = pairs.map(([a, b]) => (Math.abs(a.x - b.x) + 1) * (Math.abs(a.y - b.y) + 1));
 
 	return max(sizes);
 };

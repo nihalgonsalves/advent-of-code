@@ -5,9 +5,7 @@ type Robot = {
 
 const parseInput = (input: string[]): Robot[] => {
 	return input.map((input) => {
-		const matches = /p=(?<px>\d+),(?<py>\d+) v=(?<vx>-?\d+),(?<vy>-?\d+)/.exec(
-			input,
-		);
+		const matches = /p=(?<px>\d+),(?<py>\d+) v=(?<vx>-?\d+),(?<vy>-?\d+)/.exec(input);
 
 		if (!matches?.groups) {
 			throw new Error("Invalid input");
@@ -67,19 +65,12 @@ const moveRobotsOnce = (robots: Robot[], width: number, height: number) => {
 const getCountMap = (robots: Robot[]) => {
 	const map = new Map<string, number>();
 	for (const robot of robots) {
-		map.set(
-			`${robot.p.x},${robot.p.y}`,
-			(map.get(`${robot.p.x},${robot.p.y}`) ?? 0) + 1,
-		);
+		map.set(`${robot.p.x},${robot.p.y}`, (map.get(`${robot.p.x},${robot.p.y}`) ?? 0) + 1);
 	}
 	return map;
 };
 
-export const run1 = (
-	input: string[],
-	width: number,
-	height: number,
-): number => {
+export const run1 = (input: string[], width: number, height: number): number => {
 	const robots = parseInput(input);
 
 	for (const _ of Array.from({ length: 100 })) {
@@ -105,11 +96,7 @@ export const run1 = (
 
 const range0toN = (n: number) => Array.from({ length: n }, (_, i) => i);
 
-export const run2 = (
-	input: string[],
-	width: number,
-	height: number,
-): number => {
+export const run2 = (input: string[], width: number, height: number): number => {
 	const robots = parseInput(input);
 	let seconds = 0;
 

@@ -1,11 +1,8 @@
-import { describe, expect, it, test } from "bun:test";
+import { describe, expect, it, test } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
-import {
-	getAdjacentItems,
-	guessConnectorType,
-	tupleGridToGrid,
-} from "./common";
+
+import { getAdjacentItems, guessConnectorType, tupleGridToGrid } from "./common";
 import { mapInput, run1 } from "./solution1";
 
 const input = await getInputLines(import.meta.url);
@@ -52,13 +49,14 @@ describe("day 10 > part 1", () => {
 		[0, 2, "┓"],
 		[2, 0, "┗"],
 		[2, 2, "┛"],
-	] as const)("guessConnectorType returns the correct connector at row=%d, col=%d for %s", (row, col, connector) => {
-		const { grid } = mapInput(smallInput);
+	] as const)(
+		"guessConnectorType returns the correct connector at row=%d, col=%d for %s",
+		(row, col, connector) => {
+			const { grid } = mapInput(smallInput);
 
-		expect(guessConnectorType({ grid, startingCoords: { row, col } })).toBe(
-			connector,
-		);
-	});
+			expect(guessConnectorType({ grid, startingCoords: { row, col } })).toBe(connector);
+		},
+	);
 
 	const sample1: string[] = [
 		// break

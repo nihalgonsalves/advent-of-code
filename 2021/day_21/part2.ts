@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getNextParams, startingUniverse, type Universe } from "./common";
@@ -7,10 +8,9 @@ const dieRolls = [1, 2, 3];
 
 const permutate3 = R.lift((a, b, c) => a + b + c);
 
-const dieRollsOnEachTurn: [rolledValue: string, count: number][] =
-	Object.entries(
-		R.countBy(R.identity, permutate3(dieRolls, dieRolls, dieRolls)),
-	);
+const dieRollsOnEachTurn: [rolledValue: string, count: number][] = Object.entries(
+	R.countBy(R.identity, permutate3(dieRolls, dieRolls, dieRolls)),
+);
 
 const expandUniverse = ({
 	player,
@@ -21,10 +21,7 @@ const expandUniverse = ({
 	| { type: "win"; count: number; player: 1 | 2 }
 )[] =>
 	dieRollsOnEachTurn.map(([nextRoll, count]) => {
-		const nextParams = getNextParams(
-			{ player, positions },
-			Number.parseInt(nextRoll, 10),
-		);
+		const nextParams = getNextParams({ player, positions }, Number.parseInt(nextRoll, 10));
 
 		const newScore = scores[player] + nextParams.positions[player];
 

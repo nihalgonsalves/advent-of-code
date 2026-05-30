@@ -1,6 +1,7 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { rangeIntersection, run1, run2, splitRange } from "./solution";
 
 const input = await getInputLines(import.meta.url);
@@ -44,11 +45,7 @@ const sample: string[] = [
 ];
 
 describe("day 05", () => {
-	const range = (
-		start: number,
-		endInclusive: number,
-		destinationOffset = 0,
-	) => ({
+	const range = (start: number, endInclusive: number, destinationOffset = 0) => ({
 		start,
 		endInclusive,
 		destinationOffset,
@@ -71,9 +68,7 @@ describe("day 05", () => {
 			] as const
 		).forEach(([a, b, intersection]) => {
 			it(`should return ${intersection ? `[${intersection}]` : "undefined"} for [${a}] and [${b}]`, () => {
-				expect<unknown>(
-					rangeIntersection(range(a[0], a[1]), range(b[0], b[1])),
-				).toEqual(
+				expect<unknown>(rangeIntersection(range(a[0], a[1]), range(b[0], b[1]))).toEqual(
 					intersection ? range(intersection[0], intersection[1]) : undefined,
 				);
 			});
@@ -113,9 +108,7 @@ describe("day 05", () => {
 		});
 
 		it("offsets correctly", () => {
-			expect(
-				splitRange(range(0, 10), [range(4, 5, -1), range(8, 9, 1)]),
-			).toEqual([
+			expect(splitRange(range(0, 10), [range(4, 5, -1), range(8, 9, 1)])).toEqual([
 				// start gap fill
 				range(0, 3),
 				// first intersection

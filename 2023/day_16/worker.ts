@@ -1,4 +1,4 @@
-declare let self: Worker;
+import { parentPort } from "node:worker_threads";
 
 export type Input = {
 	matrix: Cell[][];
@@ -7,11 +7,9 @@ export type Input = {
 
 export type Output = Cell[][];
 
-self.onmessage = (event: MessageEvent<Input>) => {
-	const { matrix, startingCursor } = event.data;
-
-	postMessage(traverse(matrix, startingCursor) satisfies Output);
-};
+parentPort!.on("message", ({ matrix, startingCursor }: Input) => {
+	parentPort!.postMessage(traverse(matrix, startingCursor) satisfies Output);
+});
 
 const EMPTY = "." as const;
 
@@ -97,10 +95,7 @@ const traverse = (matrix: Cell[][], startingCursor: Cursor): Cell[][] => {
 			if (direction === "north" || direction === "south") {
 				cursors.push({ direction, i, j });
 			} else {
-				cursors.push(
-					{ direction: "north", i, j },
-					{ direction: "south", i, j },
-				);
+				cursors.push({ direction: "north", i, j }, { direction: "south", i, j });
 			}
 		}
 	}

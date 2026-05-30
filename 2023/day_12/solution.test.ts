@@ -1,6 +1,7 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { permutations, run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);

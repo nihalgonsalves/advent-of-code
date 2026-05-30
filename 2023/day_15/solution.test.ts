@@ -1,13 +1,12 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 
-const sample: string[] = [
-	"rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7",
-];
+const sample: string[] = ["rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7"];
 
 describe("day 15", () => {
 	describe("part 1", () => {

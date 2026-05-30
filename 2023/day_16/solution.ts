@@ -1,6 +1,8 @@
+import { Worker } from "node:worker_threads";
+
 import type { Cell, Cursor, Input, Output } from "./worker";
 
-const workerURL = new URL("worker.ts", import.meta.url).href;
+const workerURL = new URL("./worker.ts", import.meta.url);
 
 const parseInput = (input: string[]): Cell[][] =>
 	input.map((line, i) =>
@@ -16,9 +18,9 @@ const asyncTraverse = async (input: Input): Promise<Output> => {
 	const { promise, resolve } = Promise.withResolvers<Output>();
 
 	const worker = new Worker(workerURL);
-	worker.onmessage = (event) => {
-		resolve(event.data);
-	};
+	worker.on("message", (data) => {
+		resolve(data);
+	});
 	worker.postMessage(input);
 
 	return promise;
@@ -30,9 +32,7 @@ export const run1 = async (input: string[]): Promise<number> => {
 		startingCursor: { i: 0, j: -1, direction: "east" },
 	});
 
-	return outputMatrix
-		.flat()
-		.reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0);
+	return outputMatrix.flat().reduce((acc, cell) => (cell.energizedCount > 0 ? acc + 1 : acc), 0);
 };
 
 export const run2 = async (input: string[]): Promise<number> => {

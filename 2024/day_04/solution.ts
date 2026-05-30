@@ -44,12 +44,8 @@ class WordGrid {
 			.filter((cell) => cell.value === "X")
 			.flatMap((cell) =>
 				this.getNeighbours([...cardinals, ...diagonals], cell)
-					.filter(
-						({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value],
-					)
-					.flatMap(({ cell: neighbour, direction }) =>
-						this.getPath([cell, neighbour], direction),
-					),
+					.filter(({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value])
+					.flatMap(({ cell: neighbour, direction }) => this.getPath([cell, neighbour], direction)),
 			);
 	}
 
@@ -59,12 +55,8 @@ class WordGrid {
 			.filter((cell) => cell.value === "M")
 			.flatMap((cell) =>
 				this.getNeighbours(diagonals, cell)
-					.filter(
-						({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value],
-					)
-					.flatMap(({ cell: neighbour, direction }) =>
-						this.getPath([cell, neighbour], direction),
-					),
+					.filter(({ cell: neighbour }) => neighbour.value === NEXT_VALUE[cell.value])
+					.flatMap(({ cell: neighbour, direction }) => this.getPath([cell, neighbour], direction)),
 			);
 
 		const letterACounts = R.countBy(
@@ -72,8 +64,7 @@ class WordGrid {
 			allMASPaths.flat().filter((cell) => cell.value === "A"),
 		);
 
-		return Object.entries(letterACounts).filter(([_, count]) => count === 2)
-			.length;
+		return Object.entries(letterACounts).filter(([_, count]) => count === 2).length;
 	}
 
 	private getPath(path: Cell[], direction: Direction): Cell[][] {
@@ -105,10 +96,7 @@ class WordGrid {
 			.filter((neighbour) => neighbour !== undefined);
 	}
 
-	private getNeighbour(
-		coordinate: Coordinate,
-		direction: Direction,
-	): Cell | undefined {
+	private getNeighbour(coordinate: Coordinate, direction: Direction): Cell | undefined {
 		switch (direction) {
 			case Direction.N:
 				return this.data[coordinate.x - 1]?.[coordinate.y];

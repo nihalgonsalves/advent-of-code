@@ -1,15 +1,14 @@
-\--- Day 17: Clumsy Crucible ---
-----------
+## \--- Day 17: Clumsy Crucible ---
 
 The lava starts flowing rapidly once the Lava Production Facility is operational. As you leave, the reindeer offers you a parachute, allowing you to quickly reach Gear Island.
 
 As you descend, your bird's-eye view of Gear Island reveals why you had trouble finding anyone on your way up: half of Gear Island is empty, but the half below you is a giant factory city!
 
-You land near the gradually-filling pool of lava at the base of your new *lavafall*. Lavaducts will eventually carry the lava throughout the city, but to make use of it immediately, Elves are loading it into large [crucibles](https://en.wikipedia.org/wiki/Crucible) on wheels.
+You land near the gradually-filling pool of lava at the base of your new _lavafall_. Lavaducts will eventually carry the lava throughout the city, but to make use of it immediately, Elves are loading it into large [crucibles](https://en.wikipedia.org/wiki/Crucible) on wheels.
 
 The crucibles are top-heavy and pushed by hand. Unfortunately, the crucibles become very difficult to steer at high speeds, and so it can be hard to go in a straight line for very long.
 
-To get Desert Island the machine parts it needs as soon as possible, you'll need to find the best way to get the crucible *from the lava pool to the machine parts factory*. To do this, you need to minimize *heat loss* while choosing a route that doesn't require the crucible to go in a *straight line* for too long.
+To get Desert Island the machine parts it needs as soon as possible, you'll need to find the best way to get the crucible _from the lava pool to the machine parts factory_. To do this, you need to minimize _heat loss_ while choosing a route that doesn't require the crucible to go in a _straight line_ for too long.
 
 Fortunately, the Elves here have a map (your puzzle input) that uses traffic patterns, ambient temperature, and hundreds of other parameters to calculate exactly how much heat loss can be expected for a crucible entering any particular city block.
 
@@ -32,11 +31,11 @@ For example:
 
 ```
 
-Each city block is marked by a single digit that represents the *amount of heat loss if the crucible enters that block*. The starting point, the lava pool, is the top-left city block; the destination, the machine parts factory, is the bottom-right city block. (Because you already start in the top-left block, you don't incur that block's heat loss unless you leave that block and then return to it.)
+Each city block is marked by a single digit that represents the _amount of heat loss if the crucible enters that block_. The starting point, the lava pool, is the top-left city block; the destination, the machine parts factory, is the bottom-right city block. (Because you already start in the top-left block, you don't incur that block's heat loss unless you leave that block and then return to it.)
 
-Because it is difficult to keep the top-heavy crucible going in a straight line for very long, it can move *at most three blocks* in a single direction before it must turn 90 degrees left or right. The crucible also can't reverse direction; after entering each city block, it may only turn left, continue straight, or turn right.
+Because it is difficult to keep the top-heavy crucible going in a straight line for very long, it can move _at most three blocks_ in a single direction before it must turn 90 degrees left or right. The crucible also can't reverse direction; after entering each city block, it may only turn left, continue straight, or turn right.
 
-One way to *minimize heat loss* is this path:
+One way to _minimize heat loss_ is this path:
 
 ```
 2>>34^>>>1323
@@ -57,20 +56,19 @@ One way to *minimize heat loss* is this path:
 
 This path never moves more than three consecutive blocks in the same direction and incurs a heat loss of only `*102*`.
 
-Directing the crucible from the lava pool to the machine parts factory, but not moving more than three consecutive blocks in the same direction, *what is the least heat loss it can incur?*
+Directing the crucible from the lava pool to the machine parts factory, but not moving more than three consecutive blocks in the same direction, _what is the least heat loss it can incur?_
 
 Your puzzle answer was `817`.
 
 The first half of this puzzle is complete! It provides one gold star: \*
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
-The crucibles of lava simply aren't large enough to provide an adequate supply of lava to the machine parts factory. Instead, the Elves are going to upgrade to *ultra crucibles*.
+The crucibles of lava simply aren't large enough to provide an adequate supply of lava to the machine parts factory. Instead, the Elves are going to upgrade to _ultra crucibles_.
 
 Ultra crucibles are even more difficult to steer than normal crucibles. Not only do they have trouble going in a straight line, but they also have trouble turning!
 
-Once an ultra crucible starts moving in a direction, it needs to move *a minimum of four blocks* in that direction before it can turn (or even before it can stop at the end). However, it will eventually start to get wobbly: an ultra crucible can move a maximum of *ten consecutive blocks* without turning.
+Once an ultra crucible starts moving in a direction, it needs to move _a minimum of four blocks_ in that direction before it can turn (or even before it can stop at the end). However, it will eventually start to get wobbly: an ultra crucible can move a maximum of _ten consecutive blocks_ without turning.
 
 In the above example, an ultra crucible could follow this path to minimize heat loss:
 
@@ -117,10 +115,10 @@ Sadly, an ultra crucible would need to take an unfortunate path like this one:
 
 This route causes the ultra crucible to incur the minimum possible heat loss of `*71*`.
 
-Directing the *ultra crucible* from the lava pool to the machine parts factory, *what is the least heat loss it can incur?*
+Directing the _ultra crucible_ from the lava pool to the machine parts factory, _what is the least heat loss it can incur?_
 
 Answer:
 
 Although it hasn't changed, you can still [get your puzzle input](17/input).
 
-You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Clumsy+Crucible%22+%2D+Day+17+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Clumsy+Crucible%22+%2D+Day+17+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

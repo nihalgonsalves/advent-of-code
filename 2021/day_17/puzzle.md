@@ -1,5 +1,4 @@
-\--- Day 17: Trick Shot ---
-----------
+## \--- Day 17: Trick Shot ---
 
 You finally decode the Elves' message. `HI`, the message says. You continue searching for the sleigh keys.
 
@@ -7,20 +6,20 @@ Ahead of you is what appears to be a large [ocean trench](https://en.wikipedia.o
 
 The probe launcher on your submarine can fire the probe with any [integer](https://en.wikipedia.org/wiki/Integer) velocity in the `x` (forward) and `y` (upward, or downward if negative) directions. For example, an initial `x,y` velocity like `0,10` would fire the probe straight up, while an initial velocity like `10,-1` would fire the probe forward at a slight downward angle.
 
-The probe's `x,y` position starts at `0,0`. Then, it will follow some trajectory by moving in *steps*. On each step, these changes occur in the following order:
+The probe's `x,y` position starts at `0,0`. Then, it will follow some trajectory by moving in _steps_. On each step, these changes occur in the following order:
 
-* The probe's `x` position increases by its `x` velocity.
-* The probe's `y` position increases by its `y` velocity.
-* Due to drag, the probe's `x` velocity changes by `1` toward the value `0`; that is, it decreases by `1` if it is greater than `0`, increases by `1` if it is less than `0`, or does not change if it is already `0`.
-* Due to gravity, the probe's `y` velocity decreases by `1`.
+- The probe's `x` position increases by its `x` velocity.
+- The probe's `y` position increases by its `y` velocity.
+- Due to drag, the probe's `x` velocity changes by `1` toward the value `0`; that is, it decreases by `1` if it is greater than `0`, increases by `1` if it is less than `0`, or does not change if it is already `0`.
+- Due to gravity, the probe's `y` velocity decreases by `1`.
 
-For the probe to successfully make it into the trench, the probe must be on some trajectory that causes it to be within a *target area* after any step. The submarine computer has already calculated this target area (your puzzle input). For example:
+For the probe to successfully make it into the trench, the probe must be on some trajectory that causes it to be within a _target area_ after any step. The submarine computer has already calculated this target area (your puzzle input). For example:
 
 ```
 target area: x=20..30, y=-10..-5
 ```
 
-This target area means that you need to find initial `x,y` velocity values such that after any step, the probe's `x` position is at least `20` and at most `30`, *and* the probe's `y` position is at least `-10` and at most `-5`.
+This target area means that you need to find initial `x,y` velocity values such that after any step, the probe's `x` position is at least `20` and at most `30`, _and_ the probe's `y` position is at least `-10` and at most `-5`.
 
 Given this target area, one initial velocity that causes the probe to be within the target area after any step is `7,2`:
 
@@ -84,7 +83,7 @@ S........#.....................
 
 ```
 
-One initial velocity that *doesn't* cause the probe to be within the target area after any step is `17,-4`:
+One initial velocity that _doesn't_ cause the probe to be within the target area after any step is `17,-4`:
 
 ```
 S..............................................................
@@ -115,20 +114,19 @@ S..............................................................
 
 The probe appears to pass through the target area, but is never within it after any step. Instead, it continues down and to the right - only the first few steps are shown.
 
-If you're going to fire a highly scientific probe out of a super cool probe launcher, you might as well do it with *style*. How high can you make the probe go while still reaching the target area?
+If you're going to fire a highly scientific probe out of a super cool probe launcher, you might as well do it with _style_. How high can you make the probe go while still reaching the target area?
 
 In the above example, using an initial velocity of `6,9` is the best you can do, causing the probe to reach a maximum `y` position of `*45*`. (Any higher initial `y` velocity causes the probe to overshoot the target area entirely.)
 
-Find the initial velocity that causes the probe to reach the highest `y` position and still eventually be within the target area after any step. *What is the highest `y` position it reaches on this trajectory?*
+Find the initial velocity that causes the probe to reach the highest `y` position and still eventually be within the target area after any step. _What is the highest `y` position it reaches on this trajectory?_
 
 Your puzzle answer was `10585`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
 Maybe a fancy trick shot isn't the best idea; after all, you only have one probe, so you had better not miss.
 
-To get the best idea of what your options are for launching the probe, you need to find *every initial velocity* that causes the probe to eventually be within the target area after any step.
+To get the best idea of what your options are for launching the probe, you need to find _every initial velocity_ that causes the probe to eventually be within the target area after any step.
 
 In the above example, there are `*112*` different initial velocity values that meet these criteria:
 
@@ -149,7 +147,7 @@ In the above example, there are `*112*` different initial velocity values that m
 
 ```
 
-*How many distinct initial velocity values cause the probe to be within the target area after any step?*
+_How many distinct initial velocity values cause the probe to be within the target area after any step?_
 
 Your puzzle answer was `5247`.
 
@@ -159,4 +157,4 @@ At this point, you should [return to your Advent calendar](/2021) and try anothe
 
 If you still want to see it, you can [get your puzzle input](17/input).
 
-You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Trick+Shot%22+%2D+Day+17+%2D+Advent+of+Code+2021&url=https%3A%2F%2Fadventofcode%2Ecom%2F2021%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Trick+Shot%22+%2D+Day+17+%2D+Advent+of+Code+2021&url=https%3A%2F%2Fadventofcode%2Ecom%2F2021%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

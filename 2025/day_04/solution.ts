@@ -26,9 +26,7 @@ const getNeighbors = (matrix: Cell[][], rowIndex: number, colIndex: number) => {
 };
 
 const canBeRemoved = (matrix: Cell[][], rowIndex: number, colIndex: number) =>
-	getNeighbors(matrix, rowIndex, colIndex).filter(
-		(neighbor) => neighbor.occupied,
-	).length < 4;
+	getNeighbors(matrix, rowIndex, colIndex).filter((neighbor) => neighbor.occupied).length < 4;
 
 const getMatrix = (input: string[]): Cell[][] =>
 	input.map((line, rowIndex) =>
@@ -44,10 +42,7 @@ export const run1 = (input: string[]): number => {
 
 	return matrix
 		.flat()
-		.filter(
-			(cell) =>
-				cell.occupied && canBeRemoved(matrix, cell.rowIndex, cell.colIndex),
-		).length;
+		.filter((cell) => cell.occupied && canBeRemoved(matrix, cell.rowIndex, cell.colIndex)).length;
 };
 
 export const run2 = (input: string[]): number => {

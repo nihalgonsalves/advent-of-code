@@ -9,15 +9,11 @@ const parseInput = (input: string) => {
 	);
 
 	const lockPinHeights = locks.map((lock) =>
-		R.transpose(lock.slice(1)).map(
-			(column) => column.filter((cell) => cell === "#").length,
-		),
+		R.transpose(lock.slice(1)).map((column) => column.filter((cell) => cell === "#").length),
 	);
 
 	const keyHeights = keys.map((key) =>
-		R.transpose(key.slice(0, -1)).map(
-			(column) => column.filter((cell) => cell === "#").length,
-		),
+		R.transpose(key.slice(0, -1)).map((column) => column.filter((cell) => cell === "#").length),
 	);
 
 	return { lockPinHeights, keyHeights };
@@ -28,11 +24,7 @@ export const run1 = (input: string): number => {
 
 	const matchingPairs = lockPinHeights.flatMap((lock) =>
 		keyHeights.filter((key) => {
-			const counts = R.zipWith(
-				(lockPinHeight, keyHeight) => lockPinHeight + keyHeight,
-				lock,
-				key,
-			);
+			const counts = R.zipWith((lockPinHeight, keyHeight) => lockPinHeight + keyHeight, lock, key);
 
 			return counts.every((count) => count <= 5);
 		}),

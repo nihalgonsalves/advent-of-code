@@ -1,9 +1,7 @@
 const parseInput = (input: string[]) => {
 	const [directionsStr, ...edges] = input;
 
-	const directions = directionsStr
-		.split("")
-		.map((direction) => (direction === "L" ? 0 : 1));
+	const directions = directionsStr.split("").map((direction) => (direction === "L" ? 0 : 1));
 
 	function* cycleDirections() {
 		let directionCursor = 0;
@@ -11,8 +9,7 @@ const parseInput = (input: string[]) => {
 		while (true) {
 			yield directions[directionCursor];
 
-			directionCursor =
-				directionCursor === directions.length - 1 ? 0 : directionCursor + 1;
+			directionCursor = directionCursor === directions.length - 1 ? 0 : directionCursor + 1;
 		}
 	}
 
@@ -20,9 +17,7 @@ const parseInput = (input: string[]) => {
 		cycleDirections,
 		edges: Object.fromEntries(
 			edges.map((edge) => {
-				const [from, left, right] = [...edge.matchAll(/[A-Z0-9]{3}/g)].map(
-					([match]) => match,
-				);
+				const [from, left, right] = [...edge.matchAll(/[A-Z0-9]{3}/g)].map(([match]) => match);
 				return [from, [left, right] as const] as const;
 			}),
 		),
@@ -48,12 +43,7 @@ const minSteps = (
 export const run1 = (input: string[]): number => {
 	const { cycleDirections, edges } = parseInput(input);
 
-	return minSteps(
-		cycleDirections(),
-		"AAA",
-		edges,
-		(cursor) => cursor === "ZZZ",
-	);
+	return minSteps(cycleDirections(), "AAA", edges, (cursor) => cursor === "ZZZ");
 };
 
 const gcd = (a: number, b: number): number => (!b ? a : gcd(b, a % b));
@@ -73,9 +63,7 @@ export const run2 = (input: string[]): number => {
 		Object.keys(edges)
 			.filter((key) => key.endsWith("A"))
 			.map((cursor) =>
-				minSteps(cycleDirections(), cursor, edges, (cursor) =>
-					cursor.endsWith("Z"),
-				),
+				minSteps(cycleDirections(), cursor, edges, (cursor) => cursor.endsWith("Z")),
 			),
 	);
 };

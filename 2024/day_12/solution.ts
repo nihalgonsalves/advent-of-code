@@ -26,10 +26,7 @@ const neighbourKeys = ({ x, y }: Coordinate) =>
 		coordKey({ x: x - 1, y }), // W
 	] as const;
 
-const floodFill = (
-	valueMap: Map<CoordKey, Cell>,
-	cell: Cell,
-): [CoordKey, Cell][] => [
+const floodFill = (valueMap: Map<CoordKey, Cell>, cell: Cell): [CoordKey, Cell][] => [
 	[coordKey(cell), cell] as const,
 	...neighbourKeys(cell)
 		.map((key) => [key, valueMap.get(key)] as const)
@@ -60,9 +57,7 @@ const getRegions = (valueMap: Map<CoordKey, Cell>) => {
 const regionScore = (region: Map<CoordKey, Cell>) => {
 	const perimeter = region
 		.values()
-		.flatMap((cell) =>
-			neighbourKeys(cell).map((key) => (region.has(key) ? 0 : 1)),
-		)
+		.flatMap((cell) => neighbourKeys(cell).map((key) => (region.has(key) ? 0 : 1)))
 		.toArray();
 
 	return region.size * R.sum(perimeter);
@@ -89,12 +84,7 @@ const regionBulkScore = (region: Map<CoordKey, Cell>) => {
 				// inner
 				(edgeA && edgeB && !diagonal);
 
-			return [
-				corner(n, w, nw),
-				corner(n, e, ne),
-				corner(s, w, sw),
-				corner(s, e, se),
-			];
+			return [corner(n, w, nw), corner(n, e, ne), corner(s, w, sw), corner(s, e, se)];
 		})
 		.toArray();
 

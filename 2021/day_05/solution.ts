@@ -30,11 +30,7 @@ const overlappingCount = (includeDiagonal = true) => {
 				return inclusiveRange(x1, x2).map((x) => ({ x, y: y1 }));
 			}
 			if (includeDiagonal) {
-				return R.zipWith(
-					(x, y) => ({ x, y }),
-					inclusiveRange(x1, x2),
-					inclusiveRange(y1, y2),
-				);
+				return R.zipWith((x, y) => ({ x, y }), inclusiveRange(x1, x2), inclusiveRange(y1, y2));
 			}
 
 			return [];

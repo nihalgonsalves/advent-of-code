@@ -19,13 +19,7 @@ export const run1 = (input: string[]): bigint => {
 	const numbers = input.map((str) => BigInt(str));
 
 	const result = numbers.reduce((acc, n) => {
-		return (
-			acc +
-			Array.from({ length: 2000 }).reduce<bigint>(
-				(acc, _) => nextSecret(acc),
-				n,
-			)
-		);
+		return acc + Array.from({ length: 2000 }).reduce<bigint>((acc, _) => nextSecret(acc), n);
 	}, 0n);
 
 	return result;
@@ -47,9 +41,7 @@ export const run2 = (input: string[]): number => {
 
 		const prices = secrets.map((value) => Number(value % 10n));
 
-		const changes = prices.map((value, i, arr) =>
-			i === 0 ? undefined : value - arr[i - 1],
-		);
+		const changes = prices.map((value, i, arr) => (i === 0 ? undefined : value - arr[i - 1]));
 
 		const bananasBySequence: Record<string, number> = {};
 
@@ -66,10 +58,7 @@ export const run2 = (input: string[]): number => {
 	const totalBananasBySequence = allSequences
 		.values()
 		.map((sequence) =>
-			result.reduce(
-				(acc, bananasBySequence) => acc + (bananasBySequence[sequence] ?? 0),
-				0,
-			),
+			result.reduce((acc, bananasBySequence) => acc + (bananasBySequence[sequence] ?? 0), 0),
 		);
 
 	return Math.max(...totalBananasBySequence);

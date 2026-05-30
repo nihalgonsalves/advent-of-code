@@ -30,13 +30,7 @@ const getNextCursor = (cursor: number, direction: string) => {
 	throw new Error("Invalid direction");
 };
 
-const canMove = (
-	matrix: string[][],
-	cursor: number,
-	i: number,
-	j: number,
-	direction: string,
-) => {
+const canMove = (matrix: string[][], cursor: number, i: number, j: number, direction: string) => {
 	switch (direction) {
 		case "north":
 		case "south":
@@ -50,13 +44,7 @@ const canMove = (
 	throw new Error("Invalid direction");
 };
 
-const moveRocks = (
-	matrix: string[][],
-	cursor: number,
-	i: number,
-	j: number,
-	direction: string,
-) => {
+const moveRocks = (matrix: string[][], cursor: number, i: number, j: number, direction: string) => {
 	switch (direction) {
 		case "north":
 		case "south":
@@ -107,8 +95,7 @@ const cycleMatrix = (matrix: string[][], direction: Direction) => {
 const calcNorthLoad = (matrix: string[][]) =>
 	matrix.reduce(
 		(acc, line, index) =>
-			acc +
-			(matrix.length - index) * line.filter((char) => char === "O").length,
+			acc + (matrix.length - index) * line.filter((char) => char === "O").length,
 		0,
 	);
 

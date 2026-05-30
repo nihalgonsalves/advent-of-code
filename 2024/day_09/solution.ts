@@ -42,8 +42,7 @@ export const run1 = ([input]: string[]): number => {
 	}
 
 	const checksum = blocks.reduce(
-		(acc, block, index) =>
-			block.type === "file" ? acc + block.id * index : acc,
+		(acc, block, index) => (block.type === "file" ? acc + block.id * index : acc),
 		0,
 	);
 
@@ -105,8 +104,7 @@ export const run2 = ([input]: string[]): number => {
 	}
 
 	const checksum = blocks.reduce(
-		(acc, block, index) =>
-			block.type === "file" ? acc + block.id * index : acc,
+		(acc, block, index) => (block.type === "file" ? acc + block.id * index : acc),
 		0,
 	);
 

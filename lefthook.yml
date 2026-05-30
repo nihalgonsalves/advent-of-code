@@ -1,10 +1,14 @@
 pre-commit:
   parallel: true
   commands:
-    biome:
-      glob: "*.{ts,json}"
-      run: bun biome check --write {staged_files} && bun biome format --write {staged_files}
+    oxlint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: node --run lint -- {staged_files}
+      stage_fixed: true
+    oxfmt:
+      glob: "*.{js,ts,jsx,tsx,html,css,json,jsonc,yaml,md}"
+      run: node --run format -- --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     tsc:
       glob: "*.ts"
-      run: bun typecheck
+      run: node --run typecheck

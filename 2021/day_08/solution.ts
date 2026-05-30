@@ -19,9 +19,7 @@ const setToString = (set: Set<string>) => [...set.values()].sort().join("");
 const output = (await getInputLines(import.meta.url)).map((line) => {
 	const [signalPatterns, outputDigitPatterns] = line
 		.split(" | ")
-		.map((section) =>
-			section.split(" ").map((s: string) => new Set(s.split(""))),
-		);
+		.map((section) => section.split(" ").map((s: string) => new Set(s.split(""))));
 
 	const patterns: Set<string>[] = [];
 
@@ -57,10 +55,7 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
 
 	const segmentBandD = setMinus(patterns[4], patterns[7]);
 	const segmentCandF = patterns[1];
-	const segmentEandG = setMinus(
-		patterns[8],
-		new Set([...patterns[4], ...patterns[7]]),
-	);
+	const segmentEandG = setMinus(patterns[8], new Set([...patterns[4], ...patterns[7]]));
 
 	remainingSignalPatterns = remainingSignalPatterns.filter((pattern) => {
 		//      count  unique  a  c  e  f  g
@@ -117,13 +112,9 @@ const output = (await getInputLines(import.meta.url)).map((line) => {
 		}
 	}
 
-	const patternLookup = Object.fromEntries(
-		patterns.map((pattern, i) => [setToString(pattern), i]),
-	);
+	const patternLookup = Object.fromEntries(patterns.map((pattern, i) => [setToString(pattern), i]));
 
-	return outputDigitPatterns.map(
-		(digitPattern) => patternLookup[setToString(digitPattern)],
-	);
+	return outputDigitPatterns.map((digitPattern) => patternLookup[setToString(digitPattern)]);
 });
 
 // Part 1
@@ -134,9 +125,7 @@ const simpleDigitCount = output.flatMap((digits) =>
 
 // Part 2
 
-const total = R.sum(
-	output.map((digits) => Number.parseInt(digits.join(""), 10)),
-);
+const total = R.sum(output.map((digits) => Number.parseInt(digits.join(""), 10)));
 
 // Solution
 

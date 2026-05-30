@@ -55,8 +55,4 @@ export const run1 = (input: string[]): number =>
 	R.sum(parseInput(input).map((machine) => evaluateMachine(machine)));
 
 export const run2 = (input: string[]): number =>
-	R.sum(
-		parseInput(input, 10000000000000).map((machine) =>
-			evaluateMachine(machine),
-		),
-	);
+	R.sum(parseInput(input, 10000000000000).map((machine) => evaluateMachine(machine)));

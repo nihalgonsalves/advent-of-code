@@ -1,11 +1,10 @@
-\--- Day 4: Ceres Search ---
-----------
+## \--- Day 4: Ceres Search ---
 
 "Looks like the Chief's not here. Next!" One of The Historians pulls out a device and pushes the only button on it. After a brief flash, you recognize the interior of the [Ceres monitoring station](/2019/day/10)!
 
-As the search for the Chief continues, a small Elf who lives on the station tugs on your shirt; she'd like to know if you could help her with her *word search* (your puzzle input). She only has to find one word: `XMAS`.
+As the search for the Chief continues, a small Elf who lives on the station tugs on your shirt; she'd like to know if you could help her with her _word search_ (your puzzle input). She only has to find one word: `XMAS`.
 
-This word search allows words to be horizontal, vertical, diagonal, written backwards, or even overlapping other words. It's a little unusual, though, as you don't merely need to find one instance of `XMAS` - you need to find *all of them*. Here are a few ways `XMAS` might appear, where irrelevant characters have been replaced with `.`:
+This word search allows words to be horizontal, vertical, diagonal, written backwards, or even overlapping other words. It's a little unusual, though, as you don't merely need to find one instance of `XMAS` - you need to find _all of them_. Here are a few ways `XMAS` might appear, where irrelevant characters have been replaced with `.`:
 
 ```
 ..X...
@@ -48,12 +47,11 @@ S.S.S.S.SS
 
 ```
 
-Take a look at the little Elf's word search. *How many times does `XMAS` appear?*
+Take a look at the little Elf's word search. _How many times does `XMAS` appear?_
 
 Your puzzle answer was `2618`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
 The Elf looks quizzically at you. Did you misunderstand the assignment?
 
@@ -86,7 +84,7 @@ M.M.M.M.M.
 
 In this example, an `X-MAS` appears `*9*` times.
 
-Flip the word search from the instructions back over to the word search side and try again. *How many times does an `X-MAS` appear?*
+Flip the word search from the instructions back over to the word search side and try again. _How many times does an `X-MAS` appear?_
 
 Your puzzle answer was `2011`.
 
@@ -96,4 +94,4 @@ At this point, you should [return to your Advent calendar](/2024) and try anothe
 
 If you still want to see it, you can [get your puzzle input](4/input).
 
-You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+%22Ceres+Search%22+%2D+Day+4+%2D+Advent+of+Code+2024+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F4) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Ceres+Search%22+%2D+Day+4+%2D+Advent+of+Code+2024&url=https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F4&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+%22Ceres+Search%22+%2D+Day+4+%2D+Advent+of+Code+2024+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F4) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Ceres+Search%22+%2D+Day+4+%2D+Advent+of+Code+2024&url=https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F4&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

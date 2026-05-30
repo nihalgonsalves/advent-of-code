@@ -4,9 +4,7 @@ type Coord = { y: number; x: number };
 type Direction = "^" | "v" | "<" | ">";
 type Cell = "O" | "#" | "@" | ".";
 
-const parseInput = (
-	input: string,
-): { robot: Coord; grid: Cell[][]; directions: Direction[] } => {
+const parseInput = (input: string): { robot: Coord; grid: Cell[][]; directions: Direction[] } => {
 	const [gridStr, directionsStr] = input.split("\n\n");
 
 	let robot: Coord | undefined;

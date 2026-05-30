@@ -1,4 +1,5 @@
 import { styleText } from "node:util";
+
 import * as R from "ramda";
 
 type Coord = { y: number; x: number };
@@ -57,38 +58,24 @@ const directionScore: Record<Direction, Record<Direction, number>> = {
 	W: { N: 1, E: 2, S: 1, W: 0 },
 };
 
-const calcDirectionScore = (from: Direction, to: Direction) =>
-	directionScore[from][to] * 1000;
+const calcDirectionScore = (from: Direction, to: Direction) => directionScore[from][to] * 1000;
 
-const findPaths = (
-	grid: Cell[][],
-	source: Coord,
-	destination: Coord,
-): ScoredCell => {
+const findPaths = (grid: Cell[][], source: Coord, destination: Coord): ScoredCell => {
 	const visited = new Set<CoordKey>();
 
-	const getNeighbours = ({
-		x,
-		y,
-	}: Coord): { node: Cell; direction: Direction }[] =>
+	const getNeighbours = ({ x, y }: Coord): { node: Cell; direction: Direction }[] =>
 		[
 			{ node: grid[y - 1]?.[x], direction: "N" as const },
 			{ node: grid[y]?.[x + 1], direction: "E" as const },
 			{ node: grid[y + 1]?.[x], direction: "S" as const },
 			{ node: grid[y]?.[x - 1], direction: "W" as const },
 		].filter(
-			(v) =>
-				v.node !== undefined &&
-				v.node.type !== "wall" &&
-				!visited.has(coordKey(v.node)),
+			(v) => v.node !== undefined && v.node.type !== "wall" && !visited.has(coordKey(v.node)),
 		);
 
-	const calcH = ({ x, y }: Coord) =>
-		Math.abs(x - destination.x) + Math.abs(y - destination.y);
+	const calcH = ({ x, y }: Coord) => Math.abs(x - destination.x) + Math.abs(y - destination.y);
 
-	let openNodes: ScoredCell[] = [
-		{ ...source, f: 0, g: 0, h: calcH(source), direction: "E" },
-	];
+	let openNodes: ScoredCell[] = [{ ...source, f: 0, g: 0, h: calcH(source), direction: "E" }];
 
 	while (openNodes.length !== 0) {
 		const [currentNode, ...nextOpenNodes] = R.sortBy(R.prop("f"), openNodes);
@@ -101,8 +88,7 @@ const findPaths = (
 		}
 
 		for (const { node, direction } of getNeighbours(currentNode)) {
-			const g =
-				currentNode.g + calcDirectionScore(currentNode.direction, direction);
+			const g = currentNode.g + calcDirectionScore(currentNode.direction, direction);
 			const h = calcH(node);
 
 			const scoredNode = {
@@ -114,9 +100,7 @@ const findPaths = (
 				direction,
 			};
 
-			const existingOpenNode = openNodes.find(
-				(openNode) => coordKey(openNode) === coordKey(node),
-			);
+			const existingOpenNode = openNodes.find((openNode) => coordKey(openNode) === coordKey(node));
 
 			if (!existingOpenNode || scoredNode.g < existingOpenNode.g) {
 				openNodes.push(scoredNode);

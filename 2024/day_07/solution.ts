@@ -6,9 +6,7 @@ const parseInput = (input: string[]): IncompleteEquation[] =>
 		const [result, operands] = line.split(": ");
 		return {
 			result: Number.parseInt(result, 10),
-			operands: operands
-				.split(/\s+/)
-				.map((operand) => Number.parseInt(operand, 10)),
+			operands: operands.split(/\s+/).map((operand) => Number.parseInt(operand, 10)),
 		};
 	});
 
@@ -23,10 +21,7 @@ const getPermutations = (n: number, operators: Operator[]): Operator[][] => {
 };
 
 const isValid = (operation: IncompleteEquation, operators: Operator[]) => {
-	const permutations = getPermutations(
-		operation.operands.length - 1,
-		operators,
-	);
+	const permutations = getPermutations(operation.operands.length - 1, operators);
 
 	return permutations.some((permutation) => {
 		const [startingSum, ...operands] = operation.operands;

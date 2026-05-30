@@ -1,6 +1,7 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { readCharAt, readSymbolsAround, run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);
@@ -35,9 +36,7 @@ describe("day 03", () => {
 
 	it("readSymbolsAround returns all symbols", () => {
 		expect(readSymbolsAround(sample, 0, 0)).toEqual([]);
-		expect(readSymbolsAround(sample, 2, 6)).toEqual([
-			{ value: "#", line: 3, index: 6 },
-		]);
+		expect(readSymbolsAround(sample, 2, 6)).toEqual([{ value: "#", line: 3, index: 6 }]);
 		expect(
 			readSymbolsAround(
 				[

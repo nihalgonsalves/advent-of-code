@@ -1,5 +1,4 @@
-\--- Day 5: Cafeteria ---
-----------
+## \--- Day 5: Cafeteria ---
 
 As the forklifts break through the wall, the Elves are delighted to discover that there was a cafeteria on the other side after all.
 
@@ -7,9 +6,9 @@ You can hear a commotion coming from the kitchen. "At this rate, we won't have a
 
 "If only we hadn't switched to the new inventory management system right before Christmas!" another Elf exclaims. You ask what's going on.
 
-The Elves in the kitchen explain the situation: because of their complicated new inventory management system, they can't figure out which of their ingredients are *fresh* and which are *spoiled*. When you ask how it works, they give you a copy of their database (your puzzle input).
+The Elves in the kitchen explain the situation: because of their complicated new inventory management system, they can't figure out which of their ingredients are _fresh_ and which are _spoiled_. When you ask how it works, they give you a copy of their database (your puzzle input).
 
-The database operates on *ingredient IDs*. It consists of a list of *fresh ingredient ID ranges*, a blank line, and a list of *available ingredient IDs*. For example:
+The database operates on _ingredient IDs_. It consists of a list of _fresh ingredient ID ranges_, a blank line, and a list of _available ingredient IDs_. For example:
 
 ```
 3-5
@@ -26,29 +25,28 @@ The database operates on *ingredient IDs*. It consists of a list of *fresh ingre
 
 ```
 
-The fresh ID ranges are *inclusive*: the range `3-5` means that ingredient IDs `3`, `4`, and `5` are all *fresh*. The ranges can also *overlap*; an ingredient ID is fresh if it is in *any* range.
+The fresh ID ranges are _inclusive_: the range `3-5` means that ingredient IDs `3`, `4`, and `5` are all _fresh_. The ranges can also _overlap_; an ingredient ID is fresh if it is in _any_ range.
 
-The Elves are trying to determine which of the *available ingredient IDs* are *fresh*. In this example, this is done as follows:
+The Elves are trying to determine which of the _available ingredient IDs_ are _fresh_. In this example, this is done as follows:
 
-* Ingredient ID `1` is spoiled because it does not fall into any range.
-* Ingredient ID `5` is *fresh* because it falls into range `3-5`.
-* Ingredient ID `8` is spoiled.
-* Ingredient ID `11` is *fresh* because it falls into range `10-14`.
-* Ingredient ID `17` is *fresh* because it falls into range `16-20` as well as range `12-18`.
-* Ingredient ID `32` is spoiled.
+- Ingredient ID `1` is spoiled because it does not fall into any range.
+- Ingredient ID `5` is _fresh_ because it falls into range `3-5`.
+- Ingredient ID `8` is spoiled.
+- Ingredient ID `11` is _fresh_ because it falls into range `10-14`.
+- Ingredient ID `17` is _fresh_ because it falls into range `16-20` as well as range `12-18`.
+- Ingredient ID `32` is spoiled.
 
-So, in this example, *`3`* of the available ingredient IDs are fresh.
+So, in this example, _`3`_ of the available ingredient IDs are fresh.
 
-Process the database file from the new inventory management system. *How many of the available ingredient IDs are fresh?*
+Process the database file from the new inventory management system. _How many of the available ingredient IDs are fresh?_
 
 Your puzzle answer was `529`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
 The Elves start bringing their spoiled inventory to the trash chute at the back of the kitchen.
 
-So that they can stop bugging you when they get new inventory, the Elves would like to know *all* of the IDs that the *fresh ingredient ID ranges* consider to be *fresh*. An ingredient ID is still considered fresh if it is in any range.
+So that they can stop bugging you when they get new inventory, the Elves would like to know _all_ of the IDs that the _fresh ingredient ID ranges_ consider to be _fresh_. An ingredient ID is still considered fresh if it is in any range.
 
 Now, the second section of the database (the available ingredient IDs) is irrelevant. Here are the fresh ingredient ID ranges from the above example:
 
@@ -60,9 +58,9 @@ Now, the second section of the database (the available ingredient IDs) is irrele
 
 ```
 
-The ingredient IDs that these ranges consider to be fresh are `3`, `4`, `5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, and `20`. So, in this example, the fresh ingredient ID ranges consider a total of *`14`* ingredient IDs to be fresh.
+The ingredient IDs that these ranges consider to be fresh are `3`, `4`, `5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, and `20`. So, in this example, the fresh ingredient ID ranges consider a total of _`14`_ ingredient IDs to be fresh.
 
-Process the database file again. *How many ingredient IDs are considered to be fresh according to the fresh ingredient ID ranges?*
+Process the database file again. _How many ingredient IDs are considered to be fresh according to the fresh ingredient ID ranges?_
 
 Your puzzle answer was `344260049617193`.
 
@@ -72,4 +70,4 @@ At this point, you should [return to your Advent calendar](/2025) and try anothe
 
 If you still want to see it, you can [get your puzzle input](5/input).
 
-You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+%22Cafeteria%22+%2D+Day+5+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F5) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Cafeteria%22+%2D+Day+5+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F5&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+%22Cafeteria%22+%2D+Day+5+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F5) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Cafeteria%22+%2D+Day+5+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F5&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

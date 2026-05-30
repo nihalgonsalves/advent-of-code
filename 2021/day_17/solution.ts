@@ -1,12 +1,12 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
 
 const [rawInput] = await getInputLines(import.meta.url);
 
-const parseRegEx =
-	/^target area: x=(?<x1>-?\d*)\.\.(?<x2>-?\d*), y=(?<y1>-?\d*)\.\.(?<y2>-?\d*)$/;
+const parseRegEx = /^target area: x=(?<x1>-?\d*)\.\.(?<x2>-?\d*), y=(?<y1>-?\d*)\.\.(?<y2>-?\d*)$/;
 
 const groups = rawInput.match(parseRegEx)!.groups!;
 
@@ -18,8 +18,7 @@ const range: Record<"x" | "y", [number, number]> = {
 const maxX = Math.max(...range.x);
 const minY = Math.min(...range.y);
 
-const inRange = (val: number, range: [number, number]) =>
-	range[0] <= val && val <= range[1];
+const inRange = (val: number, range: [number, number]) => range[0] <= val && val <= range[1];
 
 const simulate = (vx: number, vy: number): number | undefined => {
 	const probe = {
@@ -52,11 +51,7 @@ const simulate = (vx: number, vy: number): number | undefined => {
 			maxY = probe.y;
 		}
 
-		if (
-			!reachedTarget &&
-			inRange(probe.x, range.x) &&
-			inRange(probe.y, range.y)
-		) {
+		if (!reachedTarget && inRange(probe.x, range.x) && inRange(probe.y, range.y)) {
 			reachedTarget = true;
 		}
 	}
@@ -64,6 +59,8 @@ const simulate = (vx: number, vy: number): number | undefined => {
 	if (reachedTarget) {
 		return maxY;
 	}
+
+	return undefined;
 };
 
 const permutations = R.range(1, maxX + 1).flatMap((vx) =>

@@ -10,8 +10,7 @@ const possible = {
 
 export const run1 = (input: string[]): number => {
 	return input.reduce((sum, line) => {
-		const { gameStr, sets } = line.match(/^Game (?<gameStr>\d+): (?<sets>.*)$/)!
-			.groups!;
+		const { gameStr, sets } = line.match(/^Game (?<gameStr>\d+): (?<sets>.*)$/)!.groups!;
 		const game = Number.parseInt(gameStr, 10);
 
 		for (const set of sets.split("; ")) {

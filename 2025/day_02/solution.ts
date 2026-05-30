@@ -32,8 +32,7 @@ function* reversedRange(start: number, end: number) {
 	}
 }
 
-const allFactors = (n: number) =>
-	reversedRange(1, n).filter((x) => n % x === 0);
+const allFactors = (n: number) => reversedRange(1, n).filter((x) => n % x === 0);
 
 const allPartsSame = (splitEvery: number, str: string) => {
 	const firstPart = str.slice(0, splitEvery);

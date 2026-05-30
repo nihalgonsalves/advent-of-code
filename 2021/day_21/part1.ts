@@ -43,8 +43,7 @@ while (universe.scores[1] < 1000 && universe.scores[2] < 1000) {
 	tick();
 }
 
-const losingPlayerScore =
-	universe.scores[1] < 1000 ? universe.scores[1] : universe.scores[2];
+const losingPlayerScore = universe.scores[1] < 1000 ? universe.scores[1] : universe.scores[2];
 const part1 = die.n * losingPlayerScore;
 
 assert.strictEqual(part1, 679329);

@@ -1,9 +1,8 @@
-\--- Day 9: Movie Theater ---
-----------
+## \--- Day 9: Movie Theater ---
 
 You slide down the [firepole](https://en.wikipedia.org/wiki/Fireman%27s_pole) in the corner of the playground and land in the North Pole base movie theater!
 
-The movie theater has a big tile floor with an interesting pattern. Elves here are redecorating the theater by switching out some of the square tiles in the big grid they form. Some of the tiles are *red*; the Elves would like to find the largest rectangle that uses red tiles for two of its opposite corners. They even have a list of where the red tiles are located in the grid (your puzzle input).
+The movie theater has a big tile floor with an interesting pattern. Elves here are redecorating the theater by switching out some of the square tiles in the big grid they form. Some of the tiles are _red_; the Elves would like to find the largest rectangle that uses red tiles for two of its opposite corners. They even have a list of where the red tiles are located in the grid (your puzzle input).
 
 For example:
 
@@ -96,18 +95,17 @@ Ultimately, the largest rectangle you can make in this example has area `*50*`. 
 
 ```
 
-Using two red tiles as opposite corners, *what is the largest area of any rectangle you can make?*
+Using two red tiles as opposite corners, _what is the largest area of any rectangle you can make?_
 
 Your puzzle answer was `4777967538`.
 
 The first half of this puzzle is complete! It provides one gold star: \*
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
-The Elves just remembered: they can only switch out tiles that are *red* or *green*. So, your rectangle can only include red or green tiles.
+The Elves just remembered: they can only switch out tiles that are _red_ or _green_. So, your rectangle can only include red or green tiles.
 
-In your list, every red tile is connected to the red tile before and after it by a straight line of *green tiles*. The list wraps, so the first red tile is also connected to the last red tile. Tiles that are adjacent in your list will always be on either the same row or the same column.
+In your list, every red tile is connected to the red tile before and after it by a straight line of _green tiles_. The list wraps, so the first red tile is also connected to the last red tile. Tiles that are adjacent in your list will always be on either the same row or the same column.
 
 Using the same example as before, the tiles marked `X` would be green:
 
@@ -124,7 +122,7 @@ Using the same example as before, the tiles marked `X` would be green:
 
 ```
 
-In addition, all of the tiles *inside* this loop of red and green tiles are *also* green. So, in this example, these are the green tiles:
+In addition, all of the tiles _inside_ this loop of red and green tiles are _also_ green. So, in this example, these are the green tiles:
 
 ```
 ..............
@@ -188,10 +186,10 @@ The largest rectangle you can make in this example using only red and green tile
 
 ```
 
-Using two red tiles as opposite corners, *what is the largest area of any rectangle you can make using only red and green tiles?*
+Using two red tiles as opposite corners, _what is the largest area of any rectangle you can make using only red and green tiles?_
 
 Answer:
 
 Although it hasn't changed, you can still [get your puzzle input](9/input).
 
-You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Movie+Theater%22+%2D+Day+9+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F9) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Movie+Theater%22+%2D+Day+9+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F9&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Movie+Theater%22+%2D+Day+9+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F9) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Movie+Theater%22+%2D+Day+9+%2D+Advent+of+Code+2025&url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F9&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

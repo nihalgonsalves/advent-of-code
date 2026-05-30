@@ -1,5 +1,4 @@
-\--- Day 10: Pipe Maze ---
-----------
+## \--- Day 10: Pipe Maze ---
 
 You use the hang glider to ride the hot air from Desert Island all the way up to the floating metal island. This island is surprisingly cold and there definitely aren't any thermals to glide on, so you leave your hang glider behind.
 
@@ -9,18 +8,18 @@ The landscape here is alien; even the flowers and trees are made of metal. As yo
 
 Scanning the area, you discover that the entire field you're standing on is densely packed with pipes; it was hard to tell at first because they're the same metallic silver color as the "ground". You make a quick sketch of all of the surface pipes you can see (your puzzle input).
 
-The pipes are arranged in a two-dimensional grid of *tiles*:
+The pipes are arranged in a two-dimensional grid of _tiles_:
 
-* `|` is a *vertical pipe* connecting north and south.
-* `-` is a *horizontal pipe* connecting east and west.
-* `L` is a *90-degree bend* connecting north and east.
-* `J` is a *90-degree bend* connecting north and west.
-* `7` is a *90-degree bend* connecting south and west.
-* `F` is a *90-degree bend* connecting south and east.
-* `.` is *ground*; there is no pipe in this tile.
-* `S` is the *starting position* of the animal; there is a pipe on this tile, but your sketch doesn't show what shape the pipe has.
+- `|` is a _vertical pipe_ connecting north and south.
+- `-` is a _horizontal pipe_ connecting east and west.
+- `L` is a _90-degree bend_ connecting north and east.
+- `J` is a _90-degree bend_ connecting north and west.
+- `7` is a _90-degree bend_ connecting south and west.
+- `F` is a _90-degree bend_ connecting south and east.
+- `.` is _ground_; there is no pipe in this tile.
+- `S` is the _starting position_ of the animal; there is a pipe on this tile, but your sketch doesn't show what shape the pipe has.
 
-Based on the acoustics of the animal's scurrying, you're confident the pipe that contains the animal is *one large, continuous loop*.
+Based on the acoustics of the animal's scurrying, you're confident the pipe that contains the animal is _one large, continuous loop_.
 
 For example, here is a square loop of pipe:
 
@@ -46,7 +45,7 @@ If the animal had entered this loop in the northwest corner, the sketch would in
 
 In the above diagram, the `S` tile is still a 90-degree `F` bend: you can tell because of how the adjacent pipes connect to it.
 
-Unfortunately, there are also many pipes that *aren't connected to the loop*! This sketch shows the same loop as above:
+Unfortunately, there are also many pipes that _aren't connected to the loop_! This sketch shows the same loop as above:
 
 ```
 -L|F7
@@ -57,7 +56,7 @@ L|-JF
 
 ```
 
-In the above diagram, you can still figure out which pipes form the main loop: they're the ones connected to `S`, pipes those pipes connect to, pipes *those* pipes connect to, and so on. Every pipe in the main loop connects to its two neighbors (including `S`, which will have exactly two pipes connecting to it, and which is assumed to connect back to those two pipes).
+In the above diagram, you can still figure out which pipes form the main loop: they're the ones connected to `S`, pipes those pipes connect to, pipes _those_ pipes connect to, and so on. Every pipe in the main loop connects to its two neighbors (including `S`, which will have exactly two pipes connecting to it, and which is assumed to connect back to those two pipes).
 
 Here is a sketch that contains a slightly more complex main loop:
 
@@ -81,7 +80,7 @@ LJ.LJ
 
 ```
 
-If you want to *get out ahead of the animal*, you should find the tile in the loop that is *farthest* from the starting position. Because the animal is in the pipe, it doesn't make sense to measure this by direct distance. Instead, you need to find the tile that would take the longest number of steps *along the loop* to reach from the starting point - regardless of which way around the loop the animal went.
+If you want to _get out ahead of the animal_, you should find the tile in the loop that is _farthest_ from the starting position. Because the animal is in the pipe, it doesn't make sense to measure this by direct distance. Instead, you need to find the tile that would take the longest number of steps _along the loop_ to reach from the starting point - regardless of which way around the loop the animal went.
 
 In the first example with the square loop:
 
@@ -129,14 +128,13 @@ Here are the distances for each tile on that loop:
 
 ```
 
-Find the single giant loop starting at `S`. *How many steps along the loop does it take to get from the starting position to the point farthest from the starting position?*
+Find the single giant loop starting at `S`. _How many steps along the loop does it take to get from the starting position to the point farthest from the starting position?_
 
 Your puzzle answer was `7102`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
-You quickly reach the farthest point of the loop, but the animal never emerges. Maybe its nest is *within the area enclosed by the loop*?
+You quickly reach the farthest point of the loop, but the animal never emerges. Maybe its nest is _within the area enclosed by the loop_?
 
 To determine whether it's even worth taking the time to search for such a nest, you should calculate how many tiles are contained within the loop. For example:
 
@@ -153,7 +151,7 @@ To determine whether it's even worth taking the time to search for such a nest, 
 
 ```
 
-The above loop encloses merely *four tiles* - the two pairs of `.` in the southwest and southeast (marked `I` below). The middle `.` tiles (marked `O` below) are *not* in the loop. Here is the same loop again with those regions marked:
+The above loop encloses merely _four tiles_ - the two pairs of `.` in the southwest and southeast (marked `I` below). The middle `.` tiles (marked `O` below) are _not_ in the loop. Here is the same loop again with those regions marked:
 
 ```
 ...........
@@ -235,7 +233,7 @@ L7JLJL-JLJLJL--JLJ.L
 
 ```
 
-Here are just the tiles that are *enclosed by the loop* marked with `I`:
+Here are just the tiles that are _enclosed by the loop_ marked with `I`:
 
 ```
 FF7FSF7F7F7F7F7F---7
@@ -253,7 +251,7 @@ L7JLJL-JLJLJL--JLJ.L
 
 In this last example, `*10*` tiles are enclosed by the loop.
 
-Figure out whether you have time to search for the nest by calculating the area within the loop. *How many tiles are enclosed by the loop?*
+Figure out whether you have time to search for the nest by calculating the area within the loop. _How many tiles are enclosed by the loop?_
 
 Your puzzle answer was `363`.
 
@@ -263,4 +261,4 @@ At this point, you should [return to your Advent calendar](/2023) and try anothe
 
 If you still want to see it, you can [get your puzzle input](10/input).
 
-You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Pipe+Maze%22+%2D+Day+10+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F10&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Pipe+Maze%22+%2D+Day+10+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F10&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

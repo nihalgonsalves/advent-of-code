@@ -15,4 +15,4 @@ echo "${PUZZLE_DIR}"
 
 touch "${PUZZLE_DIR}/input.txt"
 set -x
-bun test "${YEAR}/day_${DAY}"
+node --run test -- "${YEAR}/day_${DAY}"

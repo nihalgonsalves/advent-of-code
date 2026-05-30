@@ -36,9 +36,7 @@ export const permutations = (count: number): Spring[][] => {
 };
 
 const isValidSpring = (spring: Spring[], config: number[]) => {
-	const brokenGroups = R.groupWith((a, b) => a === b, spring).filter(
-		(group) => group[0] === "#",
-	);
+	const brokenGroups = R.groupWith((a, b) => a === b, spring).filter((group) => group[0] === "#");
 
 	return (
 		brokenGroups.length === config.length &&
@@ -52,26 +50,23 @@ export const run1 = (input: string[]): number => {
 
 		const allPermutations = permutations(unknownValues);
 
-		const validSpringSize = allPermutations.reduce<number>(
-			(lineSum, permutations) => {
-				const p = [...permutations];
+		const validSpringSize = allPermutations.reduce<number>((lineSum, permutations) => {
+			const p = [...permutations];
 
-				const springPermutation = springs.map((spring) => {
-					if (spring === "?") {
-						return p.pop()!;
-					}
-
-					return spring;
-				});
-
-				if (isValidSpring(springPermutation, config)) {
-					return lineSum + 1;
+			const springPermutation = springs.map((spring) => {
+				if (spring === "?") {
+					return p.pop()!;
 				}
 
-				return lineSum;
-			},
-			0,
-		);
+				return spring;
+			});
+
+			if (isValidSpring(springPermutation, config)) {
+				return lineSum + 1;
+			}
+
+			return lineSum;
+		}, 0);
 
 		return sum + validSpringSize;
 	}, 0);

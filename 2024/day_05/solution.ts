@@ -4,9 +4,7 @@ const parseInput = (input: string) => {
 	const [pageOrderingRulesStr, pagesStr] = input.trim().split("\n\n");
 
 	const pageOrderingRules = pageOrderingRulesStr.split("\n").map((line) => {
-		const [left, right] = line
-			.split("|")
-			.map((str) => Number.parseInt(str, 10));
+		const [left, right] = line.split("|").map((str) => Number.parseInt(str, 10));
 
 		return [left, right] as const;
 	});
@@ -25,10 +23,7 @@ const parseInput = (input: string) => {
 	return { pageOrdering, pages };
 };
 
-const sortPages = (
-	pages: number[][],
-	pageOrdering: Record<number, Set<number>>,
-) =>
+const sortPages = (pages: number[][], pageOrdering: Record<number, Set<number>>) =>
 	pages.map((page) =>
 		page.toSorted((a, b) => {
 			if (pageOrdering[a]?.has(b)) {

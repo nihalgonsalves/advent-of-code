@@ -1,5 +1,4 @@
-const getRegister = (line: string) =>
-	Number.parseInt(/Register \w: (\d+)/.exec(line)![1], 10);
+const getRegister = (line: string) => Number.parseInt(/Register \w: (\d+)/.exec(line)![1], 10);
 
 class HaltError extends Error {}
 

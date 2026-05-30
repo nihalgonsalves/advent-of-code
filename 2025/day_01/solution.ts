@@ -35,10 +35,7 @@ export const run2 = (input: string[]): number => {
 		}
 
 		const remainder = value % DIAL_SIZE;
-		const values = Array.from(
-			{ length: (value - remainder) / DIAL_SIZE },
-			() => DIAL_SIZE * sign,
-		);
+		const values = Array.from({ length: (value - remainder) / DIAL_SIZE }, () => DIAL_SIZE * sign);
 		if (remainder !== 0) {
 			values.push(remainder * sign);
 		}

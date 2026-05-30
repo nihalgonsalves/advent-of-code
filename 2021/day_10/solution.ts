@@ -1,11 +1,10 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
 
-const lines = (await getInputLines(import.meta.url)).map((line) =>
-	line.split(""),
-);
+const lines = (await getInputLines(import.meta.url)).map((line) => line.split(""));
 
 const openingSymbols = ["(", "[", "{", "<"];
 const closingSymbols = [")", "]", "}", ">"];
@@ -28,10 +27,7 @@ const resolvedLines: ResolvedLine[] = lines.map((line) => {
 	for (const sym of line) {
 		if (openingSymbols.includes(sym)) {
 			stack.push(sym);
-		} else if (
-			closingSymbols.includes(sym) &&
-			stack.pop() !== closingToOpening[sym]
-		) {
+		} else if (closingSymbols.includes(sym) && stack.pop() !== closingToOpening[sym]) {
 			return { type: "corrupted", score: syntaxScores[sym].error };
 		}
 	}
@@ -58,8 +54,7 @@ const errorScore = R.sum(corruptedScores);
 
 const completionScores = R.sort((a, b) => a - b, completedScores);
 
-const completionScore =
-	completionScores[Math.floor(completionScores.length / 2)];
+const completionScore = completionScores[Math.floor(completionScores.length / 2)];
 
 // Solution
 

@@ -1,6 +1,7 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);
@@ -18,12 +19,7 @@ describe("day 08", () => {
 			"ZZZ = (ZZZ, ZZZ)",
 		];
 
-		const sample2 = [
-			"LLR",
-			"AAA = (BBB, BBB)",
-			"BBB = (AAA, ZZZ)",
-			"ZZZ = (ZZZ, ZZZ)",
-		];
+		const sample2 = ["LLR", "AAA = (BBB, BBB)", "BBB = (AAA, ZZZ)", "ZZZ = (ZZZ, ZZZ)"];
 
 		it("should return the correct sample value", () => {
 			expect(run1(sample1)).toBe(2);

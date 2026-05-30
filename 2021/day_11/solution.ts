@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -11,10 +12,8 @@ type Octopus = {
 };
 
 const lines = (await getInputLines(import.meta.url)).map((line, x) =>
-	line.split("").map((energy, y) =>
-		//
-		({ energy: Number.parseInt(energy, 10), x, y, flashedThisCycle: false }),
-	),
+	line.split("").map((energy, y) => //
+	({ energy: Number.parseInt(energy, 10), x, y, flashedThisCycle: false })),
 );
 
 const getAdjacent = (x: number, y: number) =>

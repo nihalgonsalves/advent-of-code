@@ -1,21 +1,12 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
+
 import { getInputLines } from "../../getInputLines";
+
 import { run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 
-const sample: string[] = [
-	"L68",
-	"L30",
-	"R48",
-	"L5",
-	"R60",
-	"L55",
-	"L1",
-	"L99",
-	"R14",
-	"L82",
-];
+const sample: string[] = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"];
 
 describe("day 01", () => {
 	describe("part 1", () => {

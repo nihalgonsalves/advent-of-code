@@ -1,11 +1,10 @@
-\--- Day 13: Point of Incidence ---
-----------
+## \--- Day 13: Point of Incidence ---
 
-With your help, the hot springs team locates an appropriate spring which launches you neatly and precisely up to the edge of *Lava Island*.
+With your help, the hot springs team locates an appropriate spring which launches you neatly and precisely up to the edge of _Lava Island_.
 
-There's just one problem: you don't see any *lava*.
+There's just one problem: you don't see any _lava_.
 
-You *do* see a lot of ash and igneous rock; there are even what look like gray mountains scattered around. After a while, you make your way to a nearby cluster of mountains only to discover that the valley between them is completely full of large *mirrors*. Most of the mirrors seem to be aligned in a consistent way; perhaps you should head in that direction?
+You _do_ see a lot of ash and igneous rock; there are even what look like gray mountains scattered around. After a while, you make your way to a nearby cluster of mountains only to discover that the valley between them is completely full of large _mirrors_. Most of the mirrors seem to be aligned in a consistent way; perhaps you should head in that direction?
 
 As you move through the valley of mirrors, you find that several of them have fallen from the large metal frames keeping them in place. The mirrors are extremely flat and shiny, and many of the fallen mirrors have lodged into the ash at strange angles. Because the terrain is all one color, it's hard to tell where it's safe to walk or where you're about to run into a mirror.
 
@@ -38,7 +37,7 @@ In the first pattern, the reflection is across a vertical line between two colum
 
 ```
 123456789
-    ><   
+    ><
 #.##..##.
 ..#.##.#.
 ##......#
@@ -46,7 +45,7 @@ In the first pattern, the reflection is across a vertical line between two colum
 ..#.##.#.
 ..##..##.
 #.#.##.#.
-    ><   
+    ><
 123456789
 
 ```
@@ -68,20 +67,19 @@ The second pattern reflects across a horizontal line instead:
 
 This pattern reflects across the horizontal line between rows 4 and 5. Row 1 would reflect with a hypothetical row 8, but since that's not in the pattern, row 1 doesn't need to match anything. The remaining rows match: row 2 matches row 7, row 3 matches row 6, and row 4 matches row 5.
 
-To *summarize* your pattern notes, add up *the number of columns* to the left of each vertical line of reflection; to that, also add *100 multiplied by the number of rows* above each horizontal line of reflection. In the above example, the first pattern's vertical line has `5` columns to its left and the second pattern's horizontal line has `4` rows above it, a total of `*405*`.
+To _summarize_ your pattern notes, add up _the number of columns_ to the left of each vertical line of reflection; to that, also add _100 multiplied by the number of rows_ above each horizontal line of reflection. In the above example, the first pattern's vertical line has `5` columns to its left and the second pattern's horizontal line has `4` rows above it, a total of `*405*`.
 
-Find the line of reflection in each of the patterns in your notes. *What number do you get after summarizing all of your notes?*
+Find the line of reflection in each of the patterns in your notes. _What number do you get after summarizing all of your notes?_
 
 Your puzzle answer was `33975`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
-You resume walking through the valley of mirrors and - *SMACK!* - run directly into one. Hopefully nobody was watching, because that must have been pretty embarrassing.
+You resume walking through the valley of mirrors and - _SMACK!_ - run directly into one. Hopefully nobody was watching, because that must have been pretty embarrassing.
 
-Upon closer inspection, you discover that every mirror has exactly one *smudge*: exactly one `.` or `#` should be the opposite type.
+Upon closer inspection, you discover that every mirror has exactly one _smudge_: exactly one `.` or `#` should be the opposite type.
 
-In each pattern, you'll need to locate and fix the smudge that causes a *different reflection line* to be valid. (The old reflection line won't necessarily continue being valid after the smudge is fixed.)
+In each pattern, you'll need to locate and fix the smudge that causes a _different reflection line_ to be valid. (The old reflection line won't necessarily continue being valid after the smudge is fixed.)
 
 Here's the above example again:
 
@@ -136,7 +134,7 @@ Now, the pattern has a different horizontal line of reflection between rows 1 an
 
 Summarize your notes as before, but instead use the new different reflection lines. In this example, the first pattern's new horizontal line has 3 rows above it and the second pattern's new horizontal line has 1 row above it, summarizing to the value `*400*`.
 
-In each pattern, fix the smudge and find the different line of reflection. *What number do you get after summarizing the new reflection line in each pattern in your notes?*
+In each pattern, fix the smudge and find the different line of reflection. _What number do you get after summarizing the new reflection line in each pattern in your notes?_
 
 Your puzzle answer was `29083`.
 
@@ -146,4 +144,4 @@ At this point, you should [return to your Advent calendar](/2023) and try anothe
 
 If you still want to see it, you can [get your puzzle input](13/input).
 
-You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Point+of+Incidence%22+%2D+Day+13+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F13&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Point+of+Incidence%22+%2D+Day+13+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F13&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

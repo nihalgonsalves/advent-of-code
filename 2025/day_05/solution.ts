@@ -30,12 +30,10 @@ export const run1 = (input: string): number => {
 
 export const allPairs = <T>(array: T[]) =>
 	array.flatMap((a, i) =>
-		array
-			.slice(i + 1)
-			.map((b, j): [{ i: number; a: T }, { j: number; b: T }] => [
-				{ i, a },
-				{ j: i + j + 1, b },
-			]),
+		array.slice(i + 1).map((b, j): [{ i: number; a: T }, { j: number; b: T }] => [
+			{ i, a },
+			{ j: i + j + 1, b },
+		]),
 	);
 
 export const simplifyRanges = (ranges: Range[]): Range[] => {
@@ -91,7 +89,4 @@ export const simplifyRanges = (ranges: Range[]): Range[] => {
 const countRange = (range: Range) => range.end - range.start + 1;
 
 export const run2 = (input: string): number =>
-	simplifyRanges(parseInput(input).ranges).reduce(
-		(acc, range) => acc + countRange(range),
-		0,
-	);
+	simplifyRanges(parseInput(input).ranges).reduce((acc, range) => acc + countRange(range), 0);

@@ -74,10 +74,7 @@ const getBorderVertices = (instructions: DigInstruction[]) => {
 export const shoelace = (vertices: Coords[]): number => {
 	const pairsWithLast = R.aperture(2, [...vertices, vertices[0]]);
 
-	const sum = pairsWithLast.reduce(
-		(acc, [[xA, yA], [xB, yB]]) => acc + (xA * yB - xB * yA),
-		0,
-	);
+	const sum = pairsWithLast.reduce((acc, [[xA, yA], [xB, yB]]) => acc + (xA * yB - xB * yA), 0);
 
 	return Math.abs(sum) / 2;
 };

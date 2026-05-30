@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -14,9 +15,7 @@ const input = (await getInputLines(import.meta.url)).map((line) => {
 
 	return {
 		action: action as "on" | "off",
-		coords: parseIntObj(
-			rawCoords as Record<"x1" | "x2" | "y1" | "y2" | "z1" | "z2", string>,
-		),
+		coords: parseIntObj(rawCoords as Record<"x1" | "x2" | "y1" | "y2" | "z1" | "z2", string>),
 	};
 });
 
@@ -41,8 +40,7 @@ const withinInitArea = R.clamp(...initArea);
 const isLeft = (n: number) => n < initArea[0];
 const isRight = (n: number) => initArea[1] < n;
 
-const both = (fn: (n: number) => boolean, a: number, b: number) =>
-	fn(a) && fn(b);
+const both = (fn: (n: number) => boolean, a: number, b: number) => fn(a) && fn(b);
 
 const rangeWithinInitArea = (a: number, b: number) => {
 	if (both(isLeft, a, b) || both(isRight, a, b)) {

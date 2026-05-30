@@ -1,19 +1,12 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
+
 import { getInputLines } from "../../getInputLines";
+
 import { run1, run2 } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 
-const sample: string[] = [
-	"7,1",
-	"11,1",
-	"11,7",
-	"9,7",
-	"9,5",
-	"2,5",
-	"2,3",
-	"7,3",
-];
+const sample: string[] = ["7,1", "11,1", "11,7", "9,7", "9,5", "2,5", "2,3", "7,3"];
 
 describe("day 09", () => {
 	describe("part 1", () => {

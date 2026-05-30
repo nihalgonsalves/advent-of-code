@@ -1,5 +1,4 @@
-\--- Day 11: Cosmic Expansion ---
-----------
+## \--- Day 11: Cosmic Expansion ---
 
 You continue following signs for "Hot Springs" and eventually come across an [observatory](https://en.wikipedia.org/wiki/Observatory). The Elf within turns out to be a researcher studying cosmic expansion using the giant telescope here.
 
@@ -7,7 +6,7 @@ He doesn't know anything about the missing machine parts; he's only visiting for
 
 Maybe you can help him with the analysis to speed things up?
 
-The researcher has collected a bunch of data and compiled the data into a single giant *image* (your puzzle input). The image includes *empty space* (`.`) and *galaxies* (`#`). For example:
+The researcher has collected a bunch of data and compiled the data into a single giant _image_ (your puzzle input). The image includes _empty space_ (`.`) and _galaxies_ (`#`). For example:
 
 ```
 ...#......
@@ -23,9 +22,9 @@ The researcher has collected a bunch of data and compiled the data into a single
 
 ```
 
-The researcher is trying to figure out the sum of the lengths of the *shortest path between every pair of galaxies*. However, there's a catch: the universe expanded in the time it took the light from those galaxies to reach the observatory.
+The researcher is trying to figure out the sum of the lengths of the _shortest path between every pair of galaxies_. However, there's a catch: the universe expanded in the time it took the light from those galaxies to reach the observatory.
 
-Due to something involving gravitational effects, *only some space expands*. In fact, the result is that *any rows or columns that contain no galaxies* should all actually be twice as big.
+Due to something involving gravitational effects, _only some space expands_. In fact, the result is that _any rows or columns that contain no galaxies_ should all actually be twice as big.
 
 In the above example, three columns and two rows contain no galaxies:
 
@@ -45,7 +44,7 @@ In the above example, three columns and two rows contain no galaxies:
 
 ```
 
-These rows and columns need to be *twice as big*; the result of cosmic expansion therefore looks like this:
+These rows and columns need to be _twice as big_; the result of cosmic expansion therefore looks like this:
 
 ```
 ....#........
@@ -81,7 +80,7 @@ Equipped with this expanded universe, the shortest path between every pair of ga
 
 ```
 
-In these 9 galaxies, there are *36 pairs*. Only count each pair once; order within the pair doesn't matter. For each pair, find any shortest path between the two galaxies using only steps that move up, down, left, or right exactly one `.` or `#` at a time. (The shortest path between two galaxies is allowed to pass through another galaxy.)
+In these 9 galaxies, there are _36 pairs_. Only count each pair once; order within the pair doesn't matter. For each pair, find any shortest path between the two galaxies using only steps that move up, down, left, or right exactly one `.` or `#` at a time. (The shortest path between two galaxies is allowed to pass through another galaxy.)
 
 For example, here is one of the shortest paths between galaxies `5` and `9`:
 
@@ -101,28 +100,27 @@ For example, here is one of the shortest paths between galaxies `5` and `9`:
 
 ```
 
-This path has length `*9*` because it takes a minimum of *nine steps* to get from galaxy `5` to galaxy `9` (the eight locations marked `#` plus the step onto galaxy `9` itself). Here are some other example shortest path lengths:
+This path has length `*9*` because it takes a minimum of _nine steps_ to get from galaxy `5` to galaxy `9` (the eight locations marked `#` plus the step onto galaxy `9` itself). Here are some other example shortest path lengths:
 
-* Between galaxy `1` and galaxy `7`: 15
-* Between galaxy `3` and galaxy `6`: 17
-* Between galaxy `8` and galaxy `9`: 5
+- Between galaxy `1` and galaxy `7`: 15
+- Between galaxy `3` and galaxy `6`: 17
+- Between galaxy `8` and galaxy `9`: 5
 
 In this example, after expanding the universe, the sum of the shortest path between all 36 pairs of galaxies is `*374*`.
 
-Expand the universe, then find the length of the shortest path between every pair of galaxies. *What is the sum of these lengths?*
+Expand the universe, then find the length of the shortest path between every pair of galaxies. _What is the sum of these lengths?_
 
 Your puzzle answer was `9521776`.
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
-The galaxies are much *older* (and thus much *farther apart*) than the researcher initially estimated.
+The galaxies are much _older_ (and thus much _farther apart_) than the researcher initially estimated.
 
-Now, instead of the expansion you did before, make each empty row or column *one million times* larger. That is, each empty row should be replaced with `1000000` empty rows, and each empty column should be replaced with `1000000` empty columns.
+Now, instead of the expansion you did before, make each empty row or column _one million times_ larger. That is, each empty row should be replaced with `1000000` empty rows, and each empty column should be replaced with `1000000` empty columns.
 
 (In the example above, if each empty row or column were merely `10` times larger, the sum of the shortest paths between every pair of galaxies would be `*1030*`. If each empty row or column were merely `100` times larger, the sum of the shortest paths between every pair of galaxies would be `*8410*`. However, your universe will need to expand far beyond these values.)
 
-Starting with the same initial image, expand the universe according to these new rules, then find the length of the shortest path between every pair of galaxies. *What is the sum of these lengths?*
+Starting with the same initial image, expand the universe according to these new rules, then find the length of the shortest path between every pair of galaxies. _What is the sum of these lengths?_
 
 Your puzzle answer was `553224415344`.
 
@@ -132,4 +130,4 @@ At this point, you should [return to your Advent calendar](/2023) and try anothe
 
 If you still want to see it, you can [get your puzzle input](11/input).
 
-You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Cosmic+Expansion%22+%2D+Day+11+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F11&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+%22Cosmic+Expansion%22+%2D+Day+11+%2D+Advent+of+Code+2023&url=https%3A%2F%2Fadventofcode%2Ecom%2F2023%2Fday%2F11&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

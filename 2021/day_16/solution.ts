@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -66,9 +67,7 @@ const readPacket = (
 			if (lengthTypeID === "0") {
 				const subPacketsLength = Number.parseInt(readChars(15), 2);
 
-				const { literals: newLiterals } = readPacket(
-					readChars(subPacketsLength),
-				);
+				const { literals: newLiterals } = readPacket(readChars(subPacketsLength));
 
 				literals.push(operators[typeID](newLiterals));
 			} else {

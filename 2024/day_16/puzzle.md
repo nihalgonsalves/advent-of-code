@@ -1,11 +1,10 @@
-\--- Day 16: Reindeer Maze ---
-----------
+## \--- Day 16: Reindeer Maze ---
 
-It's time again for the [Reindeer Olympics](/2015/day/14)! This year, the big event is the *Reindeer Maze*, where the Reindeer compete for the *lowest score*.
+It's time again for the [Reindeer Olympics](/2015/day/14)! This year, the big event is the _Reindeer Maze_, where the Reindeer compete for the _lowest score_.
 
 You and The Historians arrive to search for the Chief right as the event is about to start. It wouldn't hurt to watch a little, right?
 
-The Reindeer start on the Start Tile (marked `S`) facing *East* and need to reach the End Tile (marked `E`). They can move forward one tile at a time (increasing their score by `1` point), but never into a wall (`#`). They can also rotate clockwise or counterclockwise 90 degrees at a time (increasing their score by `1000` points).
+The Reindeer start on the Start Tile (marked `S`) facing _East_ and need to reach the End Tile (marked `E`). They can move forward one tile at a time (increasing their score by `1` point), but never into a wall (`#`). They can also rotate clockwise or counterclockwise 90 degrees at a time (increasing their score by `1000` points).
 
 To figure out the best place to sit, you start by grabbing a map (your puzzle input) from a nearby kiosk. For example:
 
@@ -98,20 +97,19 @@ In this maze, the best paths cost `*11048*` points; following one such path woul
 
 Note that the path shown above includes one 90 degree turn as the very first move, rotating the Reindeer from facing East to facing North.
 
-Analyze your map carefully. *What is the lowest score a Reindeer could possibly get?*
+Analyze your map carefully. _What is the lowest score a Reindeer could possibly get?_
 
 Your puzzle answer was `114476`.
 
 The first half of this puzzle is complete! It provides one gold star: \*
 
-\--- Part Two ---
-----------
+## \--- Part Two ---
 
 Now that you know what the best paths look like, you can figure out the best spot to sit.
 
-Every non-wall tile (`S`, `.`, or `E`) is equipped with places to sit along the edges of the tile. While determining which of these tiles would be the best spot to sit depends on a whole bunch of factors (how comfortable the seats are, how far away the bathrooms are, whether there's a pillar blocking your view, etc.), the most important factor is *whether the tile is on one of the best paths through the maze*. If you sit somewhere else, you'd miss all the action!
+Every non-wall tile (`S`, `.`, or `E`) is equipped with places to sit along the edges of the tile. While determining which of these tiles would be the best spot to sit depends on a whole bunch of factors (how comfortable the seats are, how far away the bathrooms are, whether there's a pillar blocking your view, etc.), the most important factor is _whether the tile is on one of the best paths through the maze_. If you sit somewhere else, you'd miss all the action!
 
-So, you'll need to determine which tiles are part of *any* best path through the maze, including the `S` and `E` tiles.
+So, you'll need to determine which tiles are part of _any_ best path through the maze, including the `S` and `E` tiles.
 
 In the first example, there are `*45*` tiles (marked `O`) that are part of at least one of the various best paths through the maze:
 
@@ -157,10 +155,10 @@ In the second example, there are `*64*` tiles that are part of at least one of t
 
 ```
 
-Analyze your map further. *How many tiles are part of at least one of the best paths through the maze?*
+Analyze your map further. _How many tiles are part of at least one of the best paths through the maze?_
 
 Answer:
 
 Although it hasn't changed, you can still [get your puzzle input](16/input).
 
-You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Reindeer+Maze%22+%2D+Day+16+%2D+Advent+of+Code+2024+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F16) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Reindeer+Maze%22+%2D+Day+16+%2D+Advent+of+Code+2024&url=https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F16&related=ericwastl&hashtags=AdventOfCode) [Mastodon](javascript:void(0);)] this puzzle.
+You can also [Shareon [Bluesky](https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Reindeer+Maze%22+%2D+Day+16+%2D+Advent+of+Code+2024+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F16) [Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Reindeer+Maze%22+%2D+Day+16+%2D+Advent+of+Code+2024&url=https%3A%2F%2Fadventofcode%2Ecom%2F2024%2Fday%2F16&related=ericwastl&hashtags=AdventOfCode) [Mastodon](<javascript:void(0);>)] this puzzle.

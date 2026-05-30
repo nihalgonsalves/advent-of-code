@@ -22,7 +22,5 @@ export const run1 = (input: string[]): number => {
 export const run2 = (input: string[]): number => {
 	const matrix = toMatrix(input);
 
-	return matrix.filter((line) =>
-		line.some((_, i) => lineIsSafe(line.toSpliced(i, 1))),
-	).length;
+	return matrix.filter((line) => line.some((_, i) => lineIsSafe(line.toSpliced(i, 1)))).length;
 };

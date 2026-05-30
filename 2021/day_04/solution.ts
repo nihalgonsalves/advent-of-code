@@ -1,6 +1,7 @@
 import assert from "node:assert";
 
 import * as R from "ramda";
+
 import { getInputLines } from "../../getInputLines";
 
 const input = await getInputLines(import.meta.url);
@@ -35,21 +36,13 @@ let firstWin: Win | undefined;
 let lastWin: Win | undefined;
 
 for (const call of calls) {
-	boardLoop: for (
-		let boardIndex = 0;
-		boardIndex < boards.length;
-		boardIndex++
-	) {
+	boardLoop: for (let boardIndex = 0; boardIndex < boards.length; boardIndex++) {
 		if (boardHitCount[boardIndex].won) {
 			continue;
 		}
 
 		for (let rowIndex = 0; rowIndex < boards[boardIndex].length; rowIndex++) {
-			for (
-				let colIndex = 0;
-				colIndex < boards[boardIndex][rowIndex].length;
-				colIndex++
-			) {
+			for (let colIndex = 0; colIndex < boards[boardIndex][rowIndex].length; colIndex++) {
 				if (boards[boardIndex][rowIndex][colIndex] === call) {
 					// replace with -1 for final calculation
 					boards[boardIndex][rowIndex][colIndex] = -1;
@@ -78,18 +71,16 @@ if (!firstWin || !lastWin) {
 	throw new Error("No winning board");
 }
 
-const [firstResult, lastResult] = [firstWin, lastWin].map(
-	({ call, board }: Win) => {
-		const sum = R.sum(board.flat().filter((n) => n !== -1));
+const [firstResult, lastResult] = [firstWin, lastWin].map(({ call, board }: Win) => {
+	const sum = R.sum(board.flat().filter((n) => n !== -1));
 
-		return {
-			call,
-			board,
-			sum,
-			total: sum * call,
-		};
-	},
-);
+	return {
+		call,
+		board,
+		sum,
+		total: sum * call,
+	};
+});
 
 assert.strictEqual(firstResult.total, 28082);
 assert.strictEqual(lastResult.total, 8224);

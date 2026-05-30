@@ -1,11 +1,10 @@
 {
+	"extends": "@nihalgonsalves/esconfig/tsconfig.shared.json",
 	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
-		"target": "esnext",
-		"strict": true,
-		"esModuleInterop": true,
-		"moduleDetection": "force",
-		"skipLibCheck": true
+		"noEmit": true,
+		"erasableSyntaxOnly": false,
+		"noUncheckedIndexedAccess": false,
+		"noPropertyAccessFromIndexSignature": false,
+		"types": ["node"]
 	}
 }

@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -28,10 +29,7 @@ const results = [Math.floor, Math.ceil].map((fn) => {
 	return { value, cost };
 });
 
-const [{ value: usedMeanValue, cost: increasingCost }] = R.sortBy(
-	(r) => r.cost,
-	results,
-);
+const [{ value: _usedMeanValue, cost: increasingCost }] = R.sortBy((r) => r.cost, results);
 
 // Solution
 

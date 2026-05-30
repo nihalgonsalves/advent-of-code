@@ -1,4 +1,4 @@
-import { it } from "bun:test";
+import { it } from "vitest";
 
 it("should assert", async () => {
 	await import("./part1");

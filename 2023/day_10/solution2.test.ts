@@ -1,6 +1,7 @@
-import { describe, expect, it, test } from "bun:test";
+import { describe, expect, it, test } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { tupleGridToGrid } from "./common";
 import { mapInput, run2 } from "./solution2";
 

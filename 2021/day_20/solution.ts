@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -10,8 +11,7 @@ const [lookup, ...image] = (await getInputLines(import.meta.url)).map((line) =>
 type Image = (0 | 1)[][];
 type Grid = { image: Image; outside: 0 | 1 };
 
-const createArray = <T>(el: T, length: number): T[] =>
-	R.times(R.always(el), length);
+const createArray = <T>(el: T, length: number): T[] => R.times(R.always(el), length);
 
 const padImage = (image: Image, padChar: 0 | 1): Image => {
 	const padAmount = 2;

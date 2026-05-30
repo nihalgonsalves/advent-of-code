@@ -87,12 +87,7 @@ export const run2 = (input: string[]): number => {
 			if (char.match(/^\d$/)) {
 				buffer += char;
 				if (!touchesAt) {
-					const symbols = readSymbolsAround(
-						input,
-						lineI,
-						charI,
-						(char) => char === "*",
-					);
+					const symbols = readSymbolsAround(input, lineI, charI, (char) => char === "*");
 					if (symbols?.[0]) {
 						touchesAt = `${symbols[0].line}.${symbols[0].index}`;
 					}

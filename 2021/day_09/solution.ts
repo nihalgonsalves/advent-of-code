@@ -1,37 +1,26 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
 
 type Point = { x: number; y: number; value: number };
 
-const data: Point[][] = (await getInputLines(import.meta.url)).map(
-	(line, rowIndex) =>
-		line.split("").map((s, colIndex) => ({
-			x: rowIndex,
-			y: colIndex,
-			value: Number.parseInt(s, 10),
-		})),
+const data: Point[][] = (await getInputLines(import.meta.url)).map((line, rowIndex) =>
+	line.split("").map((s, colIndex) => ({
+		x: rowIndex,
+		y: colIndex,
+		value: Number.parseInt(s, 10),
+	})),
 );
 
-const getNeighbours = (
-	x: number,
-	y: number,
-	predicate: (value: Point) => boolean = () => true,
-) =>
-	[
-		data[x]?.[y - 1],
-		data[x]?.[y + 1],
-		data[x - 1]?.[y],
-		data[x + 1]?.[y],
-	].filter((val): val is Point => val !== undefined && predicate(val));
+const getNeighbours = (x: number, y: number, predicate: (value: Point) => boolean = () => true) =>
+	[data[x]?.[y - 1], data[x]?.[y + 1], data[x - 1]?.[y], data[x + 1]?.[y]].filter(
+		(val): val is Point => val !== undefined && predicate(val),
+	);
 
 const getBasin = (point: Point, visited: boolean[][]): Point[] => {
-	const basinNeighbours = getNeighbours(
-		point.x,
-		point.y,
-		(p) => !visited[p.x][p.y] && p.value < 9,
-	);
+	const basinNeighbours = getNeighbours(point.x, point.y, (p) => !visited[p.x][p.y] && p.value < 9);
 
 	for (const { x, y } of basinNeighbours) {
 		visited[x][y] = true;

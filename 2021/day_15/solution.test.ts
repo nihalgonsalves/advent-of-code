@@ -1,4 +1,4 @@
-import { it } from "bun:test";
+import { it } from "vitest";
 
 // TODO: does not work
 it.skip("should assert", async () => {

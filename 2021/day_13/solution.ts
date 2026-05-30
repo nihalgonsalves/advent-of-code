@@ -1,4 +1,5 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
 
 import { getInputLines } from "../../getInputLines";
@@ -33,10 +34,8 @@ const getTransformer =
 	};
 
 const fold = (dots: Dot[], fold: Fold): Dot[] => {
-	const transformX =
-		fold.axis === "x" ? getTransformer(fold.value) : R.identity;
-	const transformY =
-		fold.axis === "y" ? getTransformer(fold.value) : R.identity;
+	const transformX = fold.axis === "x" ? getTransformer(fold.value) : R.identity;
+	const transformY = fold.axis === "y" ? getTransformer(fold.value) : R.identity;
 
 	return dots.map(({ x, y }) => ({
 		x: transformX(x),

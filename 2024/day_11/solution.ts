@@ -30,9 +30,7 @@ const countStones = (stones: number[]): Map<number, number> => {
 	return stoneCount;
 };
 
-const countNextStones = (
-	stoneCount: Map<number, number>,
-): Map<number, number> => {
+const countNextStones = (stoneCount: Map<number, number>): Map<number, number> => {
 	const newStoneCount = new Map<number, number>();
 
 	for (const [stone, count] of stoneCount) {
@@ -46,10 +44,7 @@ const countNextStones = (
 
 const blink = (stones: number[], n: number): number =>
 	Array.from({ length: n })
-		.reduce<Map<number, number>>(
-			(stoneCount) => countNextStones(stoneCount),
-			countStones(stones),
-		)
+		.reduce<Map<number, number>>((stoneCount) => countNextStones(stoneCount), countStones(stones))
 		.entries()
 		.reduce((acc, [_, count]) => acc + count, 0);
 

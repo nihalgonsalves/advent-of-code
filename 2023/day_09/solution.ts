@@ -6,9 +6,7 @@ const calcDiffs = (history: number[]): number[][] => {
 	const diffs: number[][] = [currentDiff];
 
 	do {
-		currentDiff = currentDiff
-			.slice(0, -1)
-			.map((n, i) => currentDiff[i + 1] - n);
+		currentDiff = currentDiff.slice(0, -1).map((n, i) => currentDiff[i + 1] - n);
 		diffs.push(currentDiff);
 	} while (currentDiff.some((d) => d !== 0));
 

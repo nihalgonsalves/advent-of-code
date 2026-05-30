@@ -1,5 +1,7 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
+
 import { getInput } from "../../getInputLines";
+
 import { allPairs, run1, run2, simplifyRanges } from "./solution";
 
 const input = await getInput(import.meta.url);

@@ -31,9 +31,7 @@ const parseInput = (input: string[]) => {
 		.slice(1)
 		.map((seed) => Number.parseInt(seed, 10));
 
-	const map = new Map<MapItem, Array<TranslatingRange>>(
-		maps.map((map) => [map, []]),
-	);
+	const map = new Map<MapItem, Array<TranslatingRange>>(maps.map((map) => [map, []]));
 
 	let mapCursor: MapItem | null = null;
 
@@ -91,8 +89,7 @@ export const run1 = (input: string[]): number => {
 			const destinationOffset = map
 				.get(mapItem)!
 				.find(
-					({ start, endInclusive }) =>
-						start <= position && position <= endInclusive,
+					({ start, endInclusive }) => start <= position && position <= endInclusive,
 				)?.destinationOffset;
 
 			if (destinationOffset) {
@@ -162,34 +159,31 @@ export const splitRange = (inputRange: Range, mappings: TranslatingRange[]) => {
 					},
 				];
 
-	const intersectingWithGapFill = intersectingRanges.flatMap(
-		(intersectingRange, i) => {
-			const offsetRange = {
-				start: intersectingRange.start + intersectingRange.destinationOffset,
-				endInclusive:
-					intersectingRange.endInclusive + intersectingRange.destinationOffset,
-				destinationOffset: 0,
-			};
+	const intersectingWithGapFill = intersectingRanges.flatMap((intersectingRange, i) => {
+		const offsetRange = {
+			start: intersectingRange.start + intersectingRange.destinationOffset,
+			endInclusive: intersectingRange.endInclusive + intersectingRange.destinationOffset,
+			destinationOffset: 0,
+		};
 
-			// case (c)
-			// if we're not at the end, and the next range is not directly after, add a new range for the gap
-			if (
-				i < intersectingRanges.length - 1 &&
-				intersectingRanges[i + 1].start !== intersectingRange.endInclusive + 1
-			) {
-				return [
-					offsetRange,
-					{
-						start: intersectingRange.endInclusive + 1,
-						endInclusive: intersectingRanges[i + 1].start - 1,
-						destinationOffset: 0,
-					},
-				];
-			}
+		// case (c)
+		// if we're not at the end, and the next range is not directly after, add a new range for the gap
+		if (
+			i < intersectingRanges.length - 1 &&
+			intersectingRanges[i + 1].start !== intersectingRange.endInclusive + 1
+		) {
+			return [
+				offsetRange,
+				{
+					start: intersectingRange.endInclusive + 1,
+					endInclusive: intersectingRanges[i + 1].start - 1,
+					destinationOffset: 0,
+				},
+			];
+		}
 
-			return offsetRange;
-		},
-	);
+		return offsetRange;
+	});
 
 	return [...leftRange, ...intersectingWithGapFill, ...rightRange];
 };
@@ -197,12 +191,12 @@ export const splitRange = (inputRange: Range, mappings: TranslatingRange[]) => {
 export const run2 = (input: string[]): number => {
 	const { seeds: seedPairs, map } = parseInput(input);
 
-	const pairs = (
-		R.splitEvery(2, seedPairs) as [start: number, length: number][]
-	).map<Range>(([start, length]) => ({
-		start,
-		endInclusive: start + length - 1,
-	}));
+	const pairs = (R.splitEvery(2, seedPairs) as [start: number, length: number][]).map<Range>(
+		([start, length]) => ({
+			start,
+			endInclusive: start + length - 1,
+		}),
+	);
 
 	let minLocation = Number.POSITIVE_INFINITY;
 

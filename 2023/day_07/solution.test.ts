@@ -1,17 +1,12 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "vitest";
 
 import { getInputLines } from "../../getInputLines";
+
 import { type Card, calcType2, run1, run2, Type } from "./solution";
 
 const input = await getInputLines(import.meta.url);
 
-const sample: string[] = [
-	"32T3K 765",
-	"T55J5 684",
-	"KK677 28",
-	"KTJJT 220",
-	"QQQJA 483",
-];
+const sample: string[] = ["32T3K 765", "T55J5 684", "KK677 28", "KTJJT 220", "QQQJA 483"];
 
 describe("day 07", () => {
 	describe("part 1", () => {

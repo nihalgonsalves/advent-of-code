@@ -6,8 +6,7 @@ const parseInput = (input: string) => {
 		.map((patternStr) => patternStr.split("\n").map((char) => char.split("")));
 };
 
-const matrixEqual = (a: string[][], b: string[][]) =>
-	JSON.stringify(a) === JSON.stringify(b);
+const matrixEqual = (a: string[][], b: string[][]) => JSON.stringify(a) === JSON.stringify(b);
 
 const findReflectedIndex = (
 	pattern: string[][],
@@ -23,25 +22,19 @@ const findReflectedIndex = (
 
 		const reflectionLength = Math.min(upReversed.length, down.length);
 
-		if (
-			matrixEqual(
-				upReversed.slice(0, reflectionLength),
-				down.slice(0, reflectionLength),
-			)
-		) {
+		if (matrixEqual(upReversed.slice(0, reflectionLength), down.slice(0, reflectionLength))) {
 			return i;
 		}
 	}
+
+	return undefined;
 };
 
 const findReflectionValue = (
 	pattern: string[][],
 	ignoreValue: number | undefined = undefined,
 ): number | undefined => {
-	const reflectedRow = findReflectedIndex(
-		pattern,
-		ignoreValue ? ignoreValue / 100 : undefined,
-	);
+	const reflectedRow = findReflectedIndex(pattern, ignoreValue ? ignoreValue / 100 : undefined);
 	if (reflectedRow) {
 		return reflectedRow * 100;
 	}
@@ -50,6 +43,8 @@ const findReflectionValue = (
 	if (reflectedColumn) {
 		return reflectedColumn;
 	}
+
+	return undefined;
 };
 
 export const run1 = (input: string): number => {

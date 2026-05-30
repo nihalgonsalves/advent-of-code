@@ -10,11 +10,7 @@ export const PADDING = "*" as const;
 export type Coordinates = { row: number; col: number };
 export type GridItem = Coordinates & { value: GridValue; wasPadding?: boolean };
 
-export type GridValue =
-	| Connector
-	| typeof EMPTY
-	| typeof ENTRY
-	| typeof PADDING;
+export type GridValue = Connector | typeof EMPTY | typeof ENTRY | typeof PADDING;
 
 export const DIRECTIONS = ["north", "east", "south", "west"] as const;
 export type Direction = (typeof DIRECTIONS)[number];
@@ -35,17 +31,15 @@ const direction = (directions: Set<Direction>) => ({
 	directions: [...directions.values()],
 });
 
-const connectorTypes: Record<
-	Connector,
-	Record<Direction, boolean> & { directions: Direction[] }
-> = {
-	"┃": direction(new Set(["north", "south"])),
-	"━": direction(new Set(["east", "west"])),
-	"┗": direction(new Set(["north", "east"])),
-	"┛": direction(new Set(["north", "west"])),
-	"┓": direction(new Set(["south", "west"])),
-	"┏": direction(new Set(["east", "south"])),
-};
+const connectorTypes: Record<Connector, Record<Direction, boolean> & { directions: Direction[] }> =
+	{
+		"┃": direction(new Set(["north", "south"])),
+		"━": direction(new Set(["east", "west"])),
+		"┗": direction(new Set(["north", "east"])),
+		"┛": direction(new Set(["north", "west"])),
+		"┓": direction(new Set(["south", "west"])),
+		"┏": direction(new Set(["east", "south"])),
+	};
 
 export const mapping: Record<string, GridValue> = {
 	"|": "┃",
@@ -124,10 +118,7 @@ export const guessConnectorType = ({
 	return found?.[0] as Connector | undefined;
 };
 
-export const calcLoop = (
-	grid: GridItem[][],
-	startingGridItem: GridConnectorItem,
-) => {
+export const calcLoop = (grid: GridItem[][], startingGridItem: GridConnectorItem) => {
 	// can start in direction
 	let enteredFrom = connectorTypes[startingGridItem.value].directions[0];
 
@@ -140,16 +131,9 @@ export const calcLoop = (
 			(dir) => dir !== opposingDirection[enteredFrom],
 		)!;
 
-		seen.push(
-			getAdjacentItems({ grid, gridItem: cursor })[
-				enteredFrom
-			] as GridConnectorItem,
-		);
+		seen.push(getAdjacentItems({ grid, gridItem: cursor })[enteredFrom] as GridConnectorItem);
 	} while (
-		!(
-			seen.at(-1)!.row === startingGridItem.row &&
-			seen.at(-1)!.col === startingGridItem.col
-		)
+		!(seen.at(-1)!.row === startingGridItem.row && seen.at(-1)!.col === startingGridItem.col)
 	);
 
 	return seen;
@@ -160,11 +144,7 @@ export const tupleGridToGrid = (grid: GridValue[][]) =>
 		row.map((value, colIndex) => ({ row: rowIndex, col: colIndex, value })),
 	);
 
-export const printGrid = (
-	grid: GridItem[][],
-	seen: Coordinates[],
-	highlighted: Coordinates[],
-) => {
+export const printGrid = (grid: GridItem[][], seen: Coordinates[], highlighted: Coordinates[]) => {
 	const unconnected: Record<GridValue, string> = {
 		"┃": "║",
 		"━": "═",
@@ -184,9 +164,7 @@ export const printGrid = (
 					return [];
 				}
 
-				const isHighlighted = highlighted.find(
-					(v) => v.row === rowIndex && v.col === colIndex,
-				);
+				const isHighlighted = highlighted.find((v) => v.row === rowIndex && v.col === colIndex);
 
 				const value = seen.find((v) => v.row === rowIndex && v.col === colIndex)
 					? styleText("red", item.value as Connector)

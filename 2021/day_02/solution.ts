@@ -1,5 +1,7 @@
 import assert from "node:assert";
+
 import * as R from "ramda";
+
 import { getInputLines } from "../../getInputLines";
 
 // https://adventofcode.com/2021/day/2

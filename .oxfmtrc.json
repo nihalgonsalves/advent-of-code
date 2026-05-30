@@ -1,0 +1,22 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": ["CHANGELOG.md"],
+	"sortPackageJson": true,
+	"sortImports": {
+		"customGroups": [
+			{
+				"groupName": "org-scope",
+				"elementNamePattern": ["@nihalgonsalves"]
+			}
+		],
+		"groups": [
+			["builtin"],
+			["external", "type-external"],
+			["org-scope"],
+			["internal", "type-internal"],
+			["parent", "type-parent"],
+			["sibling", "type-sibling"],
+			["index", "type-index"]
+		]
+	}
+}
