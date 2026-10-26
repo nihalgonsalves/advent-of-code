@@ -82,7 +82,7 @@ export const run2 = ([input]: string[]): number => {
 		return Array.from({ length: count }, (_, i) => end - i);
 	};
 
-	for (let right = blocks.length - 1; right > 0; ) {
+	for (let right = blocks.length - 1; right > 0;) {
 		if (blocks[right].type === "free") {
 			right--;
 			continue;
